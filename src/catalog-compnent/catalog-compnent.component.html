@@ -1,0 +1,10 @@
+<p class="title">Produits Make Up</p>
+
+<div class="products-container">
+  <div class="product-card" *ngFor="let product of products">
+    <img [src]="product.image" [alt]="product.name_product" class="product-image" />
+    <h2 class="product-name">{{ product.name_product }}</h2>
+    <p class="product-brand">{{ product.brand }}</p>
+    <p class="product-price">{{ product.price }} MAD</p>
+  </div>
+</div>
