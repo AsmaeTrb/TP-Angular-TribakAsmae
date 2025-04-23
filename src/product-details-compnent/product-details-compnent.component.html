@@ -1,8 +1,18 @@
 <div class="details-container" *ngIf="product">
     <h3>Détails du produit</h3>
+    <img [src]="product.image" [alt]="product.name_product" class="product-image-detail" />
     <p><strong>Nom :</strong> {{ product.name_product }}</p>
     <p><strong>Marque :</strong> {{ product.brand }}</p>
     <p><strong>Prix :</strong> {{ product.price }} MAD</p>
-    <p><strong>Quantité :</strong> {{ product.quantity }}</p>
+    <p><strong>Description :</strong> {{ product.description }}</p>
+    <p><strong>Quantité en stock :</strong> {{ product.quantity }}</p>
+    <div>
+      <strong>Ingrédients :</strong>
+      <ul>
+        <li *ngFor="let ingr of product.ingredients">{{ ingr }}</li>
+      </ul>
+    </div>
+  
+    <p><strong>Conseils d’utilisation :</strong> {{ product.how_to_use }}</p>
   </div>
   
