@@ -1,19 +1,17 @@
 import { Component, Input, input } from '@angular/core';
 import { Product } from '../models/product';
+import { CommonModule } from '@angular/common'; // ✅ à ajouter
+
 
 @Component({
   selector: 'app-product-details-compnent',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule], // ✅ ici
   templateUrl: './product-details-compnent.component.html',
   styleUrl: './product-details-compnent.component.css'
 })
 export class ProductDetailsCompnentComponent {
   
-  // @Input() dataC: any[] = [];
-  @Input() productC!: Product[] ;  
-
-  constructor() {
-    console.log("dataC ================================================ "+this.productC);
-  }
+  @Input() product!: Product;
 
 }

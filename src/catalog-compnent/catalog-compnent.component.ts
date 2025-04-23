@@ -15,7 +15,11 @@ import { CommonModule } from '@angular/common';
 export class CatalogCompnentComponent {
 products! : Product[]; 
 
- 
+selectedProduct!: Product;
+
+voirDetails(product: Product) {
+  this.selectedProduct = product;
+}
 
   constructor(private getDataService: GetDataService) {}
 
@@ -24,19 +28,8 @@ products! : Product[];
     
     this.products = this.getDataService.getProducts();
 
-    console.log("products === "+this.products[0].name_product);
 
-    console.log(" no data");
-    console.log( "*********************"+this.products.map((product) => product.id));
-  
-    // for (let i = 0; i < this.products.length; i++) {
-    // if (this.products[i].quantity <10 ) {
-    //     console.log(this.products[i].id);
-    //     this.data.push(this.products[i].id);
-    // }
-  // }
-  // console.log("data === "+this.data);
-  }
 
 }
   
+ }

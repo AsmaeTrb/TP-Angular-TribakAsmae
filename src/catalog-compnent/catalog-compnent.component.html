@@ -1,10 +1,23 @@
 <p class="title">Produits Make Up</p>
 
 <div class="products-container">
-  <div class="product-card" *ngFor="let product of products">
-    <img [src]="product.image" [alt]="product.name_product" class="product-image" />
-    <h2 class="product-name">{{ product.name_product }}</h2>
-    <p class="product-brand">{{ product.brand }}</p>
-    <p class="product-price">{{ product.price }} MAD</p>
-  </div>
+  <ng-container *ngFor="let product of products">
+    <div
+      *ngIf="product.quantity > 0"
+      class="product-card"
+      [ngStyle]="{ 'background-color': product.quantity < 10 ? 'pink' : 'white' }"
+    >
+      <img [src]="product.image" [alt]="product.name_product" class="product-image" />
+      <h2 class="product-name">{{ product.name_product }}</h2>
+      <p class="product-brand">{{ product.brand }}</p>
+      <p class="product-price">{{ product.price }} MAD</p>
+      <button (click)="voirDetails(product)">Voir détails</button>
+    </div>
+  </ng-container>
 </div>
+
+<!-- Affichage des détails -->
+<app-product-details-compnent
+  *ngIf="selectedProduct"
+  [product]="selectedProduct">
+</app-product-details-compnent>

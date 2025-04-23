@@ -22,7 +22,7 @@ export class GetDataService {
         '../assets/image1.jpg',
         ['Niacinamide', 'Procerad', 'LHA', 'Acide salicylique'],
         'Appliquer matin et soir sur le visage nettoyé, en évitant le contour des yeux.',
-        25
+        2
       )
     );
     this.products.push(
