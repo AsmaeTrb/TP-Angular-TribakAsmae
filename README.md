@@ -8,3 +8,5 @@ To start a local development server, run:
 
 ```bash
  ![Image Alt](https://github.com/AsmaeTrb/TP-Angular-TribakAsmae/blob/294d428dae7d1e91c11ba278f9c1904ac43772a8/TribakAsmae1.png)
+ ![Image Alt](https://github.com/AsmaeTrb/TP-Angular-TribakAsmae/blob/ef76abdf276c683e926db0476b341abcb6a84b33/TribakAsmae2.png)
+
