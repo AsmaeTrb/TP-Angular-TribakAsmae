@@ -1,12 +1,12 @@
 import { Component, Input, input } from '@angular/core';
 import { Product } from '../models/product';
-import { CommonModule } from '@angular/common'; // ✅ à ajouter
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-product-details-compnent',
   standalone: true,
-  imports: [CommonModule], // ✅ ici
+  imports: [CommonModule], 
   templateUrl: './product-details-compnent.component.html',
   styleUrl: './product-details-compnent.component.css'
 })

@@ -1,14 +1,5 @@
 export class Product {
 
-    // id !: string;
-    // name_product !: string;
-    // brand !: string;
-    // price !: number;
-    // description !: string;
-    // image !: string;
-    // ingredients !: string[];
-    // how_to_use !: string;
-
     constructor(
         public id : string,
         public name_product: string,
