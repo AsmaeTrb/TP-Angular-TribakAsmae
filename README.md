@@ -1,10 +1,26 @@
-# Tp4
+# TP Angular – Asmae Tribak
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+Catalogue de produits développé avec Angular et Bootstrap.  
+Ce projet permet d’afficher une liste de produits, leurs détails, et de gérer la présentation selon la quantité disponible.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Lancer le projet
 
-```bash
-ng serve
+Ce projet a été généré avec [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+
+---
+
+## ⚙️ Étapes d'installation 
+
+1. Installez les dépendances Angular du projet :
+   ```bash
+   npm install
+   npm install bootstrap
+---
+
+## 📷 Captures d’écran
+
+![Liste des produits](https://github.com/AsmaeTrb/TP-Angular-TribakAsmae/blob/294d428dae7d1e91c11ba278f9c1904ac43772a8/TribakAsmae1.png)
+
+![Détails du produit](https://github.com/AsmaeTrb/TP-Angular-TribakAsmae/blob/ef76abdf276c683e926db0476b341abcb6a84b33/TribakAsmae2.png)
