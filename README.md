@@ -17,6 +17,7 @@ Ce projet a été généré avec [Angular CLI](https://github.com/angular/angula
    ```bash
    npm install
    npm install bootstrap
+   npm install express cors
 ---
 
 ## 📷 Captures d’écran
