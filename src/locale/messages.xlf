@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="fr-CA" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="1196251285900080613" datatype="html">
+        <source>Soin Visage</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/catalog-compnent/catalog-compnent.component.html</context>
+          <context context-type="linenumber">2,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6075315752465987292" datatype="html">
+        <source>Sérum</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/catalog-compnent/catalog-compnent.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3113639593634991059" datatype="html">
+        <source>Solaire</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/catalog-compnent/catalog-compnent.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1129409594463485436" datatype="html">
+        <source>Tous les produits</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/catalog-compnent/catalog-compnent.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6066371910450679262" datatype="html">
+        <source>Skin Care Products</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/catalog-compnent/catalog-compnent.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

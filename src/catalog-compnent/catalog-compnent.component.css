@@ -11,6 +11,42 @@
   height: 130px;  /* adapte selon tes besoins */
   display: inline-block;
 }
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px;
+  background: #f5f5f5;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-image: url('/assets/roche.png'); 
+
+}
+
+.filters .button {
+  text-decoration: none;
+  color: #0072ce;
+  border: 2px solid #0072ce;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+.filters .button:hover {
+  background-color: #0072ce;
+  color: white;
+}
+
+.filters .active {
+  background-color: #0072ce;
+  color: white;
+  border-color: #005fa3;
+}
+
 
 .products-container {
   display: flex;
