@@ -6,6 +6,6 @@ export const routes: Routes =  [
     
     {path : 'catalog', component : CatalogCompnentComponent, title: 'My Catalog products'},
     {path : 'product-details', component : ProductDetailsCompnentComponent, title: 'Product details'},
-    {path : '', redirectTo : '/home', pathMatch : 'full'},
+    {path : '', redirectTo : '/catalog', pathMatch : 'full'},
 
 ];

@@ -5,12 +5,12 @@
   "projects": {
     "tp4": {
       "projectType": "application",
-        "i18n": {
-          "sourceLocale": "fr-CA",
-          "locales": {
-            "en-Us": "src/locale/messages.eng.xlf"
-          }
-        },
+      "i18n": {
+        "sourceLocale": "fr",
+        "locales": {
+          "en-US": "src/locale/messages.eng.xlf"
+        }
+      },
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
@@ -19,7 +19,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "localize": ["en-Us" ],
+            "localize": ["en-US"],
             "outputPath": "dist/tp4",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -46,6 +46,8 @@
           },
           "configurations": {
             "production": {
+              "localize": true,
+              "outputPath": "dist/tp4",
               "budgets": [
                 {
                   "type": "initial",
@@ -59,6 +61,16 @@
                 }
               ],
               "outputHashing": "all"
+            },
+            "production-fr": {
+              "localize": ["fr"],
+              "baseHref": "/fr/",
+              "outputPath": "dist/tp4/fr"
+            },
+            "production-en": {
+              "localize": ["en-US"],
+              "baseHref": "/en/",
+              "outputPath": "dist/tp4/en"
             },
             "development": {
               "optimization": false,
