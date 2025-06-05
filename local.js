@@ -14,7 +14,7 @@ LOCALES.forEach((locale) => {
 
   // Fallback vers index.csr.html pour le routing Angular
   app.get(`/${locale}/*`, (req, res) => {
-    res.sendFile(path.join(localePath, 'catalog/index.html'));
+    res.sendFile(path.join(localePath, 'index.csr.html'));
   });
 });
 
@@ -25,6 +25,6 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`🌍 App localisée disponible sur :`);
-  console.log(`➡️  http://localhost:${PORT}/fr-CA`);
-  console.log(`➡️  http://localhost:${PORT}/en-US`);
+  console.log(`➡️  http://localhost:${PORT}/fr-CA/catalog`);
+  console.log(`➡️  http://localhost:${PORT}/en-US/catalog`);
 });

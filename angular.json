@@ -4,13 +4,13 @@
   "newProjectRoot": "projects",
   "projects": {
     "tp4": {
-      "projectType": "application",
       "i18n": {
         "sourceLocale": "fr",
         "locales": {
           "en-US": "src/locale/messages.eng.xlf"
         }
       },
+      "projectType": "application",
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
@@ -46,7 +46,6 @@
           },
           "configurations": {
             "production": {
-              "localize": true,
               "outputPath": "dist/tp4",
               "budgets": [
                 {
@@ -61,16 +60,6 @@
                 }
               ],
               "outputHashing": "all"
-            },
-            "production-fr": {
-              "localize": ["fr"],
-              "baseHref": "/fr/",
-              "outputPath": "dist/tp4/fr"
-            },
-            "production-en": {
-              "localize": ["en-US"],
-              "baseHref": "/en/",
-              "outputPath": "dist/tp4/en"
             },
             "development": {
               "optimization": false,

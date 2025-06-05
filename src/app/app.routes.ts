@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { CatalogCompnentComponent } from '../catalog-compnent/catalog-compnent.component';
-import { ProductDetailsCompnentComponent } from '../product-details-compnent/product-details-compnent.component';
-
+import { ProductdetailsComponent } from './productdetails/productdetails.component';
+import { CatalogComponent } from './catalog/catalog.component';
 export const routes: Routes =  [
     
-    {path : 'catalog', component : CatalogCompnentComponent, title: 'My Catalog products'},
-    {path : 'product-details', component : ProductDetailsCompnentComponent, title: 'Product details'},
+    {path : 'catalog', component : CatalogComponent, title: 'My Catalog products'},
+    {path : 'productdetails', component : ProductdetailsComponent, title: 'Product details'},
     {path : '', redirectTo : '/catalog', pathMatch : 'full'},
+
 
 ];

@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../models/product';
-import { GetDataService } from '../services/get-data.service';
-import { ProductDetailsCompnentComponent } from '../product-details-compnent/product-details-compnent.component'; 
+import { GetDataService } from '../../services/get-data.service';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Product } from '../../models/product';
+import { ProductdetailsComponent } from '../productdetails/productdetails.component';
 @Component({
-  selector: 'app-catalog-compnent',
-  imports: [ProductDetailsCompnentComponent, CommonModule,RouterLink, RouterLinkActive],
-  templateUrl: './catalog-compnent.component.html',
-  styleUrl: './catalog-compnent.component.css',
-  standalone: true
+  selector: 'app-catalog',
+  imports: [ProductdetailsComponent, CommonModule,RouterLink, RouterLinkActive],
+  templateUrl: './catalog.component.html',
+  styleUrl: './catalog.component.css'
 })
-export class CatalogCompnentComponent implements OnInit {
+export class CatalogComponent {
   products: Product[] = [];
   selectedProduct!: Product;
   filter: string = '';
