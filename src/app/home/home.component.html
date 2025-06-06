@@ -20,20 +20,17 @@
         </nav>
     </header>
     
-    <div class="hermes-image-with-text">
-        <!-- Conteneur image avec texte superposé -->
-        <div class="hermes-image-container">
-            <img src="./assets/decouver.jpg" alt="Collection été Hermès" class="hermes-main-image">
-            
-            <!-- Texte intégré dans l'image -->
-            <div class="hermes-image-overlay">
-                <h1 class="hermes-overlay-title">PLONGEZ DANS L'ÉTÉ</h1>
-                <p class="hermes-overlay-text">
-                    Tapis et draps de plage, paréos, coussins et cabas...<br>
-                    pour retrouver les essentiels d'une journée en bord de mer.
-                </p>
-                <button class="hermes-overlay-button">DÉCOUVRIR</button>
+    <!-- Section Vidéo -->
+    <div class="hermes-video-section">
+        <video #promoVideo class="hermes-promo-video" muted loop playsinline>
+            <source src="./assets/video1.mp4" type="video/mp4">
+            <!-- Fallback option -->
+            <div class="video-fallback">
+                <button (click)="playVideo()">Lire la vidéo</button>
             </div>
+        </video>
+        <div class="hermes-video-overlay">
+            <h2>NOUVELLE COLLECTION ÉTÉ</h2>
         </div>
     </div>
 
@@ -53,16 +50,21 @@
             </div>
         </div>
     </div>
-
-    <!-- Section Vidéo -->
-    <div class="hermes-video-section">
-        <video class="hermes-promo-video" autoplay muted loop playsinline>
-            <source src="./assets/video1.mp4" type="video/mp4">
-            Votre navigateur ne supporte pas les vidéos HTML5.
-        </video>
-        <div class="hermes-video-overlay">
-            <h2>NOUVELLE COLLECTION ÉTÉ</h2>
-         </div>
+    <div class="hermes-image-with-text">
+        <!-- Conteneur image avec texte superposé -->
+        <div class="hermes-image-container">
+            <img src="./assets/decouver.jpg" alt="Collection été Hermès" class="hermes-main-image">
+            
+            <!-- Texte intégré dans l'image -->
+            <div class="hermes-image-overlay">
+                <h1 class="hermes-overlay-title">PLONGEZ DANS L'ÉTÉ</h1>
+                <p class="hermes-overlay-text">
+                    Tapis et draps de plage, paréos, coussins et cabas...<br>
+                    pour retrouver les essentiels d'une journée en bord de mer.
+                </p>
+                <button class="hermes-overlay-button">DÉCOUVRIR</button>
+            </div>
+        </div>
     </div>
 
     <!-- Suite des produits (à partir du 11ème) -->
