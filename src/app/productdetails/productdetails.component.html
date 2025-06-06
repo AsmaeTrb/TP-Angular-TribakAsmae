@@ -1,19 +1,25 @@
 <div class="details-container" *ngIf="product">
     <h3>Détails du produit</h3>
-    <img [src]="product.image" [alt]="product.name_product" class="product-image-detail" />
-    <p><strong>Nom :</strong> {{ product.name_product }}</p>
-    <p><strong>Marque :</strong> {{ product.brand }}</p>
+    
+    <!-- Image principale -->
+    <img [src]="product.image1" [alt]="product.name" class="product-image-detail" />
+    
+    <!-- Option : image secondaire -->
+    <img *ngIf="product.image2" [src]="product.image2" [alt]="product.name" class="product-image-detail" />
+    
+    <p><strong>Nom :</strong> {{ product.name }}</p>
     <p><strong>Prix :</strong> {{ product.price }} MAD</p>
     <p><strong>Description :</strong> {{ product.description }}</p>
-    <p><strong>Quantité en stock :</strong> {{ product.quantity }}</p>
-  
-    <div *ngIf="product.ingredients?.length">
-      <strong>Ingrédients :</strong>
+    <p><strong>Catégorie :</strong> {{ product.category }}</p>
+    
+    <!-- Affichage des tailles -->
+    <div *ngIf="product.sizes?.length">
+      <strong>Tailles disponibles :</strong>
       <ul>
-        <li *ngFor="let ingr of product.ingredients">{{ ingr }}</li>
+        <li *ngFor="let s of product.sizes">
+          Taille {{ s.size }} → {{ s.quantity }} en stock
+        </li>
       </ul>
     </div>
-  
-    <p *ngIf="product.how_to_use"><strong>Conseils d’utilisation :</strong> {{ product.how_to_use }}</p>
   </div>
   

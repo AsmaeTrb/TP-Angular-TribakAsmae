@@ -1,0 +1,59 @@
+<div class="hermes-container">
+    <!-- Header Hermes avec votre navigation Vinted -->
+    <header class="hermes-header">
+        <div class="hermes-branding">
+            <h1 class="hermes-logo" routerLink="/">HERMES</h1>
+            <h2 class="hermes-sublogo">PARIS</h2>
+        </div>
+        
+        <!-- Votre navigation Vinted avec style Hermès -->
+        <nav class="hermes-category-nav">
+            <a routerLink="/" [queryParams]="{}" class="hermes-category-link">Acueil</a>
+            <a routerLink="/" [queryParams]="{category: 'femmes'}" class="hermes-category-link">Femmes</a>
+            <a routerLink="/" [queryParams]="{category: 'hommes'}" class="hermes-category-link">Hommes</a>
+            <a routerLink="/" [queryParams]="{category: 'createurs'}" class="hermes-category-link">Créateurs</a>
+            <a routerLink="/" [queryParams]="{category: 'enfants'}" class="hermes-category-link">Enfants</a>
+            <a routerLink="/" [queryParams]="{category: 'maison'}" class="hermes-category-link">Maison</a>
+            <a routerLink="/" [queryParams]="{category: 'sport'}" class="hermes-category-link">Sport</a>
+            <a routerLink="/" [queryParams]="{category: 'animaux'}" class="hermes-category-link">Animaux</a>
+            <a routerLink="/" class="hermes-category-link">À propos</a>
+            <a routerLink="/" class="hermes-category-link">Plateforme</a>
+        </nav>
+    </header>
+    <div class="hermes-image-with-text">
+        <!-- Conteneur image avec texte superposé -->
+        <div class="hermes-image-container">
+            <img src="./assets/decouver.jpg" alt="Collection été Hermès" class="hermes-main-image">
+            
+            <!-- Texte intégré dans l'image -->
+            <div class="hermes-image-overlay">
+                <h1 class="hermes-overlay-title">PLONGEZ DANS L'ÉTÉ</h1>
+                <p class="hermes-overlay-text">
+                    Tapis et draps de plage, paréos, coussins et cabas...<br>
+                    pour retrouver les essentiels d'une journée en bord de mer.
+                </p>
+                <button class="hermes-overlay-button">DÉCOUVRIR</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="hermes-products">
+        <div *ngFor="let product of products" class="hermes-product-card" (click)="voirDetails(product)">
+            <div class="hermes-product-image-container">
+                <img [src]="product.image1" [alt]="product.name" class="hermes-product-image front-image">
+                <img [src]="product.image2" [alt]="product.name" class="hermes-product-image back-image">
+            </div>
+            <div class="hermes-product-info">
+                <h3 class="hermes-product-name">{{product.name}}</h3>
+                <p class="hermes-product-price">{{product.price}} €</p>
+                <div class="hermes-product-badges">
+                    <span *ngIf="hasLowStock(product)" class="urgent">DERNIERS ARTICLES!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Details -->
+    <app-productdetails *ngIf="selectedProduct" [product]="selectedProduct"></app-productdetails>
+</div>
