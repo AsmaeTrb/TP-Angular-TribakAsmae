@@ -582,3 +582,61 @@
 .hermes-product-card:hover .back-image {
     opacity: 1;
 }
+.hermes-video-section {
+    position: relative;
+    width: 100%;
+    margin: 60px 0;
+    overflow: hidden;
+}
+
+.hermes-promo-video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.hermes-video-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.hermes-video-overlay h2 {
+    font-size: 2.5rem;
+    font-weight: normal;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.hermes-video-button {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 12px 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.hermes-video-button:hover {
+    background: white;
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .hermes-video-overlay h2 {
+        font-size: 1.8rem;
+    }
+    
+    .hermes-video-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}

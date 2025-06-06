@@ -8,18 +8,18 @@
         
         <!-- Votre navigation Vinted avec style Hermès -->
         <nav class="hermes-category-nav">
-            <a routerLink="/" [queryParams]="{}" class="hermes-category-link">Acueil</a>
+            <a routerLink="/" [queryParams]="{}" class="hermes-category-link">Accueil</a>
             <a routerLink="/" [queryParams]="{category: 'femmes'}" class="hermes-category-link">Femmes</a>
             <a routerLink="/" [queryParams]="{category: 'hommes'}" class="hermes-category-link">Hommes</a>
-            <a routerLink="/" [queryParams]="{category: 'createurs'}" class="hermes-category-link">Créateurs</a>
             <a routerLink="/" [queryParams]="{category: 'enfants'}" class="hermes-category-link">Enfants</a>
+            <a routerLink="/" [queryParams]="{category: 'BIJOUTERIE ET MONTRES'}" class="hermes-category-link">BIJOUTERIE ET MONTRES</a>
             <a routerLink="/" [queryParams]="{category: 'maison'}" class="hermes-category-link">Maison</a>
-            <a routerLink="/" [queryParams]="{category: 'sport'}" class="hermes-category-link">Sport</a>
-            <a routerLink="/" [queryParams]="{category: 'animaux'}" class="hermes-category-link">Animaux</a>
+            <a routerLink="/" [queryParams]="{category: 'createurs'}" class="hermes-category-link">Créateurs</a>
             <a routerLink="/" class="hermes-category-link">À propos</a>
             <a routerLink="/" class="hermes-category-link">Plateforme</a>
         </nav>
     </header>
+    
     <div class="hermes-image-with-text">
         <!-- Conteneur image avec texte superposé -->
         <div class="hermes-image-container">
@@ -37,9 +37,37 @@
         </div>
     </div>
 
-    <!-- Product Grid -->
+    <!-- Première partie des produits (10 premiers) -->
     <div class="hermes-products">
-        <div *ngFor="let product of products" class="hermes-product-card" (click)="voirDetails(product)">
+        <div *ngFor="let product of products.slice(0, 10); let i = index" class="hermes-product-card" (click)="voirDetails(product)">
+            <div class="hermes-product-image-container">
+                <img [src]="product.image1" [alt]="product.name" class="hermes-product-image front-image">
+                <img [src]="product.image2" [alt]="product.name" class="hermes-product-image back-image">
+            </div>
+            <div class="hermes-product-info">
+                <h3 class="hermes-product-name">{{product.name}}</h3>
+                <p class="hermes-product-price">{{product.price}} €</p>
+                <div class="hermes-product-badges">
+                    <span *ngIf="hasLowStock(product)" class="urgent">DERNIERS ARTICLES!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Vidéo -->
+    <div class="hermes-video-section">
+        <video class="hermes-promo-video" autoplay muted loop playsinline>
+            <source src="./assets/video1.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas les vidéos HTML5.
+        </video>
+        <div class="hermes-video-overlay">
+            <h2>NOUVELLE COLLECTION ÉTÉ</h2>
+         </div>
+    </div>
+
+    <!-- Suite des produits (à partir du 11ème) -->
+    <div class="hermes-products">
+        <div *ngFor="let product of products.slice(10); let i = index" class="hermes-product-card" (click)="voirDetails(product)">
             <div class="hermes-product-image-container">
                 <img [src]="product.image1" [alt]="product.name" class="hermes-product-image front-image">
                 <img [src]="product.image2" [alt]="product.name" class="hermes-product-image back-image">

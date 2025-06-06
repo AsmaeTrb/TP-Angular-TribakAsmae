@@ -2,13 +2,12 @@ export class Product {
 
     constructor(
         public id : string,
-        public name_product: string,
-        public brand: string,
+        public name: string,
+        public sizes: Array<{ size: string, quantity: number }>,
         public price: number,
         public description: string,
-        public image: string,
-        public ingredients: string[],
-        public how_to_use: string,
-        public quantity: number ,
+        public image1: string,
+        public image2: string,
+        public category: string,
       ) {}
 }
