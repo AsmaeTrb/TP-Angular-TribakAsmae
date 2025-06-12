@@ -30,16 +30,22 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.products = data;
     });
     
-    this.route.queryParams.subscribe((params) => {
-      this.filter = params['filter'] ?? '';
-    });
+   this.route.queryParams.subscribe((params) => {
+  this.filter = params['category'] ?? '';
+
+  // Solution : relancer l'observer quand on revient sur Accueil
+  if (this.filter === '') {
+    // Timeout 0 pour laisser Angular recréer le DOM
+    setTimeout(() => this.setupVideoObserver(), 0);
+  }
+});
   }
 
   ngAfterViewInit(): void {
     this.setupVideoObserver();
   }
 
-  private setupVideoObserver(): void {
+ private setupVideoObserver(): void {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -61,6 +67,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       observer.observe(this.promoVideo.nativeElement);
     }
   }
+
 
   playVideo(): Promise<void> {
     if (this.promoVideo?.nativeElement) {

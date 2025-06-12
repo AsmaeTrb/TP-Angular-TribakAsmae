@@ -21,8 +21,8 @@
     </header>
     
     <!-- Section Vidéo -->
-    <div class="hermes-video-section">
-        <video #promoVideo class="hermes-promo-video" muted loop playsinline>
+    <div class="hermes-video-section" *ngIf="filter === ''">
+      <video #promoVideo class="hermes-promo-video" muted loop playsinline>
             <source src="./assets/video1.mp4" type="video/mp4">
             <!-- Fallback option -->
             <div class="video-fallback">
@@ -36,7 +36,7 @@
 
     <!-- Première partie des produits (10 premiers) -->
     <div class="hermes-products">
-        <div *ngFor="let product of products.slice(0, 10); let i = index" class="hermes-product-card" (click)="voirDetails(product)">
+        <div *ngFor="let product of getFilteredProducts().slice(0, 10)" class="hermes-product-card" (click)="voirDetails(product)">
             <div class="hermes-product-image-container">
                 <img [src]="product.image1" [alt]="product.name" class="hermes-product-image front-image">
                 <img [src]="product.image2" [alt]="product.name" class="hermes-product-image back-image">
@@ -50,12 +50,11 @@
             </div>
         </div>
     </div>
-    <div class="hermes-image-with-text">
-        <!-- Conteneur image avec texte superposé -->
+
+    <!-- Image avec texte superposé -->
+    <div class="hermes-image-with-text" *ngIf="filter === ''">
         <div class="hermes-image-container">
             <img src="./assets/decouver.jpg" alt="Collection été Hermès" class="hermes-main-image">
-            
-            <!-- Texte intégré dans l'image -->
             <div class="hermes-image-overlay">
                 <h1 class="hermes-overlay-title">PLONGEZ DANS L'ÉTÉ</h1>
                 <p class="hermes-overlay-text">
@@ -69,7 +68,7 @@
 
     <!-- Suite des produits (à partir du 11ème) -->
     <div class="hermes-products">
-        <div *ngFor="let product of products.slice(10); let i = index" class="hermes-product-card" (click)="voirDetails(product)">
+        <div *ngFor="let product of getFilteredProducts().slice(10)" class="hermes-product-card" (click)="voirDetails(product)">
             <div class="hermes-product-image-container">
                 <img [src]="product.image1" [alt]="product.name" class="hermes-product-image front-image">
                 <img [src]="product.image2" [alt]="product.name" class="hermes-product-image back-image">

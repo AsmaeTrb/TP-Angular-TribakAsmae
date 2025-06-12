@@ -17,7 +17,7 @@ app.get("/api/products", (req, res) => {
       description: "Une robe de plage brodée en popeline de coton unie (100 % coton)\n\n- Col avec bouton en nacre gravé Clou de Selle\n- Broderie inspiration « Arlésienne » sur le devant\n- Bas des manches avec liens de serrage dans le même tissu\n\nCe modèle a une coupe ajustée, pour un porté plus ample nous vous conseillons de prendre une taille au-dessus de votre taille habituelle.\n\nFabriqué en Italie",
       image1: "./assets/im1.jpg",
       image2: "./assets/im2.jpg",
-      category: "femme",
+      category: "femmes",
       sizes: [
         { size: "S", quantity: 5 },
         { size: "M", quantity: 8 },
@@ -33,7 +33,7 @@ app.get("/api/products", (req, res) => {
       description: "Polo boutonné à manches courtes avec broderie H, en piqué de coton, poche poitrine (100 % coton). Less is more : le polo cache bien son jeu. Rien de plus simple en effet que cette pièce essentielle du vestiaire masculin. Celui-ci recèle cependant quelques détails uniques : son coton prélavé donne plus de douceur et de résistance à la fibre et ses doubles coutures plates assurent confort, tenue et élégance. Conseil de style : plus le polo est coloré, plus votre teint paraîtra hâlé ; ne relevez pas le col et n’ajoutez pas de nœud papillon. Fabriqué en Italie.",
       image1: "./assets/im11.jpg",
       image2: "./assets/im12.jpg",
-      category: "homme",
+      category: "hommes",
       sizes: [
         { size: "S", quantity: 6 },
         { size: "M", quantity: 10 },
@@ -73,7 +73,7 @@ app.get("/api/products", (req, res) => {
       description: "Un t-shirt cropped en jersey de coton uni (100 % coton). Col rond avec bord-côte. Sérigraphie « Les Clefs » sur le devant. Ce modèle taille normalement, nous vous conseillons de prendre votre taille habituelle. Fabriqué en France.",
       image1: "./assets/im3.jpg",
       image2: "./assets/im4.jpg",
-      category: "femme",
+      category: "femmes",
       sizes: [
         { size: "S", quantity: 6 },
         { size: "M", quantity: 10 },
@@ -89,7 +89,7 @@ app.get("/api/products", (req, res) => {
       description: "Une robe prairie en gaze avec motif « Mosaïque » (100 % coton). Fermeture patte de boutonnage milieu devant avec boutons en nacre gravés Clou de Selle. Ceinture en gaze avec motif « Mosaïque » nouée à la taille. Ce modèle taille normalement, nous vous conseillons de prendre votre taille habituelle. Fabriqué en France.",
       image1: "./assets/im5.jpg",
       image2: "./assets/im6.jpg",
-      category: "femme",
+      category: "femmes",
       sizes: [
         { size: "S", quantity: 7 },
         { size: "M", quantity: 9 },
@@ -132,7 +132,7 @@ app.get("/api/products", (req, res) => {
       description: "Pantalon Saint Germain en serge de coton stretch (97 % coton, 3 % élasthanne). Coupe ajustée. Poches boutonnées au dos. Détails de découpe. Ce modèle taille normalement, nous vous conseillons de prendre votre taille habituelle. Fabriqué en Italie. Longueur : 113,5 cm | Bas : 19 cm | Montant : 23 cm. Les dimensions indiquées correspondent à une taille 40, elles peuvent varier de +/- 1 cm en fonction de la taille.",
       image1: "./assets/im9.jpg",
       image2: "./assets/im10.jpg",
-      category: "HOMME",
+      category: "hommes",
       sizes: [
         { size: "38", quantity: 5 },
         { size: "40", quantity: 8 },
@@ -147,7 +147,7 @@ app.get("/api/products", (req, res) => {
       description: "Chemise en popeline compacte (100 % coton). Coupe ajustée. Boutons en pure nacre. Poignets simples avec boutons Clou de Selle en palladium, coutures renforcées, 7 points par cm. Ce modèle taille normalement, nous vous conseillons de prendre votre taille habituelle. Fabriqué en France. Longueur : 78 cm. Les dimensions indiquées correspondent à une taille 39, elles peuvent varier de +/- 1 cm en fonction de la taille.",
       image1: "./assets/im13.jpg",
       image2: "./assets/im14.jpg",
-      category: "PRÊT-À-PORTER HOMME",
+      category: "hommes",
       sizes: [
         { size: "38", quantity: 5 },
         { size: "39", quantity: 7 },
