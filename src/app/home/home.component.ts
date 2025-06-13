@@ -77,8 +77,4 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
 
-
-  hasLowStock(product: Product): boolean {
-    return product.sizes.some(size => size.quantity < 10);
-  }
 }

@@ -24,12 +24,13 @@
 /* === Colonne Détails === */
 .hermes-details-column {
   flex: 1;
-  padding: 40px 60px; /* Padding réduit */
+  padding: 40px 60px;
   overflow-y: auto;
-  background-color: #fff;
-  max-height: calc(100vh - 80px); /* Empêche le dépassement */
-  box-sizing: border-box; /* Inclut le padding dans la hauteur */
+  background-color: #f7f3ee; /* même couleur que le body */
+  max-height: calc(100vh - 80px);
+  box-sizing: border-box;
 }
+
 
 /* === Header === */
 .hermes-product-header h1 {

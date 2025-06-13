@@ -1,7 +1,9 @@
-
+body {
+    background-color: red  !important;
+}
 
 .hermes-hero {
-    background-color: #f5f5f5;
+    /* background-color: #f5f5f5; */ /* supprimé */
     padding: 60px 20px;
     text-align: center;
     margin-bottom: 40px;
@@ -50,18 +52,46 @@
 }
 
 .hermes-product-card {
-    border: none; /* pas de cadre */
-    transition: none; /* pas d’effet */
-    cursor: default; /* curseur normal */
+    border: none;
+    transition: opacity 0.5s ease;
+    cursor: pointer;
 }
+
 .hermes-product-card:hover {
-    transform: none; /* plus de translation */
+    transform: none;
+}
+
+.hermes-product-image-container {
+    aspect-ratio: 1/ 1;
+    position: relative;
+    overflow: hidden;
 }
 
 .hermes-product-image {
+    position: absolute;
     width: 100%;
-    display: block;
-     object-fit: cover;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: opacity 0.5s ease;
+}
+
+.front-image {
+    opacity: 1;
+    z-index: 1;
+}
+
+.back-image {
+    opacity: 0;
+    z-index: 2;
+}
+
+.hermes-product-card:hover .front-image {
+    opacity: 0;
+}
+
+.hermes-product-card:hover .back-image {
+    opacity: 1;
 }
 
 .hermes-product-info {
@@ -101,7 +131,7 @@
 
 .hermes-summer-image {
     width: 100%;
-    height: 70vh; /* Ajustez selon vos besoins */
+    height: 70vh;
     overflow: hidden;
 }
 
@@ -156,11 +186,15 @@
     background-color: #000;
     color: #fff;
 }
+
 .hermes-container {
     font-family: 'Didot', 'Times New Roman', serif;
     color: #000;
     max-width: 100%;
     margin: 0 auto;
+        background-color: transparent !important;
+
+    
 }
 
 .hermes-header {
@@ -209,153 +243,10 @@
     transition: all 0.3s ease;
 }
 
-.hermes-category-link:hover, .hermes-category-link.router-link-active {
+.hermes-category-link:hover,
+.hermes-category-link.router-link-active {
     border-bottom: 1px solid #000;
 }
-
-.hermes-hero {
-    background-color: #f5f5f5;
-    padding: 60px 20px;
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.hermes-hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.hermes-hero-title {
-    font-size: 2rem;
-    font-weight: normal;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-}
-
-.hermes-hero-text {
-    font-size: 1.1rem;
-    margin-bottom: 30px;
-    line-height: 1.6;
-}
-
-.hermes-hero-button {
-    background-color: #000;
-    color: #fff;
-    border: none;
-    padding: 12px 30px;
-    font-size: 1rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: background-color 0.3s ease;
-}
-
-.hermes-hero-button:hover {
-    background-color: #333;
-}
-
-.hermes-products {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px;
-    padding: 0 20px;
-    margin-bottom: 50px;
-}
-
-
-.hermes-product-info {
-    padding: 15px;
-}
-
-.hermes-product-name {
-    font-size: 1rem;
-    font-weight: normal;
-    margin: 0 0 10px 0;
-}
-
-.hermes-product-price {
-    font-size: 1rem;
-    margin: 0;
-}
-
-.hermes-product-badges {
-    margin-top: 10px;
-}
-
-.hermes-badge {
-    font-size: 0.8rem;
-    background-color: #f0f0f0;
-    padding: 3px 8px;
-    display: inline-block;
-    text-transform: uppercase;
-}
-
-.hermes-summer-section {
-    font-family: 'Didot', 'Times New Roman', serif;
-    color: #000;
-    max-width: 100%;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.hermes-summer-image {
-    width: 100%;
-    height: 70vh; /* Ajustez selon vos besoins */
-    overflow: hidden;
-}
-
-.hermes-main-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-.hermes-summer-content {
-    padding: 40px 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.hermes-summer-title {
-    font-size: 2.5rem;
-    font-weight: normal;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-
-.hermes-summer-text {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
-
-.hermes-divider {
-    width: 50px;
-    height: 1px;
-    background-color: #000;
-    margin: 30px auto;
-}
-
-.hermes-summer-button {
-    background-color: transparent;
-    color: #000;
-    border: 1px solid #000;
-    padding: 12px 40px;
-    font-size: 1rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    margin-top: 20px;
-}
-
-.hermes-summer-button:hover {
-    background-color: #000;
-    color: #fff;
-}
-
 
 .hermes-design {
     font-family: 'Didot', 'Times New Roman', serif;
@@ -396,7 +287,6 @@
     margin-bottom: 2rem;
 }
 
-/* Style du bouton DÉCOUVRIR */
 .hermes-discovery-btn {
     display: inline-block;
     padding: 12px 40px;
@@ -416,43 +306,12 @@
     background: #000;
     color: #fff;
 }
+
 .hermes-image-with-text {
     font-family: 'Didot', 'Times New Roman', serif;
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
-}
-.hermes-product-image-container {
-    aspect-ratio: 2 / 3;
-    position: relative;
-    overflow: hidden;
-}
-
-.hermes-product-image {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    transition: opacity 0.5s ease;
-}
-
-.front-image {
-    opacity: 1;
-    z-index: 1;
-}
-
-.back-image {
-    opacity: 0;
-    z-index: 2;
-}
-
-.hermes-product-card:hover .front-image {
-    opacity: 0;
-}
-
-.hermes-product-card:hover .back-image {
-    opacity: 1;
 }
 
 .hermes-video-section {
@@ -464,13 +323,11 @@
 
 .hermes-promo-video {
     width: 100%;
-    height: 100vh; /* ou 100% selon le conteneur */
+    height: 100vh;
     object-fit: cover;
     object-position: center;
     display: block;
 }
-
-
 
 .hermes-video-overlay {
     position: absolute;
@@ -479,7 +336,7 @@
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .hermes-video-overlay h2 {
@@ -511,7 +368,7 @@
     .hermes-video-overlay h2 {
         font-size: 1.8rem;
     }
-    
+
     .hermes-video-button {
         padding: 10px 20px;
         font-size: 0.9rem;

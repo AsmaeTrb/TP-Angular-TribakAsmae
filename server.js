@@ -170,7 +170,18 @@ app.get("/api/products", (req, res) => {
     
   
   ]
-  let users = [
+  res.send(products);
+});
+
+app.post("/api/cart", (req, res) => {
+  cart = req.body;
+  setTimeout(() => res.status(201).send(), 20);
+});
+// Check if user email exists
+app.post("/api/users/check", (req, res) => {
+  const email = req.body.email;
+  
+  const users = [
     {
       id: "1",
       name: "Admin",
@@ -185,15 +196,17 @@ app.get("/api/products", (req, res) => {
       password: "1111",
       role: "Guest"
     },
-  
   ];
-  res.send(products);
+
+  const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+
+  if (user) {
+    res.json({ exists: true, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
+  } else {
+    res.json({ exists: false });
+  }
 });
 
-app.post("/api/cart", (req, res) => {
-  cart = req.body;
-  setTimeout(() => res.status(201).send(), 20);
-});
 
 app.get("/api/cart", (req, res) => res.send(cart));
 
