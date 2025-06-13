@@ -13,6 +13,32 @@
     background-color:#f8f8f8; /* couleur Hermès */
     width: 100%;
 }
+.hermes-details-column {
+  flex: 1;
+  padding: 60px;
+  overflow-y: auto;
+  background-color: #fff;
+  box-shadow: none;
+  
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+.hermes-details-column::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(255,255,255,0.6); /* voile blanc pour effet pale */
+  z-index: 1;
+}
+
+.hermes-details-column > * {
+  position: relative;
+  z-index: 2; /* le contenu passe au-dessus du background image */
+}
+
 
 .header-left .search-input {
     padding: 5px 10px;

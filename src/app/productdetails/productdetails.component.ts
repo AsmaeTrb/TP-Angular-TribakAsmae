@@ -14,8 +14,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./productdetails.component.css']
 })
 export class ProductdetailsComponent {
+  isSizeOpen = false;
+
   product!: Product;
   currentImage?: string;
+  currentDetailsBackground?: string;
   selectedSize?: string;
   zoomedImage: string | null = null;
   payOption: boolean = false;
@@ -27,13 +30,14 @@ export class ProductdetailsComponent {
 
   ngOnInit(): void {
     const productId = this.route.snapshot.paramMap.get('id');
-    
+
     this.getDataService.getProducts().subscribe({
       next: (products) => {
         const foundProduct = products.find(p => p.id === productId);
         if (foundProduct) {
           this.product = foundProduct;
           this.currentImage = this.product.image1;
+          this.currentDetailsBackground = this.product.image2;
         }
       }
     });
@@ -43,13 +47,18 @@ export class ProductdetailsComponent {
     return [this.product.image1, this.product.image2].filter(img => img);
   }
 
+  onImageClick(img: string): void {
+    this.currentImage = img;
+    this.currentDetailsBackground = img;
+  }
+
   zoomImage(img: string): void {
     this.zoomedImage = img;
   }
 
   addToCart(): void {
     if (this.selectedSize) {
-      // Votre logique d'ajout au panier
+      // Logique d'ajout au panier
       console.log('Produit ajouté:', {
         id: this.product.id,
         size: this.selectedSize,

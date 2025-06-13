@@ -1,41 +1,63 @@
-/* productdetails.component.css */
-.hermes-product-container {
+ .hermes-product-container {
   display: flex;
-  height: 100vh;
-  font-family: 'Times New Roman', serif;
+  height: 100vh; /* toute la hauteur de l'écran */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #fafafa;
 }
-
 
 .hermes-image-column {
+  flex: 1; /* prend 50% de l'espace */
   background-repeat: no-repeat;
-  background-size: contain; /* ou cover si tu veux remplir le bloc */
-  background-position: center;
-  width: 50%; /* ou ce que tu veux */
-  height: auto;
-  min-height: 300px; /* ex: pour forcer une hauteur */
+  background-size: cover; /* rempli bien toute la colonne */
+  background-position: center center; /* centré */
+  height: 100vh; /* très important → même hauteur que la page */
+  cursor: zoom-in; /* bonus sympa */
+  transition: transform 0.3s ease;
 }
-
-
 
 .hermes-image-column:hover {
   transform: scale(1.01);
 }
 
 .hermes-details-column {
-  width: 50%;
-  padding: 40px;
+  flex: 1;
+  padding: 60px;
   overflow-y: auto;
+  background-color: #fff;
+  box-shadow: none;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
 }
 
+/* Le voile blanc par-dessus le fond image */
+.hermes-details-column::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(255,255,255,0.6); /* 0.6 = assez pâle, tu peux ajuster à 0.5 ou 0.7 */
+  z-index: 1;
+}
+
+/* Pour que le contenu texte passe au-dessus */
+.hermes-details-column > * {
+  position: relative;
+  z-index: 2;
+}
+
+
+
 .hermes-product-header h1 {
-  font-size: 24px;
-  font-weight: normal;
-  margin-bottom: 10px;
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 12px;
   letter-spacing: 0.5px;
 }
 
 .hermes-price {
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 30px;
 }
 
@@ -49,31 +71,85 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 5px;
+  color: #555;
+}
+.hermes-size-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-.hermes-size-selector {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #000;
-  margin-top: 5px;
-  background: none;
+.hermes-size-arrow {
+  font-size: 14px;
+  color: #555;
 }
+
+.hermes-size-content {
+  margin-top: 10px;
+}
+
+/* === Guide des tailles + Grille de tailles === */
+
+.hermes-size-guide {
+  margin: 10px 0;
+  font-size: 13px;
+}
+
+.hermes-size-guide a {
+  text-decoration: underline;
+  color: #333;
+  cursor: pointer;
+}
+
+.hermes-size-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.hermes-size-button {
+  padding: 15px 0;
+  border: 1px solid #000;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.hermes-size-button:hover {
+  background-color: #f9f9f9;
+}
+
+.hermes-size-button.active {
+  border-width: 2px;
+  border-color: #000;
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+
+/* === Bouton Ajouter au panier + Pay === */
 
 .hermes-actions {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  flex-direction: column;
+  gap: 15px;
   margin: 30px 0;
 }
 
 .hermes-add-to-cart {
-  padding: 15px 30px;
+  padding: 16px 0;
   background: #000;
   color: #fff;
   border: none;
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
+  font-size: 14px;
 }
 
 .hermes-add-to-cart:disabled {
@@ -83,35 +159,56 @@
 
 .hermes-pay-option {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 8px;
+  border: 1px solid #000;
+  padding: 14px 0;
   cursor: pointer;
+  font-size: 14px;
+  text-transform: uppercase;
 }
+
+.hermes-pay-option input {
+  display: none;
+}
+
+.hermes-pay-option span::before {
+  content: ' Pay';
+  font-family: sans-serif;
+}
+
+/* === Description === */
 
 .hermes-product-description {
   margin-top: 40px;
   font-size: 14px;
   line-height: 1.6;
+  color: #333;
 }
 
 .hermes-origin {
   font-style: italic;
   margin-top: 10px;
   font-size: 13px;
+  color: #777;
 }
+
+/* === Miniatures === */
 
 .hermes-thumbnails {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   margin-top: 30px;
 }
 
 .hermes-thumbnails > div {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border: 1px solid #e5e5e5;
   cursor: pointer;
-  padding: 5px;
+  padding: 3px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
 }
 
 .hermes-thumbnails > div.active {
@@ -123,6 +220,8 @@
   height: 100%;
   object-fit: cover;
 }
+
+/* === Zoom === */
 
 .hermes-zoom-modal {
   position: fixed;
@@ -143,18 +242,24 @@
   object-fit: contain;
 }
 
+/* === Responsive === */
+
 @media (max-width: 768px) {
   .hermes-product-container {
     flex-direction: column;
     height: auto;
   }
-  
+
   .hermes-image-column,
   .hermes-details-column {
     width: 100%;
   }
-  
+
   .hermes-image-column {
     height: 50vh;
+  }
+
+  .hermes-actions {
+    flex-direction: column;
   }
 }
