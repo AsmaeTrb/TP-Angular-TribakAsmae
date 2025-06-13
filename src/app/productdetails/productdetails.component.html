@@ -1,6 +1,5 @@
 <!-- productdetails.component.html -->
 <div class="hermes-product-container" *ngIf="product">
-
   <!-- Colonne image (50% largeur) -->
   <div class="hermes-image-column" 
        [style.background-image]="'url(' + currentImage + ')'"
@@ -8,89 +7,79 @@
   </div>
 
   <!-- Colonne détails (50% largeur) -->
-  <div class="hermes-details-column"
-       [style.background-image]="'url(' + currentDetailsBackground + ')'"
-       (click)="zoomImage(currentDetailsBackground!)">
+  <div class="hermes-details-column">
+    <div class="hermes-product-header">
+      <h1>{{ product.name }}</h1>
+      <p class="hermes-price">{{ product.price | currency:'EUR':'symbol':'1.0-0' }}</p>
+    </div>
 
-    <!-- Bloc blanc centré -->
-    <div class="hermes-details-content">
-
-      <div class="hermes-product-header">
-        <h1>{{ product.name }}</h1>
-        <p class="hermes-price">{{ product.price | currency:'EUR':'symbol':'1.0-0' }}</p>
+    <div class="hermes-attributes">
+      <div class="hermes-attribute">
+        <span class="label">Couleur</span>
+        <span class="value">{{ product.color }}</span>
       </div>
 
-      <div class="hermes-attributes">
+<div class="hermes-attribute">
+  <!-- Titre Taille cliquable -->
+  <div class="hermes-size-title" (click)="isSizeOpen = !isSizeOpen">
+    <span class="label">Taille</span>
+    <span class="hermes-size-arrow">
+      {{ isSizeOpen ? '▲' : '▼' }}
+    </span>
+  </div>
 
-        <div class="hermes-attribute">
-          <span class="label">Couleur</span>
-          <span class="value">{{ product.color }}</span>
-        </div>
+  <!-- Contenu taille visible si isSizeOpen -->
+  <div *ngIf="isSizeOpen" class="hermes-size-content">
 
-        <div class="hermes-attribute">
-          <!-- Titre Taille cliquable -->
-          <div class="hermes-size-title" (click)="isSizeOpen = !isSizeOpen">
-            <span class="label">Taille</span>
-            <span class="hermes-size-arrow">
-              {{ isSizeOpen ? '▲' : '▼' }}
-            </span>
-          </div>
+    <div class="hermes-size-guide">
+      <a href="#">📏 Guide des tailles</a>
+    </div>
 
-          <!-- Contenu taille visible si isSizeOpen -->
-          <div *ngIf="isSizeOpen" class="hermes-size-content">
+    <div class="hermes-size-grid">
+      <button *ngFor="let size of product.sizes"
+              class="hermes-size-button"
+              [class.active]="selectedSize === size.size"
+              (click)="selectedSize = size.size">
+        {{ size.size }}
+      </button>
+    </div>
 
-            <div class="hermes-size-guide">
-              <a href="#">📏 Guide des tailles</a>
-            </div>
+  </div>
+</div>
 
-            <div class="hermes-size-grid">
-              <button *ngFor="let size of product.sizes"
-                      class="hermes-size-button"
-                      [class.active]="selectedSize === size.size"
-                      (click)="selectedSize = size.size">
-                {{ size.size }}
-              </button>
-            </div>
 
-          </div>
-        </div>
+    </div>
 
+    <div class="hermes-actions">
+      <button class="hermes-add-to-cart" 
+              (click)="addToCart()"
+              [disabled]="!selectedSize">
+        AJOUTER AU PANIER
+      </button>
+      
+      <label class="hermes-pay-option">
+        <input type="checkbox" [(ngModel)]="payOption">
+        <span>Pay</span>
+      </label>
+    </div>
+
+    <div class="hermes-product-description">
+      <p>{{ product.description }}</p>
+      <p class="hermes-origin">{{ product.origin }}</p>
+    </div>
+
+    <!-- Miniatures -->
+    <div class="hermes-thumbnails">
+      <div *ngFor="let img of getAvailableImages()"
+           [class.active]="currentImage === img"
+           (click)="currentImage = img">
+        <img [src]="img" [alt]="product.name + ' thumbnail'">
       </div>
-
-      <div class="hermes-actions">
-        <button class="hermes-add-to-cart" 
-                (click)="addToCart()"
-                [disabled]="!selectedSize">
-          AJOUTER AU PANIER
-        </button>
-        
-        <label class="hermes-pay-option">
-          <input type="checkbox" [(ngModel)]="payOption">
-          <span>Pay</span>
-        </label>
-      </div>
-
-      <div class="hermes-product-description">
-        <p>{{ product.description }}</p>
-        <p class="hermes-origin">{{ product.origin }}</p>
-      </div>
-
-      <!-- Miniatures -->
-      <div class="hermes-thumbnails">
-        <div *ngFor="let img of getAvailableImages()"
-             [class.active]="currentImage === img"
-             (click)="onImageClick(img)">
-          <img [src]="img" [alt]="product.name + ' thumbnail'">
-        </div>
-      </div>
-
-    </div> <!-- FIN hermes-details-content -->
-
-  </div> <!-- FIN hermes-details-column -->
+    </div>
+  </div>
 
   <!-- Modal zoom -->
   <div class="hermes-zoom-modal" *ngIf="zoomedImage" (click)="zoomedImage = null">
     <img [src]="zoomedImage" [alt]="product.name + ' zoom'">
   </div>
-
 </div>

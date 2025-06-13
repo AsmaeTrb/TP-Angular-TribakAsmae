@@ -1,4 +1,4 @@
- .hermes-product-container {
+.hermes-product-container {
   display: flex;
   height: 100vh; /* toute la hauteur de l'écran */
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -20,33 +20,12 @@
 }
 
 .hermes-details-column {
-  flex: 1;
+  flex: 1; /* 50% droite */
   padding: 60px;
   overflow-y: auto;
   background-color: #fff;
   box-shadow: none;
-
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  position: relative;
 }
-
-/* Le voile blanc par-dessus le fond image */
-.hermes-details-column::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(255,255,255,0.6); /* 0.6 = assez pâle, tu peux ajuster à 0.5 ou 0.7 */
-  z-index: 1;
-}
-
-/* Pour que le contenu texte passe au-dessus */
-.hermes-details-column > * {
-  position: relative;
-  z-index: 2;
-}
-
 
 
 .hermes-product-header h1 {
