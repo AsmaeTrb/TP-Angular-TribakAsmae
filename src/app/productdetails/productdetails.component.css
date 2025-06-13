@@ -1,32 +1,64 @@
+/* === Container Principal === */
 .hermes-product-container {
   display: flex;
-  height: 100vh; /* toute la hauteur de l'écran */
+  min-height: calc(100vh - 80px); /* S'adapte à la hauteur moins la navbar */
+  margin-top: 150px; /* Espace pour la navbar */
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: #fafafa;
 }
 
+/* === Colonne Image === */
 .hermes-image-column {
-  flex: 1; /* prend 50% de l'espace */
+  flex: 1;
   background-repeat: no-repeat;
-  background-size: cover; /* rempli bien toute la colonne */
-  background-position: center center; /* centré */
-  height: 100vh; /* très important → même hauteur que la page */
-  cursor: zoom-in; /* bonus sympa */
+  background-size: contain;
+
+  background-position: center;
+  min-height: calc(100vh - 80px); /* Adapté à la nouvelle hauteur */
+  cursor: zoom-in;
   transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
-.hermes-image-column:hover {
-  transform: scale(1.01);
-}
-
+/* === Colonne Détails === */
 .hermes-details-column {
-  flex: 1; /* 50% droite */
-  padding: 60px;
+  flex: 1;
+  padding: 40px 60px; /* Padding réduit */
   overflow-y: auto;
   background-color: #fff;
-  box-shadow: none;
+  max-height: calc(100vh - 80px); /* Empêche le dépassement */
+  box-sizing: border-box; /* Inclut le padding dans la hauteur */
 }
 
+/* === Header === */
+.hermes-product-header h1 {
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+  color: #333; /* Couleur normale */
+  background-color: transparent; /* Retire le fond jaune de test */
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .hermes-product-container {
+    flex-direction: column;
+    min-height: auto;
+    margin-top: 60px; /* Moins d'espace sur mobile */
+  }
+  
+  .hermes-image-column {
+    height: 50vh;
+    min-height: unset;
+  }
+  
+  .hermes-details-column {
+    max-height: none;
+    padding: 30px 20px; /* Padding réduit sur mobile */
+  }
+}
 
 .hermes-product-header h1 {
   font-size: 28px;
@@ -35,23 +67,37 @@
   letter-spacing: 0.5px;
 }
 
+
 .hermes-price {
   font-size: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 25px; /* espace sous le prix */
+  color: #333;
 }
-
-.hermes-attribute {
-  margin-bottom: 20px;
-}
-
-.label {
-  display: block;
+.hermes-attribute:not(:has(.hermes-size-title)) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f5f5f5;
   font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 5px;
-  color: #555;
+  color: #333;
 }
+
+.hermes-attribute:not(:has(.hermes-size-title)) .label {
+  font-size: 14px;
+  color: #777;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.hermes-attribute:not(:has(.hermes-size-title)) .value {
+  font-size: 14px;
+  color: #333;
+}
+
+
+
 .hermes-size-title {
   display: flex;
   justify-content: space-between;

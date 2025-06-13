@@ -10,11 +10,12 @@ let cart = [];
 
 app.get("/api/products", (req, res) => {
   const products = [
-    {
+   {
       id: "1",
       name: "Robe de plage brodée",
       price: 299.99,
-      description: "Une robe de plage brodée en popeline de coton unie (100 % coton)\n\n- Col avec bouton en nacre gravé Clou de Selle\n- Broderie inspiration « Arlésienne » sur le devant\n- Bas des manches avec liens de serrage dans le même tissu\n\nCe modèle a une coupe ajustée, pour un porté plus ample nous vous conseillons de prendre une taille au-dessus de votre taille habituelle.\n\nFabriqué en Italie",
+      color: "Blanc",
+      description: "Une robe de plage brodée en popeline de coton unie...",
       image1: "./assets/im1.jpg",
       image2: "./assets/im2.jpg",
       category: "femmes",
@@ -30,7 +31,8 @@ app.get("/api/products", (req, res) => {
       id: "2",
       name: "Polo boutonné à manches courtes avec broderie H",
       price: 159.00,
-      description: "Polo boutonné à manches courtes avec broderie H, en piqué de coton, poche poitrine (100 % coton). Less is more : le polo cache bien son jeu. Rien de plus simple en effet que cette pièce essentielle du vestiaire masculin. Celui-ci recèle cependant quelques détails uniques : son coton prélavé donne plus de douceur et de résistance à la fibre et ses doubles coutures plates assurent confort, tenue et élégance. Conseil de style : plus le polo est coloré, plus votre teint paraîtra hâlé ; ne relevez pas le col et n’ajoutez pas de nœud papillon. Fabriqué en Italie.",
+      color: "Bleu marine",
+      description: "Polo boutonné à manches courtes avec broderie H...",
       image1: "./assets/im11.jpg",
       image2: "./assets/im12.jpg",
       category: "hommes",
@@ -45,32 +47,34 @@ app.get("/api/products", (req, res) => {
       id: "3",
       name: "Montre en acier, mouvement extra-plat Hermès H1950",
       price: 7800.00,
-      description: "Montre en acier, mouvement extra-plat de Manufacture Hermès H1950, cadran argenté opalin, bracelet long en alligator mat havane. Fabriqué en Suisse. Finition métallique : Acier.",
+      color: "Argenté",
+      description: "Montre en acier, mouvement extra-plat...",
       image1: "./assets/im15.jpg",
       image2: "./assets/im16.jpg",
       category: "BIJOUTERIE ET MONTRES",
       sizes: [
         { size: "16-18,5 cm", quantity: 3 }
       ]
-    }
-,    
-{
-  id: "4",
-  name: "Chaussons en seersucker",
-  price: 65.00,
-  description: "Chaussons en seersucker. 100 % coton. Intérieur en éponge (100 % coton). Broderie sous le chausson (96 % polyester, 4 % céramique). Fabriqué en France. Dessiné par Alice Charbin. Convient aux enfants âgés de 6 à 12 mois. Taille 19.",
-  image1: "./assets/im19.jpg",
-  image2: "./assets/im20.jpg",
-  category: "enfants",
-  sizes: [
-    { size: "19", quantity: 6 }
-  ]
-},
+    },
+    {
+      id: "4",
+      name: "Chaussons en seersucker",
+      price: 65.00,
+      color: "Blanc et bleu",
+      description: "Chaussons en seersucker...",
+      image1: "./assets/im19.jpg",
+      image2: "./assets/im20.jpg",
+      category: "enfants",
+      sizes: [
+        { size: "19", quantity: 6 }
+      ]
+    },
     {
       id: "5",
       name: "T-shirt cropped en jersey de coton uni",
       price: 79.99,
-      description: "Un t-shirt cropped en jersey de coton uni (100 % coton). Col rond avec bord-côte. Sérigraphie « Les Clefs » sur le devant. Ce modèle taille normalement, nous vous conseillons de prendre votre taille habituelle. Fabriqué en France.",
+      color: "Blanc",
+      description: "Un t-shirt cropped en jersey de coton uni...",
       image1: "./assets/im3.jpg",
       image2: "./assets/im4.jpg",
       category: "femmes",
@@ -86,7 +90,8 @@ app.get("/api/products", (req, res) => {
       id: "6",
       name: "Robe prairie en gaze avec motif « Mosaïque »",
       price: 349.99,
-      description: "Une robe prairie en gaze avec motif « Mosaïque » (100 % coton). Fermeture patte de boutonnage milieu devant avec boutons en nacre gravés Clou de Selle. Ceinture en gaze avec motif « Mosaïque » nouée à la taille. Ce modèle taille normalement, nous vous conseillons de prendre votre taille habituelle. Fabriqué en France.",
+      color: "Blanc",
+      description: "Une robe prairie en gaze avec motif « Mosaïque »...",
       image1: "./assets/im5.jpg",
       image2: "./assets/im6.jpg",
       category: "femmes",
@@ -102,20 +107,21 @@ app.get("/api/products", (req, res) => {
       id: "7",
       name: "Jeu de 9 cubes en érable imprimé",
       price: 120.00,
-      description: "Jeu de 9 cubes en érable imprimé. Fabriqué en Allemagne. Dessiné par Jan Bajtlik. Dimensions jeu complet : L 13,5 x H 13,5 cm. Dimensions cube individuel : L 4,5 x H 4,5 cm.",
+      color: "Multicolore",
+      description: "Jeu de 9 cubes en érable imprimé...",
       image1: "./assets/im17.jpg",
       image2: "./assets/im18.jpg",
       category: "enfants",
       sizes: [
         { size: "Taille unique", quantity: 10 }
       ]
-    }
-,    
+    },
     {
       id: "8",
       name: "Bracelet jonc en veau Epsom et métal",
       price: 450.00,
-      description: "Bracelet jonc en veau Epsom et métal. La ligne Athéna met à l'honneur notre emblématique signature Médor, en réinterprétant le clou sur une ligne de bijoux en métal et cuir. Une invitation tout en finesse aux portés en accumulation. Fabriqué en France. Finition métallique : Or rose. Tour de poignet de 13,5 cm à 14,5 cm | Largeur : 0,3 cm.",
+      color: "Or rose",
+      description: "Bracelet jonc en veau Epsom et métal...",
       image1: "./assets/im7.jpg",
       image2: "./assets/im8.jpg",
       category: "BIJOUTERIE ET MONTRES",
@@ -129,7 +135,8 @@ app.get("/api/products", (req, res) => {
       id: "9",
       name: "Pantalon Saint Germain en serge de coton stretch",
       price: 299.99,
-      description: "Pantalon Saint Germain en serge de coton stretch (97 % coton, 3 % élasthanne). Coupe ajustée. Poches boutonnées au dos. Détails de découpe. Ce modèle taille normalement, nous vous conseillons de prendre votre taille habituelle. Fabriqué en Italie. Longueur : 113,5 cm | Bas : 19 cm | Montant : 23 cm. Les dimensions indiquées correspondent à une taille 40, elles peuvent varier de +/- 1 cm en fonction de la taille.",
+      color: "Beige",
+      description: "Pantalon Saint Germain en serge de coton stretch...",
       image1: "./assets/im9.jpg",
       image2: "./assets/im10.jpg",
       category: "hommes",
@@ -144,7 +151,8 @@ app.get("/api/products", (req, res) => {
       id: "10",
       name: "Chemise en popeline compacte",
       price: 210.00,
-      description: "Chemise en popeline compacte (100 % coton). Coupe ajustée. Boutons en pure nacre. Poignets simples avec boutons Clou de Selle en palladium, coutures renforcées, 7 points par cm. Ce modèle taille normalement, nous vous conseillons de prendre votre taille habituelle. Fabriqué en France. Longueur : 78 cm. Les dimensions indiquées correspondent à une taille 39, elles peuvent varier de +/- 1 cm en fonction de la taille.",
+      color: "Blanc",
+      description: "Chemise en popeline compacte...",
       image1: "./assets/im13.jpg",
       image2: "./assets/im14.jpg",
       category: "hommes",

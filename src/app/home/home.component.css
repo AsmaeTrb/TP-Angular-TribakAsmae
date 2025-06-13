@@ -50,13 +50,12 @@
 }
 
 .hermes-product-card {
-    border: 1px solid #e5e5e5;
-    transition: transform 0.3s ease;
-    cursor: pointer;
+    border: none; /* pas de cadre */
+    transition: none; /* pas d’effet */
+    cursor: default; /* curseur normal */
 }
-
 .hermes-product-card:hover {
-    transform: translateY(-5px);
+    transform: none; /* plus de translation */
 }
 
 .hermes-product-image {
@@ -263,15 +262,6 @@
     margin-bottom: 50px;
 }
 
-.hermes-product-card {
-    border: 1px solid #e5e5e5;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-.hermes-product-card:hover {
-    transform: translateY(-5px);
-}
 
 .hermes-product-info {
     padding: 15px;
