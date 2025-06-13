@@ -1,17 +1,160 @@
-.details-container {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 16px;
-    margin-top: 20px;
-    border-radius: 8px;
-    max-width: 400px;
-  }
-  
-  .product-image-detail {
-    width: 100px;
+/* productdetails.component.css */
+.hermes-product-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Times New Roman', serif;
+}
+
+
+.hermes-image-column {
+  background-repeat: no-repeat;
+  background-size: contain; /* ou cover si tu veux remplir le bloc */
+  background-position: center;
+  width: 50%; /* ou ce que tu veux */
+  height: auto;
+  min-height: 300px; /* ex: pour forcer une hauteur */
+}
+
+
+
+.hermes-image-column:hover {
+  transform: scale(1.01);
+}
+
+.hermes-details-column {
+  width: 50%;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.hermes-product-header h1 {
+  font-size: 24px;
+  font-weight: normal;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.hermes-price {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.hermes-attribute {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.hermes-size-selector {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #000;
+  margin-top: 5px;
+  background: none;
+}
+
+.hermes-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.hermes-add-to-cart {
+  padding: 15px 30px;
+  background: #000;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.hermes-add-to-cart:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.hermes-pay-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.hermes-product-description {
+  margin-top: 40px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.hermes-origin {
+  font-style: italic;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.hermes-thumbnails {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.hermes-thumbnails > div {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #e5e5e5;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.hermes-thumbnails > div.active {
+  border-color: #000;
+}
+
+.hermes-thumbnails img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hermes-zoom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.hermes-zoom-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .hermes-product-container {
+    flex-direction: column;
     height: auto;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    display: block;
   }
   
+  .hermes-image-column,
+  .hermes-details-column {
+    width: 100%;
+  }
+  
+  .hermes-image-column {
+    height: 50vh;
+  }
+}

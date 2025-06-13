@@ -1,88 +1,74 @@
 <div class="hermes-container">
-    <!-- Header Hermes avec votre navigation Vinted -->
-    <header class="hermes-header">
-        <div class="hermes-branding">
-            <h1 class="hermes-logo" routerLink="/">HERMES</h1>
-            <h2 class="hermes-sublogo">PARIS</h2>
-        </div>
-        
-        <!-- Votre navigation Vinted avec style Hermès -->
-        <nav class="hermes-category-nav">
-            <a routerLink="/" [queryParams]="{}" class="hermes-category-link">Accueil</a>
-            <a routerLink="/" [queryParams]="{category: 'femmes'}" class="hermes-category-link">Femmes</a>
-            <a routerLink="/" [queryParams]="{category: 'hommes'}" class="hermes-category-link">Hommes</a>
-            <a routerLink="/" [queryParams]="{category: 'enfants'}" class="hermes-category-link">Enfants</a>
-            <a routerLink="/" [queryParams]="{category: 'BIJOUTERIE ET MONTRES'}" class="hermes-category-link">BIJOUTERIE ET MONTRES</a>
-            <a routerLink="/" [queryParams]="{category: 'maison'}" class="hermes-category-link">Maison</a>
-            <a routerLink="/" [queryParams]="{category: 'createurs'}" class="hermes-category-link">Créateurs</a>
-            <a routerLink="/" class="hermes-category-link">À propos</a>
-            <a routerLink="/" class="hermes-category-link">Plateforme</a>
-        </nav>
-    </header>
-    
-    <!-- Section Vidéo -->
-    <div class="hermes-video-section" *ngIf="filter === ''">
-      <video #promoVideo class="hermes-promo-video" muted loop playsinline>
-            <source src="./assets/video1.mp4" type="video/mp4">
-            <!-- Fallback option -->
-            <div class="video-fallback">
-                <button (click)="playVideo()">Lire la vidéo</button>
-            </div>
-        </video>
-        <div class="hermes-video-overlay">
-            <h2>NOUVELLE COLLECTION ÉTÉ</h2>
-        </div>
-    </div>
 
-    <!-- Première partie des produits (10 premiers) -->
-    <div class="hermes-products">
-        <div *ngFor="let product of getFilteredProducts().slice(0, 10)" class="hermes-product-card" (click)="voirDetails(product)">
-            <div class="hermes-product-image-container">
-                <img [src]="product.image1" [alt]="product.name" class="hermes-product-image front-image">
-                <img [src]="product.image2" [alt]="product.name" class="hermes-product-image back-image">
-            </div>
-            <div class="hermes-product-info">
-                <h3 class="hermes-product-name">{{product.name}}</h3>
-                <p class="hermes-product-price">{{product.price}} €</p>
-                <div class="hermes-product-badges">
-                    <span *ngIf="hasLowStock(product)" class="urgent">DERNIERS ARTICLES!</span>
-                </div>
-            </div>
-        </div>
+  <!-- Section Vidéo -->
+  <div class="hermes-video-section">
+    <video #promoVideo class="hermes-promo-video" muted loop playsinline>
+      <source src="./assets/video0.mp4" type="video/mp4">
+      <!-- Fallback option -->
+      <div class="video-fallback">
+        <button (click)="playVideo()">Lire la vidéo</button>
+      </div>
+    </video>
+    <div class="hermes-video-overlay">
+      <h2>NOUVELLE COLLECTION ÉTÉ</h2>
     </div>
+  </div>
 
-    <!-- Image avec texte superposé -->
-    <div class="hermes-image-with-text" *ngIf="filter === ''">
-        <div class="hermes-image-container">
-            <img src="./assets/decouver.jpg" alt="Collection été Hermès" class="hermes-main-image">
-            <div class="hermes-image-overlay">
-                <h1 class="hermes-overlay-title">PLONGEZ DANS L'ÉTÉ</h1>
-                <p class="hermes-overlay-text">
-                    Tapis et draps de plage, paréos, coussins et cabas...<br>
-                    pour retrouver les essentiels d'une journée en bord de mer.
-                </p>
-                <button class="hermes-overlay-button">DÉCOUVRIR</button>
-            </div>
+  <!-- Première partie des produits (10 premiers) -->
+  <div class="hermes-products">
+    <a *ngFor="let product of products.slice(0, 10)" 
+       [routerLink]="['/product', product.id]" 
+       class="hermes-product-card" 
+       style="text-decoration: none; color: inherit;">
+
+      <div class="hermes-product-image-container">
+        <img [src]="product.image1" [alt]="product.name" class="hermes-product-image front-image">
+        <img [src]="product.image2" [alt]="product.name" class="hermes-product-image back-image">
+      </div>
+      <div class="hermes-product-info">
+        <h3 class="hermes-product-name">{{product.name}}</h3>
+        <div class="hermes-product-badges">
+          <span *ngIf="hasLowStock(product)" class="urgent">DERNIERS ARTICLES!</span>
         </div>
-    </div>
+      </div>
 
-    <!-- Suite des produits (à partir du 11ème) -->
-    <div class="hermes-products">
-        <div *ngFor="let product of getFilteredProducts().slice(10)" class="hermes-product-card" (click)="voirDetails(product)">
-            <div class="hermes-product-image-container">
-                <img [src]="product.image1" [alt]="product.name" class="hermes-product-image front-image">
-                <img [src]="product.image2" [alt]="product.name" class="hermes-product-image back-image">
-            </div>
-            <div class="hermes-product-info">
-                <h3 class="hermes-product-name">{{product.name}}</h3>
-                <p class="hermes-product-price">{{product.price}} €</p>
-                <div class="hermes-product-badges">
-                    <span *ngIf="hasLowStock(product)" class="urgent">DERNIERS ARTICLES!</span>
-                </div>
-            </div>
+    </a>
+  </div>
+
+  <!-- Image avec texte superposé -->
+  <div class="hermes-image-with-text">
+    <div class="hermes-image-container">
+      <img src="./assets/decouver.jpg" alt="Collection été Hermès" class="hermes-main-image">
+      <div class="hermes-image-overlay">
+        <h1 class="hermes-overlay-title">PLONGEZ DANS L'ÉTÉ</h1>
+        <p class="hermes-overlay-text">
+          Tapis et draps de plage, paréos, coussins et cabas...<br>
+          pour retrouver les essentiels d'une journée en bord de mer.
+        </p>
+        <button class="hermes-overlay-button">DÉCOUVRIR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deuxième partie des produits (à partir du 11ème) -->
+  <div class="hermes-products">
+    <a *ngFor="let product of products.slice(10)" 
+       [routerLink]="['/product', product.id]" 
+       class="hermes-product-card" 
+       style="text-decoration: none; color: inherit;">
+
+      <div class="hermes-product-image-container">
+        <img [src]="product.image1" [alt]="product.name" class="hermes-product-image front-image">
+        <img [src]="product.image2" [alt]="product.name" class="hermes-product-image back-image">
+      </div>
+      <div class="hermes-product-info">
+        <h3 class="hermes-product-name">{{product.name}}</h3>
+        <div class="hermes-product-badges">
+          <span *ngIf="hasLowStock(product)" class="urgent">DERNIERS ARTICLES!</span>
         </div>
-    </div>
+      </div>
 
-    <!-- Product Details -->
-    <app-productdetails *ngIf="selectedProduct" [product]="selectedProduct"></app-productdetails>
+    </a>
+  </div>
+
 </div>

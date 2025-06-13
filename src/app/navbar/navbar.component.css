@@ -1,0 +1,125 @@
+.hermes-container {
+    font-family: 'Didot', 'Times New Roman', serif;
+    color: #000;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.hermes-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px;
+    height: 60px; /* hauteur compacte */
+    background-color:#f8f8f8; /* couleur Hermès */
+    width: 100%;
+}
+
+.header-left .search-input {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1px solid #000;
+    background-color: #f8f8f8;
+    outline: none;
+    width: 150px;
+}
+
+.header-center a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+.hermes-logo {
+    height: 55px;
+    cursor: pointer;
+}
+
+
+.header-right span {
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+.hermes-header {
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.hermes-sublogo {
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 5px 0 0 0;
+}
+
+.hermes-category-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 0 20px;
+    margin-top: 30px;
+}
+
+.hermes-category-link {
+    text-decoration: none;
+    color: #000;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 5px 0;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.hermes-category-link:hover, .hermes-category-link.router-link-active {
+    border-bottom: 1px solid #000;
+}
+
+.hermes-hero {
+    background-color: #f5f5f5;
+    padding: 60px 20px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hermes-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hermes-hero-title {
+    font-size: 2rem;
+    font-weight: normal;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.hermes-hero-text {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.hermes-hero-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.hermes-hero-button:hover {
+    background-color: #333;
+}

@@ -1,0 +1,34 @@
+<header class="hermes-header">
+
+    <!-- Ligne 1 : Top header -->
+    <div class="hermes-header-top">
+        <div class="header-left">
+            <input type="text" placeholder="Rechercher" class="search-input" />
+        </div>
+
+        <div class="header-center">
+            <!-- Quand on clique sur l'image, recharge la page -->
+            <a routerLink="/" (click)="reloadPage()">
+                <img src="./assets/logo.png" alt="Hermes" class="hermes-logo" />
+            </a>
+        </div>
+
+        <div class="header-right">
+            <span class="account">Compte</span>
+            <span class="cart">Panier</span>
+        </div>
+    </div>
+
+    <!-- Ligne 2 : Menu navigation -->
+    <nav class="hermes-category-nav">
+        <a routerLink="/category" [queryParams]="{ category: 'femmes' }" class="hermes-category-link">Femmes</a>
+        <a routerLink="/category" [queryParams]="{ category: 'hommes' }" class="hermes-category-link">Hommes</a>
+        <a routerLink="/category" [queryParams]="{ category: 'enfants' }" class="hermes-category-link">Enfants</a>
+        <a routerLink="/category" [queryParams]="{ category: 'BIJOUTERIE ET MONTRES' }" class="hermes-category-link">BIJOUTERIE ET MONTRES</a>
+        <a routerLink="/category" [queryParams]="{ category: 'maison' }" class="hermes-category-link">Maison</a>
+        <a routerLink="/category" [queryParams]="{ category: 'createurs' }" class="hermes-category-link">Créateurs</a>
+        <a routerLink="/category" class="hermes-category-link">À propos</a>
+        <a routerLink="/category" class="hermes-category-link">Plateforme</a>
+    </nav>
+
+</header>

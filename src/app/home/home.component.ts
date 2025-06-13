@@ -26,20 +26,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    this.getDataService.getProducts().subscribe((data: Product[]) => {
-      this.products = data;
-    });
-    
-   this.route.queryParams.subscribe((params) => {
-  this.filter = params['category'] ?? '';
-
-  // Solution : relancer l'observer quand on revient sur Accueil
-  if (this.filter === '') {
-    // Timeout 0 pour laisser Angular recréer le DOM
-    setTimeout(() => this.setupVideoObserver(), 0);
-  }
-});
-  }
+  this.getDataService.getProducts().subscribe((data: Product[]) => {
+    this.products = data;
+  });
+}
 
   ngAfterViewInit(): void {
     this.setupVideoObserver();
@@ -86,11 +76,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.selectedProduct = product;
   }
 
-  getFilteredProducts(): Product[] {
-    return this.filter === ''
-      ? this.products
-      : this.products.filter((product: Product) => product.category === this.filter);
-  }
+
 
   hasLowStock(product: Product): boolean {
     return product.sizes.some(size => size.quantity < 10);

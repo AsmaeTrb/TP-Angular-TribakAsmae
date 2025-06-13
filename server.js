@@ -149,7 +149,7 @@ app.get("/api/products", (req, res) => {
       image2: "./assets/im14.jpg",
       category: "hommes",
       sizes: [
-        { size: "38", quantity: 5 },
+        { size: "38", quantity: 50 },
         { size: "39", quantity: 7 },
         { size: "40", quantity: 6 },
         { size: "41", quantity: 4 },

@@ -9,5 +9,8 @@ export class Product {
         public image1: string,
         public image2: string,
         public category: string,
+        public color :string,
+        public origin :string
+        
       ) {}
 }
