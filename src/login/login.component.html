@@ -1,10 +1,15 @@
 <div class="login-wrapper">
+  <!-- Rectangle titre ACCOUNT -->
+  <div class="account-box">
+    <p>ACCOUNT</p>
+  </div>
+
+  <!-- Rectangle formulaire -->
   <div class="login-container">
-    <h2 class="login-title">ACCOUNT</h2>
-
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
+    <!-- Étape Email -->
+    <form *ngIf="!isEmailVerified" (ngSubmit)="verifyEmail()" #emailForm="ngForm" class="login-form">
       <label for="email">Please enter your email below to access or create your account</label>
-
+      
       <input
         type="email"
         id="email"
@@ -17,7 +22,50 @@
 
       <p class="hint">Expected format: yourname&#64;domain.com</p>
 
-      <button type="submit" class="login-button" [disabled]="loginForm.invalid">CONTINUE</button>
+      <button 
+        type="submit" 
+        class="login-button" 
+        [disabled]="emailForm.invalid || isLoading"
+      >
+        {{isLoading ? 'Checking...' : 'CONTINUE'}}
+      </button>
     </form>
+
+    <!-- Étape Password -->
+    <form *ngIf="isEmailVerified" (ngSubmit)="submitPassword()" #passwordForm="ngForm" class="login-form">
+      <label>Welcome back! Please enter your password for {{email}}</label>
+      
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+        placeholder="Your password"
+        class="login-input"
+      />
+
+      <button 
+        type="submit" 
+        class="login-button" 
+        [disabled]="passwordForm.invalid || isLoading"
+      >
+        {{isLoading ? 'Signing in...' : 'SIGN IN'}}
+      </button>
+
+      <button 
+        type="button" 
+        (click)="backToEmail()"
+        class="login-button"
+        style="background-color: transparent; color: #333; border: 1px solid #333;"
+      >
+        BACK
+      </button>
+    </form>
+
+    <!-- Message d'erreur -->
+    <div *ngIf="errorMessage" style="color: red; width: 500px; text-align: left; margin-top: 10px;">
+      {{errorMessage}}
+    </div>
   </div>
 </div>

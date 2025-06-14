@@ -209,6 +209,46 @@ app.post("/api/users/check", (req, res) => {
 
 
 app.get("/api/cart", (req, res) => res.send(cart));
+app.post("/api/users/login", (req, res) => {
+  const { email, password } = req.body;
+
+  const users = [
+    {
+      id: "1",
+      name: "Admin",
+      email: "admin@admin.com",
+      password: "admin",
+      role: "Admin"
+    },
+    {
+      id: "2",
+      name: "Asmae",
+      email: "Asmae@gmail.com",
+      password: "1111",
+      role: "Guest"
+    },
+  ];
+
+  const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+
+  if (!user) {
+    return res.status(404).json({ error: "Utilisateur introuvable" });
+  }
+
+  if (user.password !== password) {
+    return res.status(401).json({ error: "Mot de passe incorrect" });
+  }
+
+  // OK
+  res.status(200).json({
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role
+  });
+});
+
+
 
 const port = 3000;
 app.listen(port, () => console.log(`API Server listening on port ${port}`));

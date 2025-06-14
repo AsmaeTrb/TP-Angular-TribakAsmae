@@ -1,73 +1,64 @@
-/* Centrer toute la page login */
-body, html {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
+/* Wrapper principal */
 .login-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: flex-start; /* pour démarrer en haut */
-  padding-top: 200px; /* ← ICI on ajoute de l’espace au dessus */
-  min-height: calc(100vh - 150px); /* pour bien centrer la page */
-  
-}
-.login-container {
-    background-color: #fff;
-    padding: 80px 100px; /* plus de padding */
-    max-width: 1000px;   /* plus large */
-    width: 100%;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    border: 1px solid #e5e5e5;
-    margin-top: 20px; /* espace avec le header */
-    border-radius: 4px; /* optionnel : bords légèrement arrondis */
-        text-align: left; /* on garde le titre à gauche */
-
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200px;
 }
 
-
-.login-title {
-    font-size: 18px;
-  font-weight: normal;
-  margin-bottom: 30px;
+/* Rectangle blanc pour le titre ACCOUNT */
+.account-box {
+  background-color: #fefbf6;
+  border:none;
+  padding: 15px 25px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #745c5c;
   text-transform: uppercase;
-  color: #333;
+  font-size: 16px;
+  margin-bottom: 0;
+  width: 1000px;
   text-align: left;
+  font-weight: 1; 
 }
 
+/* Grand rectangle blanc pour le formulaire */
+.login-container {
+  background-color: #fefbf6;
+  padding: 80px 50px;
+  width: 1000px;
+  border: none;
+  box-shadow: none;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Formulaire */
 .login-form {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   gap: 15px;
-      align-items: center; /* ← POUR CENTRER email et bouton */
-
 }
+
 .login-input {
-  width: 60%;
-  padding: 14px 12px;
+  padding: 12px;
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 0; /* PAS d’arrondi comme Hermes */
-  margin-bottom: 8px;
-  box-sizing: border-box;
+  border-radius: 4px;
+  width: 500px;
 }
 
 .login-button {
-  background-color: #333; /* noir */
+  background-color: #333;
   color: white;
   padding: 14px;
   font-size: 16px;
   border: none;
   text-transform: uppercase;
   cursor: pointer;
+  width: 250px;
   transition: background-color 0.3s ease;
-   width: 270px;
 }
 
-/* Quand il est désactivé → même couleur noir (Hermès fait comme ça) */
 .login-button:disabled {
   background-color: #333;
   opacity: 0.5;
@@ -77,6 +68,6 @@ body, html {
 .hint {
   font-size: 12px;
   color: #777;
-      text-align: center; /* centré sous le input */
-
+  text-align: left;
+  width: 500px;
 }
