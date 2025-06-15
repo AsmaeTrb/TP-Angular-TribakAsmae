@@ -218,6 +218,44 @@ app.post("/api/cart", (req, res) => {
   cart = req.body;
   setTimeout(() => res.status(201).send(), 20);
 });
+// ✅ Enregistrement d'un nouvel utilisateur
+app.post("/api/users", (req, res) => {
+  const {
+    name,
+    email,
+    password,
+    role,
+    phone,
+    gender,
+    birthDate,
+    address,
+    city,
+    country
+  } = req.body;
+
+  // Vérifie si l'email existe déjà
+  const exists = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+  if (exists) {
+    return res.status(400).json({ error: "Cet email est déjà utilisé." });
+  }
+
+  const newUser = {
+    id: (users.length + 1).toString(),
+    name,
+    email,
+    password,
+    role,
+    phone,
+    gender,
+    birthDate,
+    address,
+    city,
+    country
+  };
+
+  users.push(newUser);
+  res.status(201).json(newUser);
+});
 
 
 // ✅ Déconnexion

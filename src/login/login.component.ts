@@ -26,25 +26,26 @@ export class LoginComponent {
   ) {}
 
   // Étape 1 : vérifier si l'email existe
-  verifyEmail() {
-    this.isLoading = true;
-    this.errorMessage = '';
+ verifyEmail() {
+  this.isLoading = true;
+  this.errorMessage = '';
 
-    this.authService.getUserByEmail(this.email).subscribe(
-      (users) => {
-        this.isLoading = false;
-        if (users.length > 0) {
-          this.isEmailVerified = true;
-        } else {
-          this.errorMessage = "Adresse email inconnue.";
-        }
-      },
-      () => {
-        this.isLoading = false;
-        this.errorMessage = "Erreur de connexion.";
+  this.authService.getUserByEmail(this.email).subscribe(
+    (users) => {
+      this.isLoading = false;
+      if (users.length > 0) {
+        this.isEmailVerified = true;
+      } else {
+        this.router.navigate(['/register'], { state: { email: this.email } });
       }
-    );
-  }
+    },
+    () => {
+      this.isLoading = false;
+      this.errorMessage = "Erreur de connexion.";
+    }
+  );
+}
+
 
   submitPassword() {
     this.isLoading = true;

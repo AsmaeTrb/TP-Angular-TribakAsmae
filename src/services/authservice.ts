@@ -3,10 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface User {
-  id: string;
+   id?: string;
   name: string;
   email: string;
   password: string;
+  phone: string;
+  gender: string;
+  birthDate: string; // ou séparé en day/month/year si nécessaire
+  address: string;
+  city: string;
+  country: string;
   role: string;
 }
 
@@ -48,4 +54,7 @@ export class AuthService {
     this.isConnectedSubject.next(false);
     this.nameSubject.next(null);
   }
+  registerUser(user: User): Observable<User> {
+  return this.http.post<User>('http://localhost:3000/api/users', user);
+}
 }
