@@ -2,9 +2,50 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+
+
 const app = express();
+// Configuration middleware
 app.use(bodyParser.json());
 app.use(cors());
+
+// 💾 Liste des utilisateurs (base simulée)
+const users = [
+  {
+    id: "1",
+    name: "Admin",
+    email: "admin@admin.com",
+    password: "admin",
+    role: "Admin"
+  },
+  {
+    id: "2",
+    name: "Asmae",
+    email: "asmae@gmail.com",
+    password: "1111",
+    role: "Guest"
+  }
+];
+
+// ✅ GET /api/users?email=... → pour vérifier si l’email existe
+app.get("/api/users", (req, res) => {
+  const email = req.query.email?.toLowerCase();
+  const user = users.find(u => u.email.toLowerCase() === email);
+  res.json(user ? [user] : []);
+});
+
+// ✅ POST /api/users/login → vérifie mot de passe
+app.post("/api/users/login", (req, res) => {
+  const { email, password } = req.body;
+  const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+
+  if (!user || user.password !== password) {
+    return res.status(401).json({ error: "Email ou mot de passe incorrect" });
+  }
+
+  res.status(200).json(user); // Pas de session !
+});
+
 
 let cart = [];
 
@@ -177,77 +218,14 @@ app.post("/api/cart", (req, res) => {
   cart = req.body;
   setTimeout(() => res.status(201).send(), 20);
 });
-// Check if user email exists
-app.post("/api/users/check", (req, res) => {
-  const email = req.body.email;
-  
-  const users = [
-    {
-      id: "1",
-      name: "Admin",
-      email: "admin@admin.com",
-      password: "admin",
-      role: "Admin"
-    },
-    {
-      id: "2",
-      name: "Asmae",
-      email: "Asmae@gmail.com",
-      password: "1111",
-      role: "Guest"
-    },
-  ];
-
-  const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
-
-  if (user) {
-    res.json({ exists: true, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
-  } else {
-    res.json({ exists: false });
-  }
-});
 
 
-app.get("/api/cart", (req, res) => res.send(cart));
-app.post("/api/users/login", (req, res) => {
-  const { email, password } = req.body;
-
-  const users = [
-    {
-      id: "1",
-      name: "Admin",
-      email: "admin@admin.com",
-      password: "admin",
-      role: "Admin"
-    },
-    {
-      id: "2",
-      name: "Asmae",
-      email: "Asmae@gmail.com",
-      password: "1111",
-      role: "Guest"
-    },
-  ];
-
-  const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
-
-  if (!user) {
-    return res.status(404).json({ error: "Utilisateur introuvable" });
-  }
-
-  if (user.password !== password) {
-    return res.status(401).json({ error: "Mot de passe incorrect" });
-  }
-
-  // OK
-  res.status(200).json({
-    id: user.id,
-    name: user.name,
-    email: user.email,
-    role: user.role
+// ✅ Déconnexion
+app.post('/api/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.json({ disconnected: true });
   });
 });
-
 
 
 const port = 3000;

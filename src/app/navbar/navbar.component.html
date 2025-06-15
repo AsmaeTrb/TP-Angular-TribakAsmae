@@ -1,5 +1,4 @@
 <header class="hermes-header">
-
     <!-- Ligne 1 : Top header -->
     <div class="hermes-header-top">
         <div class="header-left">
@@ -7,14 +6,23 @@
         </div>
 
         <div class="header-center">
-            <!-- Quand on clique sur l'image, recharge la page -->
             <a routerLink="/" (click)="reloadPage()">
                 <img src="./assets/logo.png" alt="Hermes" class="hermes-logo" />
             </a>
         </div>
-
+        
         <div class="header-right">
-            <span class="account" routerLink="/login" style="cursor: pointer;">Compte</span>
+            <span class="account" [routerLink]="isConnected ? '/account' : '/login'">
+                <img
+                    [src]="isConnected ? 'assets/compte2.png' : 'assets/compte1.png'"
+                    alt="Compte"
+                    width="25"
+                    height="25"
+                />
+                  {{ isConnected ? currentUserName : 'Compte' }}
+
+            </span>
+            <span *ngIf="isConnected" class="logout" (click)="logout()">Déconnexion</span>
             <span class="cart">Panier</span>
         </div>
     </div>
@@ -28,7 +36,6 @@
         <a routerLink="/category" [queryParams]="{ category: 'maison' }" class="hermes-category-link">Maison</a>
         <a routerLink="/category" [queryParams]="{ category: 'createurs' }" class="hermes-category-link">Créateurs</a>
         <a routerLink="/category" class="hermes-category-link">À propos</a>
-        <a routerLink="/category" class="hermes-category-link">Plateforme</a>
+        <a routerLink="/s" class="hermes-category-link">Plateforme</a>
     </nav>
-
 </header>

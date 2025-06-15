@@ -1,60 +1,72 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/authservice';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'; // Ajoutez cette ligne
-
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [FormsModule,CommonModule],
+  standalone:true,
+    imports: [CommonModule,FormsModule],
+
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   email: string = '';
   password: string = '';
-  isEmailVerified: boolean = false;
-  isLoading: boolean = false;
-  errorMessage: string = '';
+  isEmailVerified = false;
+  isLoading = false;
+  errorMessage = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
+  // Étape 1 : vérifier si l'email existe
   verifyEmail() {
     this.isLoading = true;
-    this.http.post<any>('http://localhost:3000/api/users/check', { email: this.email })
-      .subscribe({
-        next: (response) => {
-          this.isLoading = false;
+    this.errorMessage = '';
+
+    this.authService.getUserByEmail(this.email).subscribe(
+      (users) => {
+        this.isLoading = false;
+        if (users.length > 0) {
           this.isEmailVerified = true;
-          if (!response.exists) {
-            this.router.navigate(['/register'], { 
-              state: { email: this.email } 
-            });
-          }
-        },
-        error: (err) => {
-          this.isLoading = false;
-          this.errorMessage = 'Erreur lors de la vérification';
+        } else {
+          this.errorMessage = "Adresse email inconnue.";
         }
-      });
+      },
+      () => {
+        this.isLoading = false;
+        this.errorMessage = "Erreur de connexion.";
+      }
+    );
   }
 
   submitPassword() {
     this.isLoading = true;
-    this.http.post<any>('http://localhost:3000/api/users/login', { 
-      email: this.email,
-      password: this.password
-    }).subscribe({
-      next: () => {
-        this.router.navigate(['/']);
-      },
-      error: (err) => {
+    this.errorMessage = '';
+
+    this.authService.login(this.email, this.password).subscribe(
+      (user) => {
         this.isLoading = false;
-        this.errorMessage = 'Mot de passe incorrect';
+         this.authService.setSession(user.email, user.name);
+
+
+        if (user.email === 'admin@admin.com') {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/account']);
+        }
+      },
+      () => {
+        this.isLoading = false;
+        this.errorMessage = "Mot de passe incorrect.";
       }
-    });
+    );
   }
 
   backToEmail() {

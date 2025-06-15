@@ -147,3 +147,7 @@
 .hermes-hero-button:hover {
     background-color: #333;
 }
+.account img {
+  border-radius: 50%; /* si tu veux un rond */
+  object-fit: cover;
+}
