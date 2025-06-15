@@ -1,94 +1,60 @@
 <div class="register-container">
-  <h1>Créer un compte</h1>
+  <h1>CRÉER UN COMPTE</h1>
+  <p class="subtitle">
+    En créant un compte, vous acceptez les
+    <a href="#">Conditions Générales d’Utilisation</a>
+    et la <a href="#">Politique de confidentialité</a>.
+  </p>
 
-  <form (ngSubmit)="register()">
-    <!-- Nom -->
-    <div class="form-group">
-      <label>Nom</label>
-      <input type="text" [(ngModel)]="name" name="name" required />
-    </div>
-
-    <!-- Email -->
-    <div class="form-group">
-      <label>Email</label>
+  <form (ngSubmit)="register()" class="form-grid">
+    <!-- Colonne 1 -->
+    <div class="column">
+      <h3>INFORMATIONS DE CONNEXION</h3>
+      <label>Email *</label>
       <input type="email" [(ngModel)]="email" name="email" required [readonly]="email !== ''" />
-    </div>
 
-    <!-- Mot de passe -->
-    <div class="form-group">
-      <label>Mot de passe</label>
+      <label>Mot de passe *</label>
       <input type="password" [(ngModel)]="password" name="password" required />
-    </div>
+      <!-- Confirmer mot de passe -->
+<input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required />
 
-    <!-- Confirmation mot de passe -->
-    <div class="form-group">
-      <label>Confirmer le mot de passe</label>
-      <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required />
-    </div>
+      <p class="hint">Au moins 10 caractères, 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial</p>
 
-    <!-- Genre -->
-    <div class="form-group">
-      <label>Genre</label>
+      <h3>INFORMATIONS PERSONNELLES</h3>
+      <label>Genre *</label>
       <select [(ngModel)]="gender" name="gender" required>
         <option value="">-- Choisir --</option>
         <option value="Homme">Homme</option>
         <option value="Femme">Femme</option>
-        <option value="Autre">Autre</option>
       </select>
-    </div>
 
-    <!-- Date de naissance -->
-    <div class="form-group">
-      <label>Date de naissance</label>
+      <label>Téléphone *</label>
+      <input type="tel" [(ngModel)]="phone" name="phone" placeholder="+212 612345678" required />
+
+      <label>Date de naissance *</label>
       <input type="date" [(ngModel)]="birthDate" name="birthDate" required />
     </div>
 
-    <!-- Pays -->
-    <div class="form-group">
-      <label>Pays</label>
+    <!-- Colonne 2 -->
+    <div class="column">
+      <h3>COORDONNÉES DE FACTURATION</h3>
+
+      <label>Pays *</label>
       <select [(ngModel)]="selectedCountry" name="selectedCountry" required>
-        <option *ngFor="let c of country" [value]="c.name">{{ c.name }} ({{ c.code }})</option>
+        <option *ngFor="let c of country" [value]="c.name">{{ c.name }}</option>
       </select>
-    </div>
 
-    <!-- Téléphone -->
-     <!-- Téléphone avec indicatif -->
-<div class="form-group">
-  <label>Téléphone</label>
-  <div class="phone-input">
-    <!-- Affichage indicatif à gauche -->
-    <span>{{ selectedCountryCode }}</span>
-
-
-    <!-- Numéro sans indicatif -->
-    <input
-      type="tel"
-      [(ngModel)]="phone"
-      name="phone"
-      required
-      placeholder="612345678"
-    />
-  </div>
-</div>
-
-    <!-- Adresse -->
-    <div class="form-group">
-      <label>Adresse</label>
+      <label>Adresse *</label>
       <input type="text" [(ngModel)]="address" name="address" required />
-    </div>
 
-    <!-- Ville -->
-    <div class="form-group">
-      <label>Ville</label>
+      <label>Ville *</label>
       <input type="text" [(ngModel)]="city" name="city" required />
     </div>
 
-    <!-- Message d'erreur -->
-    <div *ngIf="errorMessage" class="error-message">
-      {{ errorMessage }}
+    <!-- Bas du formulaire -->
+    <div class="full-width">
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+      <button type="submit">CRÉER UN COMPTE</button>
     </div>
-
-    <!-- Bouton d'enregistrement -->
-    <button type="submit">Créer un compte</button>
   </form>
 </div>

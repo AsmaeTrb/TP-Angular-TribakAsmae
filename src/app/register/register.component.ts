@@ -61,8 +61,9 @@ country = [
       role: "Guest"
     };
   this.authService.registerUser(newUser).subscribe({
-      next: () => {
-        this.router.navigate(['/login']);
+           next: (user) => {
+          this.authService.setSession(user.email, user.name); // ✅ stocke la session
+        this.router.navigate(['/account']);
       },
       error: () => {
         this.errorMessage = "Erreur lors de l'enregistrement.";
@@ -73,4 +74,5 @@ country = [
   const c = this.country.find(c => c.name === this.selectedCountry);
   return c ? c.code : '';
 }
+
 }
