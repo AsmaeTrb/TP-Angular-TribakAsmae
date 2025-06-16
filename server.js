@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const nodemailer = require('nodemailer');
+
 
 
 
@@ -281,7 +283,32 @@ app.post('/api/logout', (req, res) => {
     res.json({ disconnected: true });
   });
 });
+app.post('/send-email', async (req, res) => {
+  const { email } = req.body;
 
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'asmae.tribakk@gmail.com',
+      pass: 'clbg kftt lfey rytp'
+    }
+  });
+
+  const mailOptions = {
+    from: 'asmae.tribakk@gmail.com',
+    to: email,
+    subject: 'Confirmation de commande',
+    text: 'Merci pour votre commande !'
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.send({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ success: false, message: 'Erreur lors de l’envoi' });
+  }
+});
 
 const port = 3000;
 app.listen(port, () => console.log(`API Server listening on port ${port}`));

@@ -1,0 +1,17 @@
+<div class="checkout-container">
+  <div class="stepper">
+    <!-- Réutilise ton stepper, en activant "CHECKOUT" -->
+  </div>
+
+  <div class="checkout-form">
+    <h2>ACCOUNT</h2>
+    <p>
+      Please insert your email to receive your order confirmation.
+      If you already registered, your password will be requested.
+    </p>
+
+    <label for="email">E‑mail *</label>
+    <input type="email" id="email" [(ngModel)]="email" placeholder="youname@domain.com" />
+    <button (click)="onContinue()">CONTINUE</button>
+  </div>
+</div>

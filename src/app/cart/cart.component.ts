@@ -3,6 +3,7 @@ import { CartService } from '../../services/cartservice';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class CartComponent implements OnInit {
   isGift: boolean = false; // Option d'emballage cadeau
   hasApplePay: boolean = false; // Disponibilité Apple Pay
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService,private router: Router) {}
 
   ngOnInit(): void {
     this.loadCart();
@@ -86,14 +87,18 @@ export class CartComponent implements OnInit {
 
   // Passe la commande
   checkout(): void {
-    const order = {
-      items: this.cartItems,
-      isGift: this.isGift,
-      total: this.getTotal()
-    };
-    console.log('Commande passée:', order);
-    // Redirection vers le processus de paiement
-  }
+  const order = {
+    items: this.cartItems,
+    isGift: this.isGift,
+    total: this.getTotal()
+  };
+
+  console.log('Commande passée:', order);
+
+  // Redirection vers la page /checkout
+  this.router.navigate(['/checkout']);
+}
+
 
 
 
