@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { Product } from '../../models/product';
 import { GetDataService } from '../../services/get-data.service';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-productdetails',
@@ -15,17 +17,21 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductdetailsComponent {
   isSizeOpen = false;
+selectedSize?: string;
+availableQuantity: number = 0;
+quantity: number = 1;
+showPopup: boolean = false;
 
   product!: Product;
   currentImage?: string;
   currentDetailsBackground?: string;
-  selectedSize?: string;
   zoomedImage: string | null = null;
   payOption: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
-    private getDataService: GetDataService
+    private getDataService: GetDataService,
+    private router: Router 
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +48,8 @@ export class ProductdetailsComponent {
       }
     });
   }
+  
+
 
   getAvailableImages(): string[] {
     return [this.product.image1, this.product.image2].filter(img => img);
@@ -56,14 +64,43 @@ export class ProductdetailsComponent {
     this.zoomedImage = img;
   }
 
-  addToCart(): void {
-    if (this.selectedSize) {
-      // Logique d'ajout au panier
-      console.log('Produit ajouté:', {
-        id: this.product.id,
-        size: this.selectedSize,
-        payOption: this.payOption
-      });
-    }
+selectSize(sizeObj: { size: string, quantity: number }): void {
+  this.selectedSize = sizeObj.size;
+  this.availableQuantity = sizeObj.quantity;
+  this.quantity = 1;
+}
+
+increment(): void {
+  if (!this.selectedSize) return;
+  if (this.quantity < this.availableQuantity) {
+    this.quantity++;
   }
+}
+
+decrement(): void {
+  if (this.quantity > 1) {
+    this.quantity--;
+  }
+}
+addToCart(): void {
+  if (this.selectedSize) {
+    console.log('Produit ajouté au panier :', {
+      id: this.product.id,
+      name: this.product.name,
+      size: this.selectedSize,
+      quantity: this.quantity,
+      payOption: this.payOption
+    });
+    this.showPopup = true;
+
+  }
+}
+closePopup(): void {
+  this.showPopup = false;
+}
+goToCart(): void {
+  this.router.navigate(['/cart']); 
+}
+
+
 }

@@ -4,7 +4,7 @@
   min-height: calc(100vh - 80px); /* S'adapte à la hauteur moins la navbar */
   margin-top: 150px; /* Espace pour la navbar */
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: #fafafa;
+  background-color: #fefbf6;
 }
 
 /* === Colonne Image === */
@@ -169,7 +169,7 @@
 
 .hermes-add-to-cart {
   padding: 16px 0;
-  background: #000;
+  background: #913d3d;
   color: #fff;
   border: none;
   text-transform: uppercase;
@@ -179,7 +179,7 @@
 }
 
 .hermes-add-to-cart:disabled {
-  background: #ccc;
+  background: #913d3d;
   cursor: not-allowed;
 }
 
@@ -288,4 +288,67 @@
   .hermes-actions {
     flex-direction: column;
   }
+}
+.hermes-quantity {
+  margin: 20px 0;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-controls button {
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.quantity-controls input {
+  width: 50px;
+  text-align: center;
+  font-size: 16px;
+  border: 1px solid #ccc;
+}
+.hermes-popup {
+  position: fixed;
+  top: 20%;
+  left: 70%;
+  transform: translate(-50%);
+  background: #fefbf6;
+  border: 1px solid #ccc;
+  padding: 40px 70px;
+  border-radius: 0px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  text-align: center;
+}
+
+.popup-content .popup-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.view-cart-btn {
+  background: #913d3d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
 }

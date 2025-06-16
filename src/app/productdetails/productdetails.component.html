@@ -12,6 +12,7 @@
       <h1>{{ product.name }}</h1>
       <p class="hermes-price">{{ product.price | currency:'EUR':'symbol':'1.0-0' }}</p>
     </div>
+    
 
     <div class="hermes-attributes">
       <div class="hermes-attribute">
@@ -19,7 +20,7 @@
         <span class="value">{{ product.color }}</span>
       </div>
 
-<div class="hermes-attribute">
+      <div class="hermes-attribute">
   <!-- Titre Taille cliquable -->
   <div class="hermes-size-title" (click)="isSizeOpen = !isSizeOpen">
     <span class="label">Taille</span>
@@ -35,20 +36,18 @@
       <a href="#">📏 Guide des tailles</a>
     </div>
 
-    <div class="hermes-size-grid">
-      <button *ngFor="let size of product.sizes"
-              class="hermes-size-button"
-              [class.active]="selectedSize === size.size"
-              (click)="selectedSize = size.size">
-        {{ size.size }}
-      </button>
-    </div>
-
-  </div>
+  <div class="hermes-size-grid">
+  <button *ngFor="let size of product.sizes"
+          class="hermes-size-button"
+          [class.active]="selectedSize === size.size"
+          (click)="selectSize(size)">
+    {{ size.size }}
+  </button>
 </div>
 
 
-    </div>
+  </div>
+</div>
 
     <div class="hermes-actions">
       <button class="hermes-add-to-cart" 
@@ -56,6 +55,14 @@
               [disabled]="!selectedSize">
         AJOUTER AU PANIER
       </button>
+      <div class="hermes-quantity">
+  <div class="quantity-controls">
+    <button type="button" (click)="decrement()">−</button>
+    <input type="number" [(ngModel)]="quantity" min="1" [max]="availableQuantity" readonly />
+    <button type="button" (click)="increment()">+</button>
+  </div>
+</div>
+
       
       <label class="hermes-pay-option">
         <input type="checkbox" [(ngModel)]="payOption">
@@ -82,4 +89,16 @@
   <div class="hermes-zoom-modal" *ngIf="zoomedImage" (click)="zoomedImage = null">
     <img [src]="zoomedImage" [alt]="product.name + ' zoom'">
   </div>
+  <div *ngIf="showPopup" class="hermes-popup">
+  <div class="popup-close" (click)="closePopup()">×</div>
+
+  <div class="popup-content">
+    <div class="popup-icon">
+      <img src="assets/panier.png" alt="Sac" width="40" height="40" />
+    </div>
+    <p>Produit ajouté au panier</p>
+    <button class="view-cart-btn" (click)="goToCart()">VOIR PANIER</button>
+  </div>
+</div>
+
 </div>
