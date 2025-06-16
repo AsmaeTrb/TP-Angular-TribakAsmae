@@ -47,7 +47,21 @@ app.post("/api/users/login", (req, res) => {
 });
 
 
-let cart = [];
+let cartItems = [];
+app.post('/api/cart', (req, res) => {
+  const item = req.body;
+
+  // Vérifie si l'article existe déjà (même id + taille)
+  const existing = cartItems.find(i => i.id === item.id && i.size === item.size);
+
+  if (existing) {
+    existing.quantity += item.quantity;
+  } else {
+    cartItems.push(item);
+  }
+
+  res.status(201).json({ message: 'Ajouté au panier' });
+});
 
 app.get("/api/products", (req, res) => {
   const products = [
@@ -213,10 +227,13 @@ app.get("/api/products", (req, res) => {
   ]
   res.send(products);
 });
-
-app.post("/api/cart", (req, res) => {
-  cart = req.body;
-  setTimeout(() => res.status(201).send(), 20);
+app.get('/api/cart', (req, res) => {
+  res.json(cartItems);
+});
+app.delete('/api/cart/:id/:size', (req, res) => {
+  const { id, size } = req.params;
+  cartItems = cartItems.filter(item => !(item.id === id && item.size === size));
+  res.json({ message: 'Produit supprimé' });
 });
 // ✅ Enregistrement d'un nouvel utilisateur
 app.post("/api/users", (req, res) => {

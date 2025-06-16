@@ -1,0 +1,57 @@
+
+
+
+.cart-container {
+  padding: 40px;
+  font-family: 'Helvetica Neue', sans-serif;
+  max-width: 900px;
+  margin: auto;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 20px 0;
+}
+
+.cart-image {
+  width: 100px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.cart-details {
+  flex: 1;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #999;
+  cursor: pointer;
+}
+
+.summary {
+  margin-top: 40px;
+  text-align: right;
+}
+
+.checkout-btn, .applepay-btn {
+  background: black;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px;
+}

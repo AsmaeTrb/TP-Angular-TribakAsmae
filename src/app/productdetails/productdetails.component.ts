@@ -6,7 +6,7 @@ import { Product } from '../../models/product';
 import { GetDataService } from '../../services/get-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-
+import { CartService } from '../../services/cartservice';
 
 @Component({
   selector: 'app-productdetails',
@@ -31,7 +31,8 @@ showPopup: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private getDataService: GetDataService,
-    private router: Router 
+    private router: Router,
+     private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -84,17 +85,28 @@ decrement(): void {
 }
 addToCart(): void {
   if (this.selectedSize) {
-    console.log('Produit ajouté au panier :', {
-      id: this.product.id,
-      name: this.product.name,
-      size: this.selectedSize,
-      quantity: this.quantity,
-      payOption: this.payOption
-    });
-    this.showPopup = true;
+    const item = {
+       id: this.product.id,
+  name: this.product.name,
+  size: this.selectedSize,
+  quantity: this.quantity,
+  image: this.product.image1,
+  price: this.product.price,
+  payOption: this.payOption,
+  availableQuantity: this.availableQuantity 
+    };
 
+    this.cartService.addToCart(item).subscribe({
+      next: () => {
+        this.showPopup = true;
+      },
+      error: () => {
+        alert("Erreur lors de l'ajout au panier.");
+      }
+    });
   }
 }
+
 closePopup(): void {
   this.showPopup = false;
 }

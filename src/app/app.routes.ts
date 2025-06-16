@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { CategoryComponent } from './category/category.component';
 import { AccountComponent } from './account/account.component';
 import { RegisterComponent } from './register/register.component';
+import { CartComponent } from './cart/cart.component';
 export const routes: Routes =  [
     
     {path : '', component : HomeComponent, title: 'My Plateforme'},
@@ -13,6 +14,7 @@ export const routes: Routes =  [
   path: 'account',component:AccountComponent},
      { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
-{ path: 'category', component: CategoryComponent }
+{ path: 'category', component: CategoryComponent },
+   {  path: 'cart',component:CartComponent}
 
 ];
