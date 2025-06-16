@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cartservice';
 import { CommonModule } from '@angular/common';
-@Component({
-    standalone: true,
-  selector: 'app-cart',
-    imports: [CommonModule],
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
-  
+
+@Component({
+  standalone: true,
+  selector: 'app-cart',
+  imports: [CommonModule, FormsModule,RouterLink], // Ajout de FormsModule pour ngModel
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartItems: any[] = [];
+  cartItems: any[] = []; // Tableau des articles du panier
+  isGift: boolean = false; // Option d'emballage cadeau
+  hasApplePay: boolean = false; // Disponibilité Apple Pay
 
   constructor(private cartService: CartService) {}
 
@@ -19,19 +23,31 @@ export class CartComponent implements OnInit {
     this.loadCart();
   }
 
+  // Charge les articles du panier depuis le service
   loadCart(): void {
-    this.cartService.getCartItems().subscribe(items => {
-      this.cartItems = items;
+    this.cartService.getCartItems().subscribe({
+      next: (items) => {
+        this.cartItems = items.map(item => ({
+          ...item,
+          // Initialise la quantité à 1 si non définie
+          quantity: item.quantity || 1,
+          // Stock par défaut à 10 si non défini
+          availableQuantity: item.availableQuantity || 10
+        }));
+      },
+      error: (err) => console.error('Erreur lors du chargement du panier', err)
     });
   }
 
+  // Augmente la quantité d'un article
   increaseQty(item: any): void {
-    if (item.quantity < item.availableQuantity) { // tu peux remplacer 10 par item.stock si tu veux
+    if (item.quantity < item.availableQuantity) {
       item.quantity++;
       this.updateCart(item);
     }
   }
 
+  // Diminue la quantité d'un article
   decreaseQty(item: any): void {
     if (item.quantity > 1) {
       item.quantity--;
@@ -39,17 +55,50 @@ export class CartComponent implements OnInit {
     }
   }
 
+  // Supprime un article du panier
   removeItem(item: any): void {
-    this.cartService.removeItem(item.id, item.size).subscribe(() => {
-      this.loadCart();
+    this.cartService.removeItem(item.id, item.size).subscribe({
+      next: () => this.loadCart(),
+      error: (err) => console.error('Erreur lors de la suppression', err)
     });
   }
 
+  // Calcule le total du panier
   getTotal(): number {
-    return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    return this.cartItems.reduce((total, item) => 
+      total + (item.price * item.quantity), 0);
   }
 
+  // Formate le prix selon la locale française
+  formatPrice(price: number): string {
+    return new Intl.NumberFormat('fr-FR', { 
+      style: 'currency', 
+      currency: 'EUR',
+      minimumFractionDigits: 2
+    }).format(price);
+  }
+
+  // Met à jour le panier côté serveur
   updateCart(item: any): void {
-    // Tu peux ici appeler un PUT si tu veux synchroniser les quantités côté serveur
+    // Implémentez la logique de mise à jour si nécessaire
+    // this.cartService.updateItem(item).subscribe();
+  }
+
+  // Passe la commande
+  checkout(): void {
+    const order = {
+      items: this.cartItems,
+      isGift: this.isGift,
+      total: this.getTotal()
+    };
+    console.log('Commande passée:', order);
+    // Redirection vers le processus de paiement
+  }
+
+
+
+  // Calcule le sous-total (peut être utile pour affichage détaillé)
+  getSubtotal(): number {
+    return this.getTotal(); // À adapter si vous avez des frais supplémentaires
   }
 }

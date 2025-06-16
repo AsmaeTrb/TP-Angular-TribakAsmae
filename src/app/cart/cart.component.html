@@ -1,37 +1,104 @@
-<div *ngIf="cartItems.length > 0; else emptyCart" class="cart-container">
-  <h2>Vous avez {{ cartItems.length }} article(s) dans votre panier.</h2>
+<div class="stepper-container">
+  <a class="back-link" routerLink="/products">← Back</a>
+
+ <div class="stepper-logo">
+  <a routerLink="/">
+    <img src="assets/logo.png" alt="Hermès Paris">
+  </a>
+</div>
+
+  <div class="stepper">
+    <div class="step active">CART</div>
+    <div class="step">CHECKOUT</div>
+    <div class="step">CONFIRMATION</div>
+  </div>
+</div>
+<div class="cart-container">
+
+  <p *ngIf="cartItems.length === 0">Votre panier est vide</p>
 
   <div *ngFor="let item of cartItems" class="cart-item">
-    <img [src]="item.image" alt="{{ item.name }}" class="cart-image" />
-
+    <img [src]="item.image" alt="{{item.name}}" class="cart-image">
+    
     <div class="cart-details">
-      <h4>{{ item.name }}</h4>
-      <p>Couleur : {{ item.color }}</p>
-      <p>Taille : {{ item.size }}</p>
-
-      <div class="quantity-control">
-        <button (click)="decreaseQty(item)">−</button>
-        <span>{{ item.quantity }}</span>
-        <button (click)="increaseQty(item)">+</button>
+      <h4>{{item.name}}</h4>
+      <p>Couleur: {{item.color}}</p>
+      <p>Taille: {{item.size}}</p>
+      <p>Réf: {{item.reference}}</p>
+      
+      <div *ngIf="item.delay" class="delivery-warning">
+        <p>Cet article aura un délai de livraison de {{item.delay}} jours</p>
       </div>
-
-      <p>{{ item.price | currency: 'EUR' }}</p>
+      
+      <div class="quantity-control">
+        <button (click)="decreaseQty(item)" 
+                [disabled]="item.quantity <= 1"
+                aria-label="Réduire la quantité">-</button>
+        <span>{{item.quantity}}</span>
+        <button (click)="increaseQty(item)" 
+                [disabled]="item.quantity >= item.stock"
+                aria-label="Augmenter la quantité">+</button>
+      </div>
+      
+      <button class="remove-btn" (click)="removeItem(item)">
+        Supprimer
+      </button>
     </div>
-
-    <button class="remove-btn" (click)="removeItem(item)">×</button>
+    
+    <div class="item-price">
+      {{formatPrice(item.price * item.quantity)}}
+    </div>
   </div>
 
   <div class="summary">
-    <h3>SOUS-TOTAL : {{ getTotal() | currency:'EUR' }}</h3>
-    <p>LIVRAISON : À calculer lors du paiement</p>
-    <p>TAXES : À calculer lors du paiement</p>
-    <h3>TOTAL : {{ getTotal() | currency:'EUR' }}</h3>
-
-    <button class="checkout-btn">CHECKOUT</button>
-    <button class="applepay-btn"> Pay</button>
+    <div class="summary-row">
+      <span>SOUS-TOTAL</span>
+      <span>{{formatPrice(getSubtotal())}}</span>
+    </div>
+    
+    <div class="summary-row">
+      <span>LIVRAISON</span>
+      <span>Calculée à la commande</span>
+    </div>
+    
+    <div class="summary-row">
+      <span>TAXES</span>
+      <span>Calculées à la commande</span>
+    </div>
+    
+    <div class="summary-row total">
+      <span>TOTAL</span>
+      <span>{{formatPrice(getTotal())}}</span>
+    </div>
+    
+    <div class="gifting-option">
+      <input type="checkbox" id="gift" [(ngModel)]="isGift">
+      <label for="gift">Emballage cadeau</label>
+    </div>
+    
+    <button class="checkout-btn" (click)="checkout()">
+      PASSER LA COMMANDE
+    </button>
+    
+    <button class="applepay-btn" *ngIf="hasApplePay">
+      <img src="assets/pay.png" alt="Payer avec Apple Pay">
+    </button>
+    
+    <div class="secure-payment">
+      <img src="assets/pay.png" alt="Paiement sécurisé">
+      <p>Paiement 100% sécurisé</p>
+    </div>
+  </div>
+  
+  <div class="customer-service">
+    <h3>SERVICE CLIENT</h3>
+    <p>Lundi à vendredi 9h - 21h EST. Samedi 10h - 21h EST:</p>
+    <p><strong>800-44-14488</strong></p>
+    
+    <div class="service-features">
+      <p>Livraison standard gratuite</p>
+      <p>Retours & échanges</p>
+      <p>Achat sécurisé</p>
+    </div>
   </div>
 </div>
-
-<ng-template #emptyCart>
-  <p>Votre panier est vide.</p>
-</ng-template>

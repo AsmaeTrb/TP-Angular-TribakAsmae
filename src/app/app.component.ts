@@ -1,19 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { RouterOutlet } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet,NavbarComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
-})
-export class AppComponent {
- 
-  title = 'tp4';
 
-  constructor() {}
-    
-  
+
+@Component({
+    standalone: true,
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+   imports: [
+    RouterOutlet,RouterLink, CommonModule,NavbarComponent
+  ]
+})
+export class AppComponent implements OnInit {
+  showNavbar = true;
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.router.events
+      .pipe(filter(e => e instanceof NavigationEnd))
+      .subscribe((e: NavigationEnd) => {
+        const hidden = ['/cart', '/checkout', '/confirmation'];
+        this.showNavbar = !hidden.includes(e.urlAfterRedirects);
+      });
+  }
 }
