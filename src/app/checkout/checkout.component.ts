@@ -23,6 +23,7 @@ export class CheckoutComponent implements OnInit {
   cartItems: any[] = [];
   isSummaryOpen: boolean = false;
 
+
   countries = [
     { name: 'United States', code: '+1' },
     { name: 'France', code: '+33' },
@@ -86,7 +87,6 @@ export class CheckoutComponent implements OnInit {
       this.router.navigate(['/checkout/payment']);
     }
   }
-
   validateEmail(email: string): boolean {
     return /^\S+@\S+\.\S+$/.test(email);
   }
