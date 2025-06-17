@@ -27,7 +27,7 @@ export class CartService {
   }
 
   // 🗑️ Vider complètement le panier (optionnel)
-  clearCart(): Observable<any> {
-    return this.http.delete(this.apiUrl); // si tu crées une route DELETE /api/cart
-  }
+ clearCart(): Observable<any> {
+  return this.http.delete(this.apiUrl); // DELETE /api/cart
+}
 }

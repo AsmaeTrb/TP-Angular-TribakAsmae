@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/authservice';
-
+import { CartService } from '../../services/cartservice';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   isConnected = false;
   currentUserName: string | null = null;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService,  private cartService: CartService) {}
 
   ngOnInit(): void {
     this.authService.isConnectedSubject.subscribe(value => {
@@ -27,10 +27,27 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  logout(): void {
-    this.authService.logout();
-    this.router.navigate(['/']);
-  }
+logout(): void {
+  this.authService.logout();
+
+  // Supprimer session locale
+  sessionStorage.removeItem('cartItems');
+  sessionStorage.removeItem('subtotal');
+  sessionStorage.removeItem('email');
+
+  // Supprimer panier côté serveur
+  this.cartService.clearCart().subscribe({
+    next: () => {
+      this.router.navigate(['/']);
+    },
+    error: (err) => {
+      console.error('Erreur lors du vidage du panier :', err);
+      this.router.navigate(['/']);
+    }
+  });
+}
+
+
 
   reloadPage(): void {
     this.router.navigateByUrl('/').then(() => {

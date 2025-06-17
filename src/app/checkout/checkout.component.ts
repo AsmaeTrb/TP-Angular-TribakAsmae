@@ -44,15 +44,19 @@ export class CheckoutComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit(): void {
-    if (!this.isGuest()) {
-      this.email = sessionStorage.getItem('email') || '';
-    }
-
-    this.subtotal = Number(sessionStorage.getItem('subtotal')) || 0;
+ngOnInit(): void {
+  if (!this.isGuest()) {
+    this.email = sessionStorage.getItem('email') || '';
     const items = sessionStorage.getItem('cartItems');
     this.cartItems = items ? JSON.parse(items) : [];
+    this.subtotal = Number(sessionStorage.getItem('subtotal')) || 0;
+  } else {
+    // invité déconnecté, forcer un panier vide
+    this.cartItems = [];
+    this.subtotal = 0;
   }
+}
+
 
   isGuest(): boolean {
     return !this.authService.isConnectedSubject.value;

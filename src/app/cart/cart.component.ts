@@ -28,6 +28,10 @@ export class CartComponent implements OnInit {
   goBack() {
   this.location.back();
 }
+clearCart(): void {
+  sessionStorage.removeItem('cartItems');
+  sessionStorage.removeItem('subtotal');
+}
 
   // Charge les articles du panier depuis le service
   loadCart(): void {

@@ -309,6 +309,10 @@ app.post('/send-email', async (req, res) => {
     res.status(500).send({ success: false, message: 'Erreur lors de l’envoi' });
   }
 });
+app.delete('/api/cart', (req, res) => {
+  cartItems = [];
+  res.status(200).json({ message: 'Panier vidé avec succès' });
+});
 
 
 const port = 3000;
