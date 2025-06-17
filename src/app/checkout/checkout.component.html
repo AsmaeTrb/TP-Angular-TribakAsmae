@@ -23,96 +23,99 @@
   <div class="checkout-left">
 
     <!-- ACCOUNT -->
-    <section class="section-box">
-      <h2>ACCOUNT</h2>
-      <p>{{ email }}</p>
-    </section>
+   <section class="account-row">
+  <div class="account-label">ACCOUNT</div>
+  <div class="account-email">{{ email }}</div>
+</section>
+<!-- DELIVERY -->
+<section class="section-box delivery-section">
+    <div class="account-label">DELIVERY</div>
 
-    <!-- DELIVERY -->
-    <section class="section-box">
-      <h2>DELIVERY</h2>
 
-      <div class="delivery-tabs">
-        <div class="tab active">Ship to an address</div>
-        <div class="tab">Collect in store</div>
+  <!-- Onglets -->
+  <div class="delivery-tabs">
+    <div class="tab active">
+      <span class="tab-icon">🚚</span>
+      <span class="tab-label">Ship to an address</span>
+    </div>
+  </div>
+  <!-- FORMULAIRE -->
+ <form (ngSubmit)="submitShipping()" #shippingForm="ngForm" class="hermes-delivery-form">
+    <div class="form-grid">
+      <div class="form-cell">
+ <select [(ngModel)]="selectedCountry" name="location" required>
+  <option value="" disabled selected hidden>Location *</option>
+  <option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</option>
+</select>
+</div>
+         <!-- Title -->
+    <div class="form-cell">
+      <select name="title" ngModel required>
+        <option value="" disabled selected hidden>Title *</option>
+        <option value="mr">Mr.</option>
+        <option value="mrs">Mrs.</option>
+      </select>
+    </div>
+
+    <!-- First Name -->
+    <div class="form-cell">
+      <input type="text" name="firstName" ngModel required placeholder="First name *" />
+    </div>
+
+    <!-- Last Name -->
+    <div class="form-cell">
+      <input type="text" name="lastName" ngModel required placeholder="Last name *" />
+    </div>
+
+    <!-- Company -->
+    <div class="form-cell">
+      <input type="text" name="company" ngModel placeholder="Company" />
+    </div>
+
+    <!-- Address -->
+    <div class="form-cell double-width">
+      <input type="text" name="address" ngModel required placeholder="Address *" />
+    </div>
+
+    <!-- Address Continued -->
+    <div class="form-cell full-width">
+      <input type="text" name="address2" ngModel placeholder="Address continued" />
+    </div>
+
+    <!-- City -->
+    <div class="form-cell">
+      <input type="text" name="city" ngModel required placeholder="City *" />
+    </div>
+
+    <!-- State -->
+    <div class="form-cell">
+      <input type="text" name="state" ngModel required placeholder="State *" />
+    </div>
+
+    <!-- Zip -->
+    <div class="form-cell">
+      <input type="text" name="zip" ngModel required placeholder="Zip code *" />
+    </div>
+
+    <!-- Zip Plus -->
+    <div class="form-cell">
+      <input type="text" name="zipPlus" ngModel placeholder="Zip +" />
+    </div>
+
+    <!-- Phone -->
+    <div class="form-cell phone-prefix">
+      <span>{{ selectedCountryCode }}</span>
+      <div style="flex-grow: 1;">
+        <input type="tel" name="phone" ngModel required placeholder="Telephone number *" />
       </div>
+    </div>
 
-      <!-- === FORMULAIRE DE LIVRAISON === -->
-      <form (ngSubmit)="submitShipping()" #shippingForm="ngForm" class="hermes-delivery-form">
-        <div class="form-grid">
-          <div class="form-cell">
-            <label class="required">Location</label>
-            <select [(ngModel)]="selectedCountry" name="location" required (change)="onCountryChange($event)">
-              <option value="">Select</option>
-              <option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</option>
-            </select>
-          </div>
+  </div>
 
-          <div class="form-cell">
-            <label class="required">Title</label>
-            <select name="title" ngModel required>
-              <option value="">Select</option>
-              <option value="mr">Mr.</option>
-              <option value="mrs">Mrs.</option>
-            </select>
-          </div>
+  <button class="validate-btn" type="submit">VALIDATE</button>
+</form>
+</section>
 
-          <div class="form-cell">
-            <label class="required">First name</label>
-            <input type="text" name="firstName" ngModel required />
-          </div>
-
-          <div class="form-cell">
-            <label class="required">Last name</label>
-            <input type="text" name="lastName" ngModel required />
-          </div>
-
-          <div class="form-cell">
-            <label>Company</label>
-            <input type="text" name="company" ngModel />
-          </div>
-
-          <div class="form-cell double-width">
-            <label class="required">Address</label>
-            <input type="text" name="address" ngModel required />
-          </div>
-
-          <div class="form-cell full-width">
-            <label>Address continued</label>
-            <input type="text" name="address2" ngModel />
-          </div>
-
-          <div class="form-cell">
-            <label class="required">City</label>
-            <input type="text" name="city" ngModel required />
-          </div>
-
-          <div class="form-cell">
-            <label class="required">State</label>
-            <input type="text" name="state" ngModel required />
-          </div>
-
-          <div class="form-cell">
-            <label class="required">Zip code</label>
-            <input type="text" name="zip" ngModel required />
-          </div>
-
-          <div class="form-cell">
-            <label>Zip +</label>
-            <input type="text" name="zipPlus" ngModel />
-          </div>
-
-          <div class="form-cell phone-prefix">
-            <span>{{ selectedCountryCode }}</span>
-            <div style="flex-grow: 1;">
-              <label class="required">Telephone number</label>
-              <input type="tel" name="phone" ngModel required />
-            </div>
-          </div>
-        </div>
-        <button class="validate-btn" type="submit">VALIDATE</button>
-      </form>
-    </section>
   </div>
 
   <!-- === COLONNE DROITE : SUMMARY === -->

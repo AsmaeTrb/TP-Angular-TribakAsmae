@@ -58,7 +58,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   onCountryChange(event: any): void {
-    const selected = this.countries.find(c => c.name === event.target.value);
+  const selected = this.countries.find(c => c.name === this.selectedCountry);
     this.selectedCountry = selected?.name || '';
     this.selectedCountryCode = selected?.code || '';
   }
