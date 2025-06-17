@@ -21,133 +21,154 @@
 
   <!-- === COLONNE GAUCHE === -->
   <div class="checkout-left">
-
     <!-- ACCOUNT -->
-   <section class="account-row">
-  <div class="account-label">ACCOUNT</div>
-  <div class="account-email">{{ email }}</div>
-</section>
-<!-- DELIVERY -->
-<section class="section-box delivery-section">
-    <div class="account-label">DELIVERY</div>
+    <section class="account-row">
+      <div class="account-label">ACCOUNT</div>
+      <div class="account-email">{{ email }}</div>
+    </section>
 
+    <!-- DELIVERY -->
+    <section class="section-box delivery-section">
+      <div class="account-label">DELIVERY</div>
 
-  <!-- Onglets -->
-  <div class="delivery-tabs">
-    <div class="tab active">
-      <span class="tab-icon">🚚</span>
-      <span class="tab-label">Ship to an address</span>
-    </div>
-  </div>
-  <!-- FORMULAIRE -->
- <form (ngSubmit)="submitShipping()" #shippingForm="ngForm" class="hermes-delivery-form">
-    <div class="form-grid">
-      <div class="form-cell">
- <select [(ngModel)]="selectedCountry" name="location" required>
-  <option value="" disabled selected hidden>Location *</option>
-  <option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</option>
-</select>
-</div>
-         <!-- Title -->
-    <div class="form-cell">
-      <select name="title" ngModel required>
-        <option value="" disabled selected hidden>Title *</option>
-        <option value="mr">Mr.</option>
-        <option value="mrs">Mrs.</option>
-      </select>
-    </div>
-
-    <!-- First Name -->
-    <div class="form-cell">
-      <input type="text" name="firstName" ngModel required placeholder="First name *" />
-    </div>
-
-    <!-- Last Name -->
-    <div class="form-cell">
-      <input type="text" name="lastName" ngModel required placeholder="Last name *" />
-    </div>
-
-    <!-- Company -->
-    <div class="form-cell">
-      <input type="text" name="company" ngModel placeholder="Company" />
-    </div>
-
-    <!-- Address -->
-    <div class="form-cell double-width">
-      <input type="text" name="address" ngModel required placeholder="Address *" />
-    </div>
-
-    <!-- Address Continued -->
-    <div class="form-cell full-width">
-      <input type="text" name="address2" ngModel placeholder="Address continued" />
-    </div>
-
-    <!-- City -->
-    <div class="form-cell">
-      <input type="text" name="city" ngModel required placeholder="City *" />
-    </div>
-
-    <!-- State -->
-    <div class="form-cell">
-      <input type="text" name="state" ngModel required placeholder="State *" />
-    </div>
-
-    <!-- Zip -->
-    <div class="form-cell">
-      <input type="text" name="zip" ngModel required placeholder="Zip code *" />
-    </div>
-
-    <!-- Zip Plus -->
-    <div class="form-cell">
-      <input type="text" name="zipPlus" ngModel placeholder="Zip +" />
-    </div>
-
-    <!-- Phone -->
-    <div class="form-cell phone-prefix">
-      <span>{{ selectedCountryCode }}</span>
-      <div style="flex-grow: 1;">
-        <input type="tel" name="phone" ngModel required placeholder="Telephone number *" />
+      <!-- Onglets -->
+      <div class="delivery-tabs">
+        <div class="tab active">
+          <span class="tab-icon">🚚</span>
+          <span class="tab-label">Ship to an address</span>
+        </div>
       </div>
-    </div>
 
-  </div>
+      <!-- FORMULAIRE -->
+      <form (ngSubmit)="submitShipping()" #shippingForm="ngForm" class="hermes-delivery-form">
+        <div class="form-grid">
+          <!-- Location -->
+          <div class="form-cell">
+            <select [(ngModel)]="selectedCountry" name="location" required>
+              <option value="" disabled selected hidden>Location *</option>
+              <option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</option>
+            </select>
+          </div>
 
-  <button class="validate-btn" type="submit">VALIDATE</button>
-</form>
-</section>
+          <!-- Title -->
+          <div class="form-cell">
+            <select name="title" ngModel required>
+              <option value="" disabled selected hidden>Title *</option>
+              <option value="mr">Mr.</option>
+              <option value="mrs">Mrs.</option>
+            </select>
+          </div>
 
+          <!-- First Name -->
+          <div class="form-cell">
+            <input type="text" name="firstName" ngModel required placeholder="First name *" />
+          </div>
+
+          <!-- Last Name -->
+          <div class="form-cell">
+            <input type="text" name="lastName" ngModel required placeholder="Last name *" />
+          </div>
+
+          <!-- Company -->
+          <div class="form-cell">
+            <input type="text" name="company" ngModel placeholder="Company" />
+          </div>
+
+          <!-- Address -->
+          <div class="form-cell double-width">
+            <input type="text" name="address" ngModel required placeholder="Address *" />
+          </div>
+
+          <!-- Address 2 -->
+          <div class="form-cell full-width">
+            <input type="text" name="address2" ngModel placeholder="Address continued" />
+          </div>
+
+          <!-- City -->
+          <div class="form-cell">
+            <input type="text" name="city" ngModel required placeholder="City *" />
+          </div>
+
+          <!-- State -->
+          <div class="form-cell">
+            <input type="text" name="state" ngModel required placeholder="State *" />
+          </div>
+
+          <!-- Zip -->
+          <div class="form-cell">
+            <input type="text" name="zip" ngModel required placeholder="Zip code *" />
+          </div>
+
+          <!-- Zip Plus -->
+          <div class="form-cell">
+            <input type="text" name="zipPlus" ngModel placeholder="Zip +" />
+          </div>
+
+          <!-- Phone -->
+          <div class="form-cell phone-prefix">
+            <span>{{ selectedCountryCode }}</span>
+            <div style="flex-grow: 1;">
+              <input type="tel" name="phone" ngModel required placeholder="Telephone number *" />
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
   </div>
 
   <!-- === COLONNE DROITE : SUMMARY === -->
-  <div class="summary-section">
-    <h3 (click)="isSummaryOpen = !isSummaryOpen">SUMMARY</h3>
+<div class="summary-card" [class.expanded]="isSummaryOpen">
+  <!-- Header cliquable -->
+  <div class="summary-toggle" (click)="isSummaryOpen = !isSummaryOpen">
+    <span>SUMMARY</span>
+    <span class="toggle-icon">{{ isSummaryOpen ? '▲' : '▼' }}</span>
+  </div>
 
-    <div *ngIf="isSummaryOpen">
-      <p>You have {{ cartItems.length }} item{{ cartItems.length > 1 ? 's' : '' }} in your cart.</p>
-
-      <div *ngFor="let item of cartItems" class="summary-item">
-        <img [src]="item.image" alt="{{ item.name }}" />
-        <div class="details">
-          <p class="name">{{ item.name }}</p>
-          <p>{{ item.color }} - {{ item.size }}</p>
-          <p>{{ item.reference }}</p>
-
-          <div class="quantity-control">
-            <button (click)="decreaseQty(item)">-</button>
-            <span>{{ item.quantity }}</span>
-            <button (click)="increaseQty(item)">+</button>
-          </div>
-
-          <p class="price">{{ item.price | currency: 'USD' }}</p>
+  <!-- Produits : affichés uniquement si ouvert -->
+  <div *ngIf="isSummaryOpen" class="summary-products">
+    <p class="item-count">
+      You have {{ cartItems.length }} item{{ cartItems.length > 1 ? 's' : '' }} in your cart.
+    </p>
+    <div *ngFor="let item of cartItems" class="summary-item">
+      <img [src]="item.image" alt="{{ item.name }}" />
+      <div class="details">
+        <div class="name">{{ item.name }}</div>
+        <div class="info">Color: {{ item.color }}</div>
+        <div class="info" *ngIf="item.size">Size: {{ item.size }}</div>
+        <div class="info">Ref. {{ item.reference }}</div>
+        <div class="quantity-control">
+          <button (click)="decreaseQty(item)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="increaseQty(item)">+</button>
         </div>
+        <div class="price">{{ item.price * item.quantity | currency:'USD' }}</div>
       </div>
     </div>
+  </div>
 
-    <div class="totals">
-      <p>SUBTOTAL: {{ subtotal | currency: 'USD' }}</p>
-      <p>SHIPPING: -</p>
-      <p>TAXES: -</p>
-      <p class="total">TOTAL: {{ subtotal | currency: 'USD' }}</p>
+  <!-- Totaux (toujours visibles) -->
+  <div class="summary-totals">
+    <div class="summary-row">
+      <span>SUBTOTAL</span>
+      <span>{{ subtotal | currency:'USD' }}</span>
+    </div>
+    <div class="summary-row">
+      <div>
+        <span>SHIPPING</span><br />
+        <small>Collect in store<br>Hermès Meatpacking</small>
+      </div>
+      <span>{{ 35 | currency:'USD' }}</span>
+    </div>
+    <div class="summary-row">
+      <span>TAXES</span>
+      <span>{{ 659.86 | currency:'USD' }}</span>
+    </div>
+    <div class="summary-row total-row">
+      <span>TOTAL</span>
+      <span>{{ subtotal + 35 + 659.86 | currency:'USD' }}</span>
     </div>
   </div>
 </div>
+
+
+</div> <!-- FIN checkout-layout -->

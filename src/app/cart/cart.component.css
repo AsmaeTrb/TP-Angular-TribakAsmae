@@ -241,11 +241,16 @@
 }
 
 .stepper-container {
-  pointer-events: none; /* désactive les interactions sur tout le conteneur */
     text-align: center;
 
 
 }
+.stepper-logo a,
+.back-link {
+  pointer-events: auto;
+  cursor: pointer; /* ✅ rend le curseur "main" */
+}
+
 
 .stepper-logo a {
   pointer-events: auto; /* réactive le lien à l’intérieur */

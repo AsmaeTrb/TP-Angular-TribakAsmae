@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 
 
 @Component({
@@ -18,11 +20,14 @@ export class CartComponent implements OnInit {
   isGift: boolean = false; // Option d'emballage cadeau
   hasApplePay: boolean = false; // Disponibilité Apple Pay
 
-  constructor(private cartService: CartService,private router: Router) {}
+  constructor(private cartService: CartService,private router: Router,private location: Location) {}
 
   ngOnInit(): void {
     this.loadCart();
   }
+  goBack() {
+  this.location.back();
+}
 
   // Charge les articles du panier depuis le service
   loadCart(): void {
