@@ -1,17 +1,150 @@
-<div class="checkout-container">
+<!-- === HEADER (Logo + Stepper) === -->
+<div class="stepper-container">
+  <div class="stepper-header">
+    <a class="back-link" routerLink="/cart">← Back</a>
+    <div class="stepper-logo">
+      <a routerLink="/">
+        <img src="assets/logo.png" alt="Hermès Paris" />
+      </a>
+    </div>
+    <div class="spacer"></div>
+  </div>
   <div class="stepper">
-    <!-- Réutilise ton stepper, en activant "CHECKOUT" -->
+    <div class="step">CART</div>
+    <div class="step active">CHECKOUT</div>
+    <div class="step">CONFIRMATION</div>
+  </div>
+</div>
+
+<!-- === LAYOUT PRINCIPAL === -->
+<div class="checkout-layout">
+
+  <!-- === COLONNE GAUCHE === -->
+  <div class="checkout-left">
+
+    <!-- ACCOUNT -->
+    <section class="section-box">
+      <h2>ACCOUNT</h2>
+      <p>{{ email }}</p>
+    </section>
+
+    <!-- DELIVERY -->
+    <section class="section-box">
+      <h2>DELIVERY</h2>
+
+      <div class="delivery-tabs">
+        <div class="tab active">Ship to an address</div>
+        <div class="tab">Collect in store</div>
+      </div>
+
+      <!-- === FORMULAIRE DE LIVRAISON === -->
+      <form (ngSubmit)="submitShipping()" #shippingForm="ngForm" class="hermes-delivery-form">
+        <div class="form-grid">
+          <div class="form-cell">
+            <label class="required">Location</label>
+            <select [(ngModel)]="selectedCountry" name="location" required (change)="onCountryChange($event)">
+              <option value="">Select</option>
+              <option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</option>
+            </select>
+          </div>
+
+          <div class="form-cell">
+            <label class="required">Title</label>
+            <select name="title" ngModel required>
+              <option value="">Select</option>
+              <option value="mr">Mr.</option>
+              <option value="mrs">Mrs.</option>
+            </select>
+          </div>
+
+          <div class="form-cell">
+            <label class="required">First name</label>
+            <input type="text" name="firstName" ngModel required />
+          </div>
+
+          <div class="form-cell">
+            <label class="required">Last name</label>
+            <input type="text" name="lastName" ngModel required />
+          </div>
+
+          <div class="form-cell">
+            <label>Company</label>
+            <input type="text" name="company" ngModel />
+          </div>
+
+          <div class="form-cell double-width">
+            <label class="required">Address</label>
+            <input type="text" name="address" ngModel required />
+          </div>
+
+          <div class="form-cell full-width">
+            <label>Address continued</label>
+            <input type="text" name="address2" ngModel />
+          </div>
+
+          <div class="form-cell">
+            <label class="required">City</label>
+            <input type="text" name="city" ngModel required />
+          </div>
+
+          <div class="form-cell">
+            <label class="required">State</label>
+            <input type="text" name="state" ngModel required />
+          </div>
+
+          <div class="form-cell">
+            <label class="required">Zip code</label>
+            <input type="text" name="zip" ngModel required />
+          </div>
+
+          <div class="form-cell">
+            <label>Zip +</label>
+            <input type="text" name="zipPlus" ngModel />
+          </div>
+
+          <div class="form-cell phone-prefix">
+            <span>{{ selectedCountryCode }}</span>
+            <div style="flex-grow: 1;">
+              <label class="required">Telephone number</label>
+              <input type="tel" name="phone" ngModel required />
+            </div>
+          </div>
+        </div>
+        <button class="validate-btn" type="submit">VALIDATE</button>
+      </form>
+    </section>
   </div>
 
-  <div class="checkout-form">
-    <h2>ACCOUNT</h2>
-    <p>
-      Please insert your email to receive your order confirmation.
-      If you already registered, your password will be requested.
-    </p>
+  <!-- === COLONNE DROITE : SUMMARY === -->
+  <div class="summary-section">
+    <h3 (click)="isSummaryOpen = !isSummaryOpen">SUMMARY</h3>
 
-    <label for="email">E‑mail *</label>
-    <input type="email" id="email" [(ngModel)]="email" placeholder="youname@domain.com" />
-    <button (click)="onContinue()">CONTINUE</button>
+    <div *ngIf="isSummaryOpen">
+      <p>You have {{ cartItems.length }} item{{ cartItems.length > 1 ? 's' : '' }} in your cart.</p>
+
+      <div *ngFor="let item of cartItems" class="summary-item">
+        <img [src]="item.image" alt="{{ item.name }}" />
+        <div class="details">
+          <p class="name">{{ item.name }}</p>
+          <p>{{ item.color }} - {{ item.size }}</p>
+          <p>{{ item.reference }}</p>
+
+          <div class="quantity-control">
+            <button (click)="decreaseQty(item)">-</button>
+            <span>{{ item.quantity }}</span>
+            <button (click)="increaseQty(item)">+</button>
+          </div>
+
+          <p class="price">{{ item.price | currency: 'USD' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="totals">
+      <p>SUBTOTAL: {{ subtotal | currency: 'USD' }}</p>
+      <p>SHIPPING: -</p>
+      <p>TAXES: -</p>
+      <p class="total">TOTAL: {{ subtotal | currency: 'USD' }}</p>
+    </div>
   </div>
 </div>

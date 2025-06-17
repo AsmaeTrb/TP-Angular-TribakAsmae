@@ -86,19 +86,18 @@ export class CartComponent implements OnInit {
   }
 
   // Passe la commande
-  checkout(): void {
+checkout(): void {
   const order = {
     items: this.cartItems,
     isGift: this.isGift,
     total: this.getTotal()
   };
 
-  console.log('Commande passée:', order);
+  sessionStorage.setItem('subtotal', order.total.toString());
+  sessionStorage.setItem('cartItems', JSON.stringify(order.items)); // ✅ ajoute ça
 
-  // Redirection vers la page /checkout
   this.router.navigate(['/checkout']);
 }
-
 
 
 

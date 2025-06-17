@@ -1,22 +1,255 @@
-.checkout-container {
-  padding: 40px;
-  background: #fff;
+/* === Layout général === */
+.checkout-layout {
+  display: flex;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 40px;
+  gap: 40px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
 }
-.checkout-form {
-  max-width: 600px;
-  margin: 0 auto;
+
+/* Colonne gauche (ACCOUNT + DELIVERY) */
+.checkout-left {
+  flex: 2;
 }
-input[type="email"] {
-  width: 100%;
-  padding: 10px;
-  margin-top: 8px;
+
+.section-box {
+  background-color: #fff;
+  padding: 30px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+}
+
+/* Colonne droite (SUMMARY) */
+.summary-section {
+  flex: 1;
+  background-color: #fff;
+  padding: 30px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 30px;
+  align-self: flex-start;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* === Header avec logo + stepper === */
+.stepper-container {
+  background-color: #f5f0ea;
+  padding: 20px 30px 10px;
+  border-bottom: 1px solid #ddd;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.stepper-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stepper-logo img {
+  height: 50px;
+}
+
+.back-link {
+  font-size: 14px;
+  color: #444;
+  text-decoration: none;
+}
+
+.stepper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+.step {
+  font-size: 12px;
+  color: #999;
+  padding: 0 60px;
+  position: relative;
+}
+
+.step.active {
+  color: #000;
+  font-weight: bold;
+}
+
+.step::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #999;
+  background-color: #fff;
+  z-index: 1;
+}
+
+.step.active::before {
+  border-color: #000;
+}
+
+.stepper::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background-color: #ccc;
+  z-index: 0;
+}
+
+/* === Onglets livraison === */
+.delivery-tabs {
+  display: flex;
+  border-bottom: 1px solid #ccc;
   margin-bottom: 20px;
 }
-button {
-  background: #333;
-  color: #fff;
-  padding: 14px 0;
-  width: 100%;
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+}
+
+/* === Formulaire === */
+.hermes-delivery-form .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.hermes-delivery-form .form-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.hermes-delivery-form label.required::after {
+  content: '*';
+  color: red;
+  margin-left: 4px;
+}
+
+.hermes-delivery-form input,
+.hermes-delivery-form select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.hermes-delivery-form .form-cell.full-width {
+  grid-column: span 2;
+}
+
+.hermes-delivery-form .form-cell.double-width {
+  grid-column: span 2;
+}
+
+.phone-prefix {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.validate-btn {
+  margin-top: 20px;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 14px;
+  background-color: black;
+  color: white;
   border: none;
   cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+}
+
+/* === Résumé (SUMMARY) === */
+.summary-section h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.summary-item {
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.summary-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.details {
+  flex: 1;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.quantity-control button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: #ccc;
+  cursor: pointer;
+}
+
+.totals {
+  margin-top: 20px;
+}
+
+.totals p {
+  margin: 4px 0;
+}
+
+.total {
+  font-weight: bold;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .checkout-layout {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
+  .summary-section {
+    position: static;
+    margin-top: 30px;
+    max-height: none;
+  }
+
+  .stepper {
+    flex-direction: column;
+  }
 }
