@@ -248,24 +248,6 @@
   margin-bottom: 4px;
 }
 
-
-
-/* === Responsive === */
-@media (max-width: 768px) {
-  .checkout-layout {
-    flex-direction: column;
-    padding: 0 20px;
-  }
-
- 
-
-  .stepper {
-    flex-direction: column;
-  }
-}.delivery-section {
-  background-color: #fefdfb;
-}
-
 /* Tabs stylés */
 .delivery-tabs {
   display: flex;
@@ -378,4 +360,113 @@
   font-size: 16px;
   border-top: 1px solid #eee;
   padding-top: 12px;
+}
+
+/* === Conteneur général === */
+.checkout-form {
+   max-width: 900px;
+  margin: 80px auto;
+  background-color: #fefaf4;
+    padding: 100px; /* ← plus de padding interne */
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #2c2c2c;
+}
+
+/* === Titre === */
+.checkout-form h2 {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* === Paragraphe de description === */
+.checkout-form p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  color: #444;
+}
+
+/* === Label === */
+.checkout-form label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #333;
+}
+
+/* === Champ input === */
+.checkout-form input[type="email"] {
+  width: 100%;
+  padding: 12px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.checkout-form input[type="email"]:focus {
+  border-color: #000;
+  outline: none;
+}
+
+.checkout-form input.invalid {
+  border-color: #b00020;
+}
+
+/* === Message d’erreur === */
+.checkout-form .error-message {
+  color: #b00020;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* === Bouton === */
+.checkout-form button {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.checkout-form button:hover {
+  background-color: #333;
+}
+
+.checkout-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.checkout-form input[type="text"] {
+ width: 100%;
+    padding: 12px 10px;
+
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+  margin: 16px auto;
+  display: block;
+}
+
+.checkout-form input[type="text"]:focus {
+  border-color: #000;
+  outline: none;
 }
