@@ -1,0 +1,31 @@
+[
+  {
+    "email": "asmae@gmail.com",
+    "items": [
+      {
+        "id": "3",
+        "name": "Montre en acier, mouvement extra-plat Hermès H1950",
+        "size": "16-18,5 cm",
+        "quantity": 1,
+        "image": "./assets/im15.jpg",
+        "price": 7800,
+        "payOption": false,
+        "availableQuantity": 3
+      },
+      {
+        "id": "4",
+        "name": "Chaussons en seersucker",
+        "size": "19",
+        "quantity": 1,
+        "image": "./assets/im19.jpg",
+        "price": 65,
+        "payOption": false,
+        "availableQuantity": 6
+      }
+    ],
+    "total": 7865,
+    "isGift": false,
+    "id": 1,
+    "date": "2025-06-18T21:34:53.751Z"
+  }
+]
