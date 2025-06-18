@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { AdminComponent } from './admin/admin.component';
 export const routes: Routes =  [
     
     {path : '', component : HomeComponent, title: 'My Plateforme'},
@@ -19,7 +20,8 @@ export const routes: Routes =  [
 { path: 'category', component: CategoryComponent },
    {  path: 'cart',component:CartComponent},
      { path: 'checkout', component: CheckoutComponent },
-       { path: 'checkout/confirmation', component: ConfirmationComponent }
+       { path: 'checkout/confirmation', component: ConfirmationComponent },
+       {path :'admin',component:AdminComponent}
 
 
 ];

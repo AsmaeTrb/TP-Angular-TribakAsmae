@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
       .subscribe((e: NavigationEnd) => {
-        const hidden = ['/cart', '/checkout', '/confirmation'];
+        const hidden = ['/cart', '/checkout', '/confirmation',];
         this.showNavbar = !hidden.includes(e.urlAfterRedirects);
       });
   }

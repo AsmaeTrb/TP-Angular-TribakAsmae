@@ -15,10 +15,12 @@ import { CartService } from '../../services/cartservice';
 export class NavbarComponent implements OnInit {
   isConnected = false;
   currentUserName: string | null = null;
+  isAdmin = false;
+
 
   constructor(private router: Router, private authService: AuthService,  private cartService: CartService) {}
 
- ngOnInit(): void {
+ngOnInit(): void {
   this.authService.isConnectedSubject.subscribe(value => {
     this.isConnected = value;
   });
@@ -26,6 +28,19 @@ export class NavbarComponent implements OnInit {
   this.authService.nameSubject.subscribe(name => {
     this.currentUserName = this.formatDisplayName(name);
   });
+
+  // ✅ met à jour en direct quand le rôle change
+  this.authService.roleSubject.subscribe(role => {
+    this.isAdmin = role === 'Admin';
+  });
+
+  // (optionnel mais utile au démarrage)
+  const userData = sessionStorage.getItem('user');
+  if (userData) {
+    const role = JSON.parse(userData).role;
+    this.isAdmin = role === 'Admin';
+    this.authService.roleSubject.next(role); // 🔁 met à jour immédiatement
+  }
 }
 formatDisplayName(name: string | null): string | null {
   if (!name) return null;
@@ -62,6 +77,23 @@ logout(): void {
 }
 
 
+onAccountClick(): void {
+  const userData = sessionStorage.getItem('user');
+  if (userData) {
+    const role = JSON.parse(userData).role;
+    if (role === 'Admin') {
+      this.router.navigate(['/admin']);
+      return;
+    }
+  }
+
+  // Redirection normale
+  if (this.isConnected) {
+    this.router.navigate(['/account']);
+  } else {
+    this.router.navigate(['/login']);
+  }
+}
 
   reloadPage(): void {
     this.router.navigateByUrl('/').then(() => {

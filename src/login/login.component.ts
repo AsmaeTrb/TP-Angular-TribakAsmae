@@ -19,7 +19,6 @@ export class LoginComponent {
   isEmailVerified = false;
   isLoading = false;
   errorMessage = '';
-
   constructor(
     private authService: AuthService,
     private router: Router
@@ -47,28 +46,30 @@ export class LoginComponent {
 }
 
 
-  submitPassword() {
-    this.isLoading = true;
-    this.errorMessage = '';
+submitPassword() {
+  this.isLoading = true;
+  this.errorMessage = '';
 
-    this.authService.login(this.email, this.password).subscribe(
-      (user) => {
-        this.isLoading = false;
-         this.authService.setSession(user.email, user.name);
+  this.authService.login(this.email, this.password).subscribe(
+    (user) => {
+      this.isLoading = false;
 
+      // ✅ Enregistre email, nom et rôle
+      this.authService.setSession(user.email, user.name, user.role);
 
-        if (user.email === 'admin@admin.com') {
-          this.router.navigate(['/admin']);
-        } else {
-          this.router.navigate(['/account']);
-        }
-      },
-      () => {
-        this.isLoading = false;
-        this.errorMessage = "Mot de passe incorrect.";
+      // ✅ Redirection selon le rôle
+      if (user.role === 'Admin') {
+        this.router.navigate(['/admin']);
+      } else {
+        this.router.navigate(['/account']);
       }
-    );
-  }
+    },
+    () => {
+      this.isLoading = false;
+      this.errorMessage = "Mot de passe incorrect.";
+    }
+  );
+}
 
   backToEmail() {
     this.isEmailVerified = false;

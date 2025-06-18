@@ -5,30 +5,29 @@
             <input type="text" placeholder="Rechercher" class="search-input" />
         </div>
 
-        <div class="header-center">
+        <div class="header-center"  *ngIf="!isAdmin">
             <a routerLink="/" (click)="reloadPage()">
                 <img src="./assets/logo.png" alt="Hermes" class="hermes-logo" />
             </a>
         </div>
         
         <div class="header-right">
-            <span class="account" [routerLink]="isConnected ? '/account' : '/login'">
-                <img
-                    [src]="isConnected ? 'assets/compte2.png' : 'assets/compte1.png'"
-                    alt="Compte"
-                    width="25"
-                    height="25"
-                />
-{{ isConnected && currentUserName ? currentUserName : 'Compte' }}
-
-            </span>
+           <span class="account" (click)="onAccountClick()">
+  <img
+    [src]="isConnected ? 'assets/compte2.png' : 'assets/compte1.png'"
+    alt="Compte"
+    width="25"
+    height="25"
+  />
+  {{ isConnected && currentUserName ? currentUserName : 'Compte' }}
+</span>
             <span *ngIf="isConnected" class="logout" (click)="logout()">Déconnexion</span>
-            <span class="cart" routerLink="/cart">Panier</span>
+            <span class="cart" routerLink="/cart"  *ngIf="!isAdmin">Panier</span>
         </div>
     </div>
 
     <!-- Ligne 2 : Menu navigation -->
-    <nav class="hermes-category-nav">
+    <nav class="hermes-category-nav" *ngIf="!isAdmin">
         <a routerLink="/category" [queryParams]="{ category: 'femmes' }" class="hermes-category-link">Femmes</a>
         <a routerLink="/category" [queryParams]="{ category: 'hommes' }" class="hermes-category-link">Hommes</a>
         <a routerLink="/category" [queryParams]="{ category: 'enfants' }" class="hermes-category-link">Enfants</a>
