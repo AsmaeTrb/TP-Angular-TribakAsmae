@@ -5,11 +5,12 @@ const nodemailer = require('nodemailer');
 
 
 
-
 const app = express();
 // Configuration middleware
 app.use(bodyParser.json());
 app.use(cors());
+
+const verificationCodes = new Map();
 
 // 💾 Liste des utilisateurs (base simulée)
 const users = [
@@ -283,32 +284,60 @@ app.post('/api/logout', (req, res) => {
     res.json({ disconnected: true });
   });
 });
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'asmae.tribakk@gmail.com',
+    pass: 'kbeg ehrd pdle jyhk' // ton mot de passe d’application
+  }
+});
 app.post('/send-email', async (req, res) => {
   const { email } = req.body;
-
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'asmae.tribakk@gmail.com',
-      pass: 'clbg kftt lfey rytp'
-    }
-  });
+  const code = Math.floor(100000 + Math.random() * 900000).toString();
+  const expiresAt = Date.now() + 5 * 60 * 1000; // 5 minutes
 
   const mailOptions = {
     from: 'asmae.tribakk@gmail.com',
     to: email,
-    subject: 'Confirmation de commande',
-    text: 'Merci pour votre commande !'
+    subject: 'Votre code de confirmation',
+    text: `Votre code est : ${code}`
   };
 
   try {
     await transporter.sendMail(mailOptions);
+    verificationCodes.set(email, { code, expiresAt });
+    console.log(`✅ Code pour ${email} : ${code}`); // À retirer en prod
     res.send({ success: true });
   } catch (err) {
     console.error(err);
-    res.status(500).send({ success: false, message: 'Erreur lors de l’envoi' });
+    res.status(500).send({ success: false });
   }
 });
+
+app.post('/verify-code', (req, res) => {
+  const { email, code } = req.body;
+  const entry = verificationCodes.get(email);
+
+  if (!entry) {
+    return res.status(400).send({ verified: false });
+  }
+
+  const { code: savedCode, expiresAt } = entry;
+
+  if (Date.now() > expiresAt) {
+    verificationCodes.delete(email);
+    return res.status(400).send({ verified: false, reason: "expired" });
+  }
+
+  if (savedCode === code) {
+    verificationCodes.delete(email);
+    return res.send({ verified: true });
+  } else {
+    return res.status(400).send({ verified: false });
+  }
+});
+
 app.delete('/api/cart', (req, res) => {
   cartItems = [];
   res.status(200).json({ message: 'Panier vidé avec succès' });

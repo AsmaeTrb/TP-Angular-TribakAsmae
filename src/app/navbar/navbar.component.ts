@@ -18,14 +18,28 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router, private authService: AuthService,  private cartService: CartService) {}
 
-  ngOnInit(): void {
-    this.authService.isConnectedSubject.subscribe(value => {
-      this.isConnected = value;
-    });
-    this.authService.nameSubject.subscribe(name => {
-      this.currentUserName = name;
-    });
+ ngOnInit(): void {
+  this.authService.isConnectedSubject.subscribe(value => {
+    this.isConnected = value;
+  });
+
+  this.authService.nameSubject.subscribe(name => {
+    this.currentUserName = this.formatDisplayName(name);
+  });
+}
+formatDisplayName(name: string | null): string | null {
+  if (!name) return null;
+
+  if (name.toLowerCase() === 'guest') return null;
+
+  if (name.includes('@')) {
+    const username = name.split('@')[0];
+    return username.charAt(0).toUpperCase() + username.slice(1);
   }
+
+  return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
 
 logout(): void {
   this.authService.logout();

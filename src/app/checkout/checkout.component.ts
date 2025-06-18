@@ -22,7 +22,10 @@ export class CheckoutComponent implements OnInit {
   subtotal: number = 0;
   cartItems: any[] = [];
   isSummaryOpen: boolean = false;
+  step: 'email' | 'verify' | 'form' = 'email'; // valeur temporaire
 
+code: string = '';
+serverCode: string = ''; 
 
   countries = [
     { name: 'United States', code: '+1' },
@@ -45,17 +48,18 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
 ngOnInit(): void {
-  if (!this.isGuest()) {
-    this.email = sessionStorage.getItem('email') || '';
-    const items = sessionStorage.getItem('cartItems');
-    this.cartItems = items ? JSON.parse(items) : [];
-    this.subtotal = Number(sessionStorage.getItem('subtotal')) || 0;
+  const items = sessionStorage.getItem('cartItems');
+  this.cartItems = items ? JSON.parse(items) : [];
+  this.subtotal = Number(sessionStorage.getItem('subtotal')) || 0;
+
+  if (this.isGuest()) {
+    this.step = 'email';
   } else {
-    // invité déconnecté, forcer un panier vide
-    this.cartItems = [];
-    this.subtotal = 0;
+    this.email = sessionStorage.getItem('email') || '';
+    this.step = 'form';
   }
 }
+
 
 
   isGuest(): boolean {
@@ -67,30 +71,50 @@ ngOnInit(): void {
     this.selectedCountry = selected?.name || '';
     this.selectedCountryCode = selected?.code || '';
   }
-
-  onContinue(): void {
-    if (this.isGuest()) {
-      if (!this.validateEmail(this.email)) {
-        this.showError = true;
-        return;
-      }
-
-      this.isLoading = true;
-      this.http.post('http://localhost:3000/send-email', { email: this.email }).subscribe({
-        next: () => {
-          this.router.navigate(['/checkout/payment'], {
-            queryParams: { email: this.email }
-          });
-        },
-        error: () => {
-          this.isLoading = false;
-          alert('Erreur : email non envoyé ❌');
-        }
-      });
-    } else {
-      this.router.navigate(['/checkout/payment']);
-    }
+onContinue(): void {
+  if (!this.validateEmail(this.email)) {
+    this.showError = true;
+    return;
   }
+
+  this.isLoading = true;
+  this.http.post<{ code: string }>('http://localhost:3000/send-email', { email: this.email }).subscribe({
+    next: (res) => {
+      this.serverCode = res.code; // ⚠️ Seulement si backend renvoie le code pour test
+      this.step = 'verify';
+      this.isLoading = false;
+    },
+    error: () => {
+      this.isLoading = false;
+      alert('Erreur : email non envoyé ❌');
+    }
+  });
+}
+verifyCode(): void {
+  this.http.post<{ verified: boolean }>('http://localhost:3000/verify-code', {
+    email: this.email,
+    code: this.code
+  }).subscribe({
+    next: (res) => {
+      if (res.verified) {
+        // ✅ Extraire un nom à partir de l’e-mail
+        const name = this.email.split('@')[0];
+        const displayName = name.charAt(0).toUpperCase() + name.slice(1);
+
+        // ✅ Enregistrer la session
+        this.authService.setSession(this.email, displayName);
+
+        // ✅ Passer à l'étape suivante
+        this.step = 'form';
+      } else {
+        alert('❌ Code incorrect');
+      }
+    },
+    error: () => alert('❌ Vérification impossible')
+  });
+}
+
+
   validateEmail(email: string): boolean {
     return /^\S+@\S+\.\S+$/.test(email);
   }

@@ -19,7 +19,7 @@
                     width="25"
                     height="25"
                 />
-                  {{ isConnected ? currentUserName : 'Compte' }}
+{{ isConnected && currentUserName ? currentUserName : 'Compte' }}
 
             </span>
             <span *ngIf="isConnected" class="logout" (click)="logout()">Déconnexion</span>
