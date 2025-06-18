@@ -314,6 +314,20 @@ app.delete('/api/cart', (req, res) => {
   res.status(200).json({ message: 'Panier vidé avec succès' });
 });
 
+let orders = []; // stockage en mémoire
 
+app.post('/api/orders', (req, res) => {
+  const order = req.body;
+
+  if (!order || !order.items || !Array.isArray(order.items)) {
+    return res.status(400).json({ error: 'Commande invalide' });
+  }
+
+  order.id = orders.length + 1;
+  order.date = new Date();
+  orders.push(order);
+
+  res.status(201).json({ message: 'Commande enregistrée', orderId: order.id });
+});
 const port = 3000;
 app.listen(port, () => console.log(`API Server listening on port ${port}`));

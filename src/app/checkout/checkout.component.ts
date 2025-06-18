@@ -94,14 +94,34 @@ ngOnInit(): void {
   validateEmail(email: string): boolean {
     return /^\S+@\S+\.\S+$/.test(email);
   }
+submitShipping(): void {
+  this.isLoading = true;
 
-  submitShipping(): void {
-    this.isLoading = true;
-    setTimeout(() => {
+  const order = {
+    email: this.email,
+    items: this.cartItems,
+    total: this.subtotal,
+    isGift: false
+  };
+
+  this.http.post('http://localhost:3000/api/orders', order).subscribe({
+    next: () => {
+      sessionStorage.removeItem('cartItems');
+      sessionStorage.removeItem('subtotal');
       this.isLoading = false;
       this.router.navigate(['/checkout/confirmation']);
-    }, 1000);
-  }
+    },
+    error: () => {
+      this.isLoading = false;
+      alert('Erreur lors de l’enregistrement de la commande ❌');
+    }
+  });
+  this.http.delete('http://localhost:3000/api/cart').subscribe({
+  next: () => console.log('Panier vidé côté serveur ✅'),
+  error: () => console.warn('Erreur lors du vidage serveur ❌')
+});
+}
+
 
   increaseQty(item: any): void {
     if (item.quantity < item.availableQuantity) {
