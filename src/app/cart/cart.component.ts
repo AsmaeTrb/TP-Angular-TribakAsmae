@@ -39,6 +39,8 @@ clearCart(): void {
       next: (items) => {
         this.cartItems = items.map(item => ({
           ...item,
+                  image: item.image || item.image1 || '',  // ✅ ajoute image pour commande
+
           // Initialise la quantité à 1 si non définie
           quantity: item.quantity || 1,
           // Stock par défaut à 10 si non défini

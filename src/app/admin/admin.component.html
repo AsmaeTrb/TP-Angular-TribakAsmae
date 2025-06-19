@@ -12,11 +12,20 @@
         <span><strong>#{{ order.id }}</strong> - {{ order.email }}</span>
         <button (click)="validateOrder(order.id)" class="validate-btn">Valider ✅</button>
       </div>
-      <ul>
-        <li *ngFor="let item of order.items">
-          {{ item.name }} x{{ item.quantity }} ({{ item.size }})
-        </li>
-      </ul>
+<ul class="order-items">
+  <li *ngFor="let item of order.items" class="order-item">
+    <!-- ✅ Image du produit -->
+    <img [src]="item.image" class="order-image" alt="{{ item.name }}" />
+
+    <!-- ✅ Détails -->
+    <div class="order-details">
+      <p><strong>{{ item.name }}</strong></p>
+      <p>Taille : {{ item.size }}</p>
+      <p>Quantité : {{ item.quantity }}</p>
+    </div>
+  </li>
+</ul>
+
       <p><strong>Total : {{ order.total | currency:'EUR' }}</strong></p>
     </div>
   </section>
