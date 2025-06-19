@@ -16,7 +16,8 @@ export class CategoryComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   category: string = '';
-
+cartItems: any[] = [];
+subtotal: number = 0;
   constructor(
     private route: ActivatedRoute,
     private getDataService: GetDataService
@@ -49,4 +50,20 @@ export class CategoryComponent implements OnInit {
   hasLowStock(product: Product): boolean {
     return product.sizes.some(size => size.quantity < 10);
   }
+  scrollToProducts(): void {
+  const section = document.getElementById('scroll-products');
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+getBannerImagePath(): string {
+  const formatted = decodeURIComponent(this.category)
+    .toLowerCase()
+    .replace(/ /g, '-')    // espaces → tirets
+    .replace(/[^a-z0-9\-]/g, ''); // supprime caractères spéciaux
+
+  return 'assets/banners/' + formatted + '.jpg';
+}
+
+
 }

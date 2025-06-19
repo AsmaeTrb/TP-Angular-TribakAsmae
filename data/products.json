@@ -9,7 +9,7 @@
     "description": "Gavroche en twill 100 % soie roulotté à la main. Facile et versatile, ce petit format iconique se porte dans les cheveux, autour du cou ou sur un sac !",
     "image1": "./assets/im27.jpg",
     "image2": "./assets/im28.jpg",
-    "category": "BIJOUTERIE ET MONTRES",
+    "category": "bijouterieetmontres",
     "color": "crème",
     "origin": "France"
   },
@@ -291,7 +291,7 @@
   "description": "Montre en acier avec mouvement quartz, cadran argenté opalin, bracelet long interchangeable en veau Swift orange.",
   "image1": "./assets/im51.jpg",
   "image2": "./assets/im52.jpg",
-  "category": "BIJOUTERIE ET MONTRES",
+  "category": "bijouterieetmontres",
   "origin": "Suisse",
   "sizes": [
     {
@@ -307,7 +307,7 @@
   "description": "Montre en acier avec mouvement automatique et module Grande Lune, cadran bleu, bracelet long en alligator mat bleu abysse.",
   "image1": "./assets/im53.jpg",
   "image2": "./assets/im54.jpg",
-  "category": "BIJOUTERIE ET MONTRES",
+  "category": "bijouterieetmontres",
   "origin": "Suisse",
   "sizes": [
     {
@@ -454,7 +454,7 @@
     "description": "Montre en acier, mouvement extra-plat...",
     "image1": "./assets/im15.jpg",
     "image2": "./assets/im16.jpg",
-    "category": "BIJOUTERIE ET MONTRES",
+    "category": "bijouterieetmontres",
     "sizes": [
       {
         "size": "16-18,5 cm",
@@ -552,7 +552,7 @@
     "description": "Bracelet jonc en veau Epsom et métal...",
     "image1": "./assets/im7.jpg",
     "image2": "./assets/im8.jpg",
-    "category": "BIJOUTERIE ET MONTRES",
+    "category": "bijouterieetmontres",
     "sizes": [
       {
         "size": "T1",
