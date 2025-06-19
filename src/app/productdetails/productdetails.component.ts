@@ -34,21 +34,27 @@ showPopup: boolean = false;
     private router: Router,
      private cartService: CartService
   ) {}
+ngOnInit(): void {
+  const productId = this.route.snapshot.paramMap.get('id');
 
-  ngOnInit(): void {
-    const productId = this.route.snapshot.paramMap.get('id');
+  this.getDataService.getProducts().subscribe({
+    next: (products) => {
+      const foundProduct = products.find(p => p.id === productId);
+      if (foundProduct) {
+        this.product = foundProduct;
+        this.currentImage = this.product.image1;
+        this.currentDetailsBackground = this.product.image2;
 
-    this.getDataService.getProducts().subscribe({
-      next: (products) => {
-        const foundProduct = products.find(p => p.id === productId);
-        if (foundProduct) {
-          this.product = foundProduct;
-          this.currentImage = this.product.image1;
-          this.currentDetailsBackground = this.product.image2;
+        // ✅ Auto-sélection si taille unique
+        if (this.product.sizes.length === 1) {
+          this.selectedSize = this.product.sizes[0].size;
+          this.availableQuantity = this.product.sizes[0].quantity;
         }
       }
-    });
-  }
+    }
+  });
+}
+
   
 
 

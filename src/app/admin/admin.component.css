@@ -168,21 +168,59 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5); /* fond semi-transparent */
+  right: 0; /* ← pour largeur complète */
+  bottom: 0; /* ← pour hauteur complète */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* au-dessus de tout */
+  z-index: 1000;
+}
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
+.product-form input,
+.product-form textarea,
+.product-form select {
+  font-size: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.size-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.size-row button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+
+
+.size-row input {
+  flex: 1;
+}
 .modal-content {
   background: #fff;
   padding: 2rem;
   border-radius: 12px;
   width: 90%;
   max-width: 600px;
+  max-height: 90vh; /* ← rend la modale scrollable si trop haute */
+  overflow-y: auto; /* ← active le scroll si nécessaire */
   position: relative;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }

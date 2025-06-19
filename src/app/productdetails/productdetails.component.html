@@ -20,7 +20,7 @@
         <span class="value">{{ product.color }}</span>
       </div>
 
-      <div class="hermes-attribute">
+      <div class="hermes-attribute"*ngIf="product.sizes.length > 1 || product.sizes[0]?.size !== 'Taille Unique'">
   <!-- Titre Taille cliquable -->
   <div class="hermes-size-title" (click)="isSizeOpen = !isSizeOpen">
     <span class="label">Taille</span>

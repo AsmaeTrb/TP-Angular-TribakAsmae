@@ -18,17 +18,17 @@ export class AdminComponent implements OnInit {
   showModal = false;
   isEditing = false;
   currentProductId: string | null = null;
-
-  newProduct = {
-    name: '',
-    price: 0,
-    color: '',
-    description: '',
-    image1: '',
-    image2: '',
-    category: '',
-    sizes: [{ size: '', quantity: 0 }]
-  };
+newProduct = {
+  name: '',
+  price: '' as any ,
+  color: '',
+  description: '',
+  image1: '',
+  image2: '',
+  category: '',
+  origin: '',
+  sizes: [{ size: '', quantity:'' as any  }]
+};
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -132,15 +132,16 @@ export class AdminComponent implements OnInit {
 
   resetProductForm(): void {
     this.newProduct = {
-      name: '',
-      price: 0,
-      color: '',
-      description: '',
-      image1: '',
-      image2: '',
-      category: '',
-      sizes: [{ size: '', quantity: 0 }]
-    };
+        name: '',
+  price: '' as any ,
+  color: '',
+  description: '',
+  image1: '',
+  image2: '',
+  category: '',
+  origin: '',
+  sizes: [{ size: '', quantity:'' as any  }]
+};
     this.isEditing = false;
     this.currentProductId = null;
   }
@@ -158,9 +159,28 @@ export class AdminComponent implements OnInit {
       }
     });
   }
+onFileSelected(event: any, field: 'image1' | 'image2'): void {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.newProduct[field] = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+}
 
   logout(): void {
     sessionStorage.clear();
     this.router.navigate(['/login']);
   }
+  addSize(): void {
+  this.newProduct.sizes.push({ size: '', quantity: '' as any });
+}
+
+removeSize(index: number): void {
+  if (this.newProduct.sizes.length > 1) {
+    this.newProduct.sizes.splice(index, 1);
+  }
+}
 }
