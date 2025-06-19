@@ -7,7 +7,7 @@
 
         <div class="header-center"  *ngIf="!isAdmin">
             <a routerLink="/" (click)="reloadPage()">
-                <img src="./assets/logo.png" alt="Hermes" class="hermes-logo" />
+                <img src="./assets/logo.png" alt="Hermes"  class="hermes-logo" />
             </a>
         </div>
         
@@ -33,8 +33,5 @@
         <a routerLink="/category" [queryParams]="{ category: 'enfants' }" class="hermes-category-link">Enfants</a>
         <a routerLink="/category" [queryParams]="{ category: 'BIJOUTERIE ET MONTRES' }" class="hermes-category-link">BIJOUTERIE ET MONTRES</a>
         <a routerLink="/category" [queryParams]="{ category: 'maison' }" class="hermes-category-link">Maison</a>
-        <a routerLink="/category" [queryParams]="{ category: 'createurs' }" class="hermes-category-link">Créateurs</a>
-        <a routerLink="/category" class="hermes-category-link">À propos</a>
-        <a routerLink="/s" class="hermes-category-link">Plateforme</a>
     </nav>
 </header>

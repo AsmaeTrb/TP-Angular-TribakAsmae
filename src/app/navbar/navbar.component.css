@@ -55,8 +55,9 @@
     text-decoration: none;
 }
 .hermes-logo {
-    height: 55px;
+    height: 200px;
     cursor: pointer;
+    margin-top: 30px;
 }
 
 

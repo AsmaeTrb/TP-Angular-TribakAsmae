@@ -1,4 +1,391 @@
 [
+    {
+    "id": "13",
+    "name": "Gavroche 45",
+    "sizes": [
+      { "size": "Taille Unique", "quantity": 10 }
+    ],
+    "price": 240,
+    "description": "Gavroche en twill 100 % soie roulotté à la main. Facile et versatile, ce petit format iconique se porte dans les cheveux, autour du cou ou sur un sac !",
+    "image1": "./assets/im27.jpg",
+    "image2": "./assets/im28.jpg",
+    "category": "BIJOUTERIE ET MONTRES",
+    "color": "crème",
+    "origin": "France"
+  },
+    {
+    "id": "11",
+    "name": "Chemise en popeline compacte",
+    "price": 210,
+    "color": "Blanc",
+    "description": "Chemise en popeline compacte...",
+    "image1": "./assets/im13.jpg",
+    "image2": "./assets/im14.jpg",
+    "category": "hommes",
+    "sizes": [
+      {
+        "size": "38",
+        "quantity": 50
+      },
+      {
+        "size": "39",
+        "quantity": 7
+      },
+      {
+        "size": "40",
+        "quantity": 6
+      },
+      {
+        "size": "41",
+        "quantity": 4
+      },
+      {
+        "size": "42",
+        "quantity": 3
+      },
+      {
+        "size": "43",
+        "quantity": 2
+      },
+      {
+        "size": "44",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+  "id": "23",
+  "name": "Picotin Équipages d'Hermès",
+  "price": 18100,
+  "color": "Fauve",
+  "description": "Meuble d'appoint avec structure en érable. Panier en osier entrelacé de cuir et couvercles à rabats en taurillon H. Une pièce artisanale élégante et fonctionnelle.",
+  "image1": "./assets/im43.jpg",
+  "image2": "./assets/im44.jpg",
+  "category": "maison",
+  "origin": "Italie",
+  "sizes": [
+    {
+      "size": "Taille unique",
+      "quantity": 1
+    }
+  ]
+},
+  {
+    "name": "Cardigan cache-cœur imprimé « En Désordre à Fleurs »",
+    "price": 2400,
+    "color": "Multicolore (rose, blanc, bleu)",
+    "description": "Un cardigan cache-cœur en maille de soie résille imprimée « En Désordre à Fleurs » (100 % soie)\n\n- Noué devant\n- Motif « En Désordre à Fleurs » texturé\n\nCe modèle taille normalement, nous vous conseillons de prendre votre taille habituelle.",
+    "image1": "./assets/im21.jpg",
+    "image2": "./assets/im22.jpg",
+    "category": "femmes",
+    "origin": "Italie",
+    "sizes": [
+      {
+        "size": "36",
+        "quantity": 10
+      },
+      {
+        "size": "38",
+        "quantity": 2
+      },
+      {
+        "size": "40",
+        "quantity": 5
+      }
+    ],
+    "id": "12"
+  },
+    {
+  "id": "14",
+  "name": "Set de bain Cabriole",
+  "price": 900,
+  "color": "Vert aqua",
+  "description": "Set de bain avec carré de bain, sortie de bain et brosse à cheveux. Carré de bain et sortie de bain en éponge brodée (100 % coton) et seersucker (100 % coton). Broderies (96 % polyester, 4 % céramique). Brosse à cheveux en bois de citronnier et poil de chèvre avec impression sur bois. Grammage : 680g/m².",
+  "image1": "./assets/im59.jpg",
+  "image2": "./assets/im60.jpg",
+  "category": "enfants",
+  "origin": "France",
+  "sizes": [
+    {
+      "size": "Taille unique",
+      "quantity": 5
+    }
+  ]
+},
+  {
+    "id": "15",
+    "name": "Robe chemise",
+    "sizes": [
+      { "size": "34", "quantity": 5 },
+      { "size": "36", "quantity": 5 },
+      { "size": "38", "quantity": 5 },
+      { "size": "40", "quantity": 5 },
+      { "size": "42", "quantity": 5 },
+      { "size": "44", "quantity": 5 }
+    ],
+    "price": 2800,
+    "description": "Robe chemise en twill de coton avec col, boutons-pression palladiés, poches plaquées, taille cintrée ajustable, bas évasé. Fabriqué en France.",
+    "image1": "./assets/im25.jpg",
+    "image2": "./assets/im26.jpg",
+    "category": "femmes",
+    "color": "blanc",
+    "origin": "France"
+  },
+  {
+    "id": "17",
+    "name": "T-shirt mini patch cuir « H'Cheval »",
+    "sizes": [
+      { "size": "S", "quantity": 3 },
+      { "size": "M", "quantity": 5 },
+      { "size": "L", "quantity": 5 },
+      { "size": "XL", "quantity": 2 },
+      { "size": "XXL", "quantity": 2 }
+    ],
+    "price": 650,
+    "description": "T-shirt « H'Cheval » en coton (100 % coton) avec col rond, manches courtes, et mini patch « H'Cheval » en cuir d'agneau lavable.",
+    "image1": "./assets/im29.jpg",
+    "image2": "./assets/im30.jpg",
+    "category": "hommes",
+    "color": "céladon",
+    "origin": "Italie"
+  },
+  {
+    "id": "18",
+    "name": "Ceinture Romain 25",
+    "sizes": [
+      { "size": "75", "quantity": 3 },
+      { "size": "80", "quantity": 5 },
+      { "size": "90", "quantity": 3 },
+      { "size": "95", "quantity": 3 },
+      { "size": "100", "quantity": 2 }
+    ],
+    "price": 795,
+    "description": "Ceinture en vache Hunter, boucle en métal palladié. Affinée, la ceinture Romain se réinvente en largeur 25 mm.",
+    "image1": "./assets/im31.jpg",
+    "image2": "./assets/im32.jpg",
+    "category": "hommes",
+    "color": "rouge sellier",
+    "origin": "France"
+  },
+  {
+    "id": "19",
+    "name": "Cravate Façonnée H",
+    "sizes": [
+      { "size": "Taille Unique", "quantity": 10 }
+    ],
+    "price": 245,
+    "description": "Cravate en twill 100 % soie, assemblée à la main. Une infinité de « H » se révèle à travers le jeu de tissage jacquard de cette cravate.",
+    "image1": "./assets/im33.jpg",
+    "image2": "./assets/im34.jpg",
+    "category": "hommes",
+    "color": "marine",
+    "origin": "France"
+  },
+  {
+    "id": "20",
+    "name": "Robe longue drapée motif « Mosaïque »",
+    "sizes": [
+      { "size": "34", "quantity": 5 },
+      { "size": "36", "quantity": 5 },
+      { "size": "38", "quantity": 5 }
+    ],
+    "price": 4400,
+    "description": "Une robe longue drapée en soie jacquard avec motif « Mosaïque » (100 % soie). Drapé diagonal sur le devant avec plis sur l'épaule. Fermeture épaule droite avec boutons cachés en nacre gravés Clou de Selle. Fermeture côté droit avec zip invisible. Fente côté gauche. Dos nu avec drapé diagonal. Doublure en soie quadrillée.",
+    "image1": "./assets/im35.jpg",
+    "image2": "./assets/im36.jpg",
+    "category": "femmes",
+    "color": "noir",
+    "origin": "France"
+  },
+  {
+    "id": "21",
+    "name": "Semainier de chaussettes bébé Cabriole",
+    "sizes": [
+      { "size": "18", "quantity": 5 },
+      { "size": "21", "quantity": 5 }
+    ],
+    "price": 210,
+    "description": "Semainier de chaussettes bébé en jersey imprimé. Composition : 67 % coton, 18 % polyamide, 12 % cachemire et 3 % élasthanne. Convient aux enfants âgés de 0 à 9 mois.",
+    "image1": "./assets/im37.jpg",
+    "image2": "./assets/im38.jpg",
+    "category": "enfants",
+    "color": "multicolore",
+    "origin": "France"
+  },
+{
+  "id": "22",
+  "name": "Secrétaire Attelage Équipages d'Hermès",
+  "price": 39800,
+  "color": "Chêne naturel",
+  "description": "Secrétaire et petite table de travail en chêne naturel avec caisson gainé de taurillon H. Compartiment passe-câbles, deux casiers amovibles et deux tiroirs à poignées cuir. Modulable selon l'envie.",
+  "image1": "./assets/im41.jpg",
+  "image2": "./assets/im42.jpg",
+  "category": "maison",
+  "origin": "Italie",
+  "sizes": [
+    {
+      "size": "Taille unique",
+      "quantity": 1
+    }
+  ]
+}
+,
+{
+  "id": "24",
+  "name": "Plaid Avalon Néon",
+  "price": 8600,
+  "color": "Sable / Châtaigne",
+  "description": "Plaid tissé jacquard en cachemire brodé à la main de perles de verre rondes et fils de coton. 100 % cachemire, finition point à cheval. Tissé en Écosse.",
+  "image1": "./assets/im45.jpg",
+  "image2": "./assets/im46.jpg",
+  "category": "maison",
+  "origin": "Inde",
+  "sizes": [
+    {
+      "size": "Taille unique",
+      "quantity": 3
+    }
+  ]
+}
+,
+{
+  "id": "25",
+  "name": "Plateau rectangulaire Oseraie Color, moyen modèle",
+  "price": 2090,
+  "color": "Terre battue",
+  "description": "Plateau rectangulaire en osier avec liens de cuir de veau Swift tressés à la main, poignées en veau Swift, et plaque de verre insérée pour protéger l'osier.",
+  "image1": "./assets/im47.jpg",
+  "image2": "./assets/im48.jpg",
+  "category": "maison",
+  "origin": "France",
+  "sizes": [
+    {
+      "size": "Taille unique",
+      "quantity": 5
+    }
+  ]
+},
+  {
+  "id": "5",
+  "name": "Table de jeux Atout d'Hermès",
+  "price": 8900,
+  "color": "chocolat",
+  "description": "Table de jeux en chêne naturel avec deux plateaux réversibles en marqueterie de cuir : recto uni, verso damier d'échecs, backgammon et dames. Compartiments de rangement en taurillon H avec pions, jetons, cartes, dés, gobelets. Dessiné par Studio Hermès.",
+  "image1": "./assets/im39.jpg",
+  "image2": "./assets/im40.jpg",
+  "category": "maison",
+  "origin": "France",
+  "sizes": [
+    {
+      "size": "Taille unique",
+      "quantity": 2
+    }
+  ]
+},
+
+{
+  "id": "26",
+  "name": "Montre Cape Cod, Petit modèle, 31 mm",
+  "price": 2900,
+  "color": "Orange / Argenté",
+  "description": "Montre en acier avec mouvement quartz, cadran argenté opalin, bracelet long interchangeable en veau Swift orange.",
+  "image1": "./assets/im51.jpg",
+  "image2": "./assets/im52.jpg",
+  "category": "BIJOUTERIE ET MONTRES",
+  "origin": "Suisse",
+  "sizes": [
+    {
+      "size": "31 mm",
+      "quantity": 5
+    }
+  ]
+},{
+  "id": "27",
+  "name": "Montre Arceau Grande Lune, 43 mm",
+  "price": 0,
+  "color": "Bleu abysse / Argenté",
+  "description": "Montre en acier avec mouvement automatique et module Grande Lune, cadran bleu, bracelet long en alligator mat bleu abysse.",
+  "image1": "./assets/im53.jpg",
+  "image2": "./assets/im54.jpg",
+  "category": "BIJOUTERIE ET MONTRES",
+  "origin": "Suisse",
+  "sizes": [
+    {
+      "size": "43 mm",
+      "quantity": 5
+    }
+  ]
+}
+,{
+  "id": "28",
+  "name": "Bavoir Épopée",
+  "price": 260,
+  "color": "Bleu ciel",
+  "description": "Bavoir en éponge brodée, 100 % coton avec broderie (96 % polyester, 4 % céramique), finition passepoil (100 % polyester), verso et liens en lin (100 % lin).",
+  "image1": "./assets/im55.jpg",
+  "image2": "./assets/im56.jpg",
+  "category": "enfants",
+  "origin": "France",
+  "sizes": [
+    {
+      "size": "Taille Unique",
+      "quantity": 10
+    }
+  ]
+},
+{
+  "id": "29",
+  "name": "Chaussettes Cabriole gris perle",
+  "price": 120,
+  "color": "Gris perle",
+  "description": "Chaussettes en maille 100 % coton tricoté avec broderie (96 % polyester, 4 % céramique). Convient aux enfants âgés de 3 à 6 mois.",
+  "image1": "./assets/im57.jpg",
+  "image2": "./assets/im58.jpg",
+  "category": "enfants",
+  "origin": "Italie",
+  "sizes": [
+    {
+      "size": "6M",
+      "quantity": 10
+    }
+  ]
+},
+ {
+    "id": "30",
+    "name": "Robe prairie en gaze avec motif « Mosaïque »",
+    "price": 349.99,
+    "color": "Blanc",
+    "description": "Une robe prairie en gaze avec motif « Mosaïque »...",
+    "image1": "./assets/im5.jpg",
+    "image2": "./assets/im6.jpg",
+    "category": "femmes",
+    "sizes": [
+      {
+        "size": "S",
+        "quantity": 7
+      },
+      {
+        "size": "M",
+        "quantity": 9
+      },
+      {
+        "size": "L",
+        "quantity": 5
+      },
+      {
+        "size": "XL",
+        "quantity": 2
+      },
+      {
+        "size": "XXL",
+        "quantity": 1
+      }
+    ]
+  }
+
+
+
+,
   {
     "id": "1",
     "name": "Robe de plage brodée",
@@ -92,7 +479,7 @@
     ]
   },
   {
-    "id": "5",
+    "id": "6",
     "name": "T-shirt cropped en jersey de coton uni",
     "price": 79.99,
     "color": "Blanc",
@@ -123,40 +510,26 @@
       }
     ]
   },
+{
+  "id": "7",
+  "name": "Assiette à dîner Bleus d'Ailleurs",
+  "price": 155,
+  "color": "Blanc et bleu",
+  "description": "Assiette à dîner en porcelaine avec décors imprimés par sérigraphie et posés à la main. La collection Bleus d'Ailleurs évoque un voyage onirique où les bleus profonds contrastent avec le blanc kaolin.",
+  "image1": "./assets/im49.jpg",
+  "image2": "./assets/im50.jpg",
+  "category": "maison",
+  "origin": "France",
+  "sizes": [
+    {
+      "size": "27 cm",
+      "quantity": 20
+    }
+  ]
+}
+ ,
   {
-    "id": "6",
-    "name": "Robe prairie en gaze avec motif « Mosaïque »",
-    "price": 349.99,
-    "color": "Blanc",
-    "description": "Une robe prairie en gaze avec motif « Mosaïque »...",
-    "image1": "./assets/im5.jpg",
-    "image2": "./assets/im6.jpg",
-    "category": "femmes",
-    "sizes": [
-      {
-        "size": "S",
-        "quantity": 7
-      },
-      {
-        "size": "M",
-        "quantity": 9
-      },
-      {
-        "size": "L",
-        "quantity": 5
-      },
-      {
-        "size": "XL",
-        "quantity": 2
-      },
-      {
-        "size": "XXL",
-        "quantity": 1
-      }
-    ]
-  },
-  {
-    "id": "7",
+    "id": "9",
     "name": "Jeu de 9 cubes en érable imprimé",
     "price": 120,
     "color": "Multicolore",
@@ -196,7 +569,7 @@
     ]
   },
   {
-    "id": "9",
+    "id": "10",
     "name": "Pantalon Saint Germain en serge de coton stretch",
     "price": 299.99,
     "color": "Beige",
@@ -224,104 +597,6 @@
     ]
   },
   {
-    "id": "10",
-    "name": "Chemise en popeline compacte",
-    "price": 210,
-    "color": "Blanc",
-    "description": "Chemise en popeline compacte...",
-    "image1": "./assets/im13.jpg",
-    "image2": "./assets/im14.jpg",
-    "category": "hommes",
-    "sizes": [
-      {
-        "size": "38",
-        "quantity": 50
-      },
-      {
-        "size": "39",
-        "quantity": 7
-      },
-      {
-        "size": "40",
-        "quantity": 6
-      },
-      {
-        "size": "41",
-        "quantity": 4
-      },
-      {
-        "size": "42",
-        "quantity": 3
-      },
-      {
-        "size": "43",
-        "quantity": 2
-      },
-      {
-        "size": "44",
-        "quantity": 1
-      }
-    ]
-  },
-  {
-    "name": "Cardigan cache-cœur imprimé « En Désordre à Fleurs »",
-    "price": 2400,
-    "color": "Multicolore (rose, blanc, bleu)",
-    "description": "Un cardigan cache-cœur en maille de soie résille imprimée « En Désordre à Fleurs » (100 % soie)\n\n- Noué devant\n- Motif « En Désordre à Fleurs » texturé\n\nCe modèle taille normalement, nous vous conseillons de prendre votre taille habituelle.",
-    "image1": "./assets/im21.jpg",
-    "image2": "./assets/im22.jpg",
-    "category": "femmes",
-    "origin": "Italie",
-    "sizes": [
-      {
-        "size": "36",
-        "quantity": 10
-      },
-      {
-        "size": "38",
-        "quantity": 2
-      },
-      {
-        "size": "40",
-        "quantity": 5
-      }
-    ],
-    "id": "12"
-  },
-  {
-    "id": "11",
-    "name": "Gavroche 45",
-    "sizes": [
-      { "size": "Taille Unique", "quantity": 10 }
-    ],
-    "price": 240,
-    "description": "Gavroche en twill 100 % soie roulotté à la main. Facile et versatile, ce petit format iconique se porte dans les cheveux, autour du cou ou sur un sac !",
-    "image1": "./assets/im27.jpg",
-    "image2": "./assets/im28.jpg",
-    "category": "BIJOUTERIE ET MONTRES",
-    "color": "crème",
-    "origin": "France"
-  },
-  {
-    "id": "19",
-    "name": "Robe chemise",
-    "sizes": [
-      { "size": "34", "quantity": 5 },
-      { "size": "36", "quantity": 5 },
-      { "size": "38", "quantity": 5 },
-      { "size": "40", "quantity": 5 },
-      { "size": "42", "quantity": 5 },
-      { "size": "44", "quantity": 5 }
-    ],
-    "price": 2800,
-    "description": "Robe chemise en twill de coton avec col, boutons-pression palladiés, poches plaquées, taille cintrée ajustable, bas évasé. Fabriqué en France.",
-    "image1": "./assets/im25.jpg",
-    "image2": "./assets/im26.jpg",
-    "category": "femmes",
-    "color": "blanc",
-    "origin": "France"
-  },
-  {
     "id": "16",
     "name": "Mini-jupe à pli imprimé « Guépards et Palmettes »",
     "sizes": [
@@ -337,86 +612,7 @@
     "category": "femmes",
     "color": "blanc sel",
     "origin": "France"
-  },
-  {
-    "id": "14",
-    "name": "T-shirt mini patch cuir « H'Cheval »",
-    "sizes": [
-      { "size": "S", "quantity": 3 },
-      { "size": "M", "quantity": 5 },
-      { "size": "L", "quantity": 5 },
-      { "size": "XL", "quantity": 2 },
-      { "size": "XXL", "quantity": 2 }
-    ],
-    "price": 650,
-    "description": "T-shirt « H'Cheval » en coton (100 % coton) avec col rond, manches courtes, et mini patch « H'Cheval » en cuir d'agneau lavable.",
-    "image1": "./assets/im29.jpg",
-    "image2": "./assets/im30.jpg",
-    "category": "hommes",
-    "color": "céladon",
-    "origin": "Italie"
-  },
-  {
-    "id": "15",
-    "name": "Ceinture Romain 25",
-    "sizes": [
-      { "size": "75", "quantity": 3 },
-      { "size": "80", "quantity": 5 },
-      { "size": "90", "quantity": 3 },
-      { "size": "95", "quantity": 3 },
-      { "size": "100", "quantity": 2 }
-    ],
-    "price": 795,
-    "description": "Ceinture en vache Hunter, boucle en métal palladié. Affinée, la ceinture Romain se réinvente en largeur 25 mm.",
-    "image1": "./assets/im31.jpg",
-    "image2": "./assets/im32.jpg",
-    "category": "hommes",
-    "color": "rouge sellier",
-    "origin": "France"
-  },
-  {
-    "id": "17",
-    "name": "Cravate Façonnée H",
-    "sizes": [
-      { "size": "Taille Unique", "quantity": 10 }
-    ],
-    "price": 245,
-    "description": "Cravate en twill 100 % soie, assemblée à la main. Une infinité de « H » se révèle à travers le jeu de tissage jacquard de cette cravate.",
-    "image1": "./assets/im33.jpg",
-    "image2": "./assets/im34.jpg",
-    "category": "hommes",
-    "color": "marine",
-    "origin": "France"
-  },
-  {
-    "id": "18",
-    "name": "Robe longue drapée motif « Mosaïque »",
-    "sizes": [
-      { "size": "34", "quantity": 5 },
-      { "size": "36", "quantity": 5 },
-      { "size": "38", "quantity": 5 }
-    ],
-    "price": 4400,
-    "description": "Une robe longue drapée en soie jacquard avec motif « Mosaïque » (100 % soie). Drapé diagonal sur le devant avec plis sur l'épaule. Fermeture épaule droite avec boutons cachés en nacre gravés Clou de Selle. Fermeture côté droit avec zip invisible. Fente côté gauche. Dos nu avec drapé diagonal. Doublure en soie quadrillée.",
-    "image1": "./assets/im35.jpg",
-    "image2": "./assets/im36.jpg",
-    "category": "femmes",
-    "color": "noir",
-    "origin": "France"
-  },
-  {
-    "id": "13",
-    "name": "Semainier de chaussettes bébé Cabriole",
-    "sizes": [
-      { "size": "18", "quantity": 5 },
-      { "size": "21", "quantity": 5 }
-    ],
-    "price": 210,
-    "description": "Semainier de chaussettes bébé en jersey imprimé. Composition : 67 % coton, 18 % polyamide, 12 % cachemire et 3 % élasthanne. Convient aux enfants âgés de 0 à 9 mois.",
-    "image1": "./assets/im37.jpg",
-    "image2": "./assets/im38.jpg",
-    "category": "enfants",
-    "color": "multicolore",
-    "origin": "France"
   }
+
+
 ]
