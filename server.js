@@ -29,6 +29,21 @@ initFiles.forEach(file => {
 initFiles.forEach(file => {
   if (!fs.existsSync(file)) writeData(file, []);
 });
+// ✅ Mise à jour d'une commande par ID (ex: pour marquer comme Livrée)
+app.put("/api/orders/:id", (req, res) => {
+  const orders = readData("orders.json");
+  const orderId = parseInt(req.params.id);
+
+  const index = orders.findIndex(order => order.id === orderId);
+  if (index === -1) {
+    return res.status(404).json({ error: "Commande non trouvée" });
+  }
+
+  // Met à jour les champs de la commande
+  orders[index] = { ...orders[index], ...req.body };
+  writeData("orders.json", orders);
+  res.json({ message: "Commande mise à jour ✅" });
+});
 
 // ✅ Routes utilisateurs
 app.get("/api/users", (req, res) => {
@@ -47,6 +62,50 @@ app.post("/api/users/login", (req, res) => {
   }
   res.status(200).json(user);
 });
+// ✅ Mise à jour d’un produit par ID
+
+app.put("/api/products/:id", (req, res) => {
+  const products = readData("products.json");
+  const index = products.findIndex(p => p.id === req.params.id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Produit non trouvé" });
+  }
+
+  // Garde l'ID original et met à jour les autres champs
+  const updatedProduct = {
+    ...products[index],
+    ...req.body,
+    id: req.params.id // On conserve l'ID original
+  };
+
+  products[index] = updatedProduct;
+  writeData("products.json", products);
+  res.json(updatedProduct);
+});
+// Ajoutez cette route avec les autres routes produits
+app.get("/api/products/:id", (req, res) => {
+  const products = readData("products.json");
+  const product = products.find(p => p.id === req.params.id);
+  if (!product) {
+    return res.status(404).json({ error: "Produit non trouvé" });
+  }
+  res.json(product);
+});
+// ✅ Supprimer un produit par ID
+app.delete("/api/products/:id", (req, res) => {
+  let products = readData("products.json");
+  const initialLength = products.length;
+  products = products.filter(p => p.id !== req.params.id);
+
+  if (products.length === initialLength) {
+    return res.status(404).json({ error: "Produit non trouvé" });
+  }
+
+  writeData("products.json", products);
+  res.json({ message: "🗑️ Produit supprimé" });
+});
+
 
 app.post("/api/users", (req, res) => {
   const users = readData("users.json");
@@ -66,12 +125,17 @@ app.get("/api/products", (req, res) => {
 
 app.post("/api/products", (req, res) => {
   const products = readData("products.json");
-  const newProduct = { ...req.body, id: (products.length + 1).toString() };
+  // Génère un ID unique basé sur le timestamp
+  const newId = Date.now().toString();
+  const newProduct = { 
+    ...req.body, 
+    id: newId,
+    sizes: req.body.sizes || [{ size: '', quantity: 0 }] // Valeur par défaut pour les tailles
+  };
   products.push(newProduct);
   writeData("products.json", products);
-  res.status(201).json({ message: "Produit ajouté" });
+  res.status(201).json({ ...newProduct, message: "Produit ajouté" });
 });
-
 // ✅ Panier
 app.get("/api/cart", (req, res) => {
   const cart = readData("cart.json");

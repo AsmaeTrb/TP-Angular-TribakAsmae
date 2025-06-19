@@ -14,6 +14,10 @@ import { FormsModule } from '@angular/forms';
 export class AdminComponent implements OnInit {
   orders: any[] = [];
   products: any[] = [];
+  activeTab: 'orders' | 'products' = 'orders';
+  showModal = false;
+  isEditing = false;
+  currentProductId: string | null = null;
 
   newProduct = {
     name: '',
@@ -52,20 +56,106 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  openAddModal(): void {
+    this.isEditing = false;
+    this.currentProductId = null;
+    this.resetProductForm();
+    this.showModal = true;
+  }
+
+  handleProductSubmit(): void {
+    if (this.isEditing && this.currentProductId) {
+      this.updateProduct();
+    } else {
+      this.addProduct();
+    }
+  }
+
   addProduct(): void {
-    this.http.post('http://localhost:3000/api/products', this.newProduct).subscribe(() => {
-      alert('✅ Produit ajouté');
-      this.loadProducts();
-      this.newProduct = {
-        name: '',
-        price: 0,
-        color: '',
-        description: '',
-        image1: '',
-        image2: '',
-        category: '',
-        sizes: [{ size: '', quantity: 0 }]
-      };
+    this.http.post('http://localhost:3000/api/products', this.newProduct).subscribe({
+      next: () => {
+        alert('✅ Produit ajouté avec succès');
+        this.loadProducts();
+        this.closeModal();
+      },
+      error: (err) => {
+        console.error('Erreur lors de l\'ajout:', err);
+        alert('❌ Erreur lors de l\'ajout du produit');
+      }
+    });
+  }
+
+  updateProduct(): void {
+    if (!this.currentProductId) return;
+    
+    this.http.put(`http://localhost:3000/api/products/${this.currentProductId}`, this.newProduct).subscribe({
+      next: () => {
+        alert('✏️ Produit modifié avec succès');
+        this.loadProducts();
+        this.closeModal();
+      },
+      error: (err) => {
+        console.error('Erreur lors de la modification:', err);
+        alert('❌ Erreur lors de la modification du produit');
+      }
+    });
+  }
+
+  editProduct(id: string): void {
+    const product = this.products.find(p => p.id === id);
+    if (product) {
+      this.newProduct = JSON.parse(JSON.stringify(product));
+      this.isEditing = true;
+      this.currentProductId = id;
+      this.showModal = true;
+    }
+  }
+
+  deleteProduct(id: string): void {
+    if (confirm('🗑️ Voulez-vous vraiment supprimer ce produit ?')) {
+      this.http.delete(`http://localhost:3000/api/products/${id}`).subscribe({
+        next: () => {
+          alert('✅ Produit supprimé');
+          this.loadProducts();
+        },
+        error: () => {
+          alert('❌ Erreur lors de la suppression');
+        }
+      });
+    }
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+    this.resetProductForm();
+  }
+
+  resetProductForm(): void {
+    this.newProduct = {
+      name: '',
+      price: 0,
+      color: '',
+      description: '',
+      image1: '',
+      image2: '',
+      category: '',
+      sizes: [{ size: '', quantity: 0 }]
+    };
+    this.isEditing = false;
+    this.currentProductId = null;
+  }
+
+  validateOrder(orderId: number): void {
+    const body = { status: 'Livré ✅' };
+
+    this.http.put(`http://localhost:3000/api/orders/${orderId}`, body).subscribe({
+      next: () => {
+        alert(`✅ Commande #${orderId} validée comme livrée.`);
+        this.loadOrders();
+      },
+      error: () => {
+        alert(`❌ Erreur lors de la validation de la commande #${orderId}`);
+      }
     });
   }
 

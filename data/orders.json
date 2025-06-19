@@ -1,31 +1,21 @@
 [
   {
-    "email": "asmae@gmail.com",
+    "email": "asmae.tribak@etu.uae.ac.ma",
     "items": [
       {
-        "id": "3",
-        "name": "Montre en acier, mouvement extra-plat Hermès H1950",
-        "size": "16-18,5 cm",
+        "id": "2",
+        "name": "Polo boutonné à manches courtes avec broderie H",
+        "size": "S",
         "quantity": 1,
-        "image": "./assets/im15.jpg",
-        "price": 7800,
-        "payOption": false,
-        "availableQuantity": 3
-      },
-      {
-        "id": "4",
-        "name": "Chaussons en seersucker",
-        "size": "19",
-        "quantity": 1,
-        "image": "./assets/im19.jpg",
-        "price": 65,
+        "image": "./assets/im11.jpg",
+        "price": 159,
         "payOption": false,
         "availableQuantity": 6
       }
     ],
-    "total": 7865,
+    "total": 159,
     "isGift": false,
     "id": 1,
-    "date": "2025-06-18T21:34:53.751Z"
+    "date": "2025-06-18T23:57:57.340Z"
   }
 ]
