@@ -24,10 +24,9 @@ const writeData = (filename, data) => {
 const initFiles = ["users.json", "products.json", "orders.json", "cart.json"];
 initFiles.forEach(file => {
   const filePath = path.join(__dirname, "data", file);
-  if (!fs.existsSync(filePath)) writeData(file, []);
-});
-initFiles.forEach(file => {
-  if (!fs.existsSync(file)) writeData(file, []);
+  if (!fs.existsSync(filePath)) {
+    writeData(file, []);
+  }
 });
 // ✅ Mise à jour d'une commande par ID (ex: pour marquer comme Livrée)
 app.put("/api/orders/:id", (req, res) => {
