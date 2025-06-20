@@ -22,6 +22,8 @@
        style="text-decoration: none; color: inherit;">
 
       <div class="hermes-product-image-container">
+<span *ngIf="isNew(product)" class="tag-nouveaute">Nouveauté</span>
+
         <img [src]="product.image1" [alt]="product.name" class="hermes-product-image front-image">
         <img [src]="product.image2" [alt]="product.name" class="hermes-product-image back-image">
       </div>
@@ -47,6 +49,8 @@
        style="text-decoration: none; color: inherit;">
 
       <div class="hermes-product-image-container">
+        <span *ngIf="isNew(product)" class="tag-nouveaute">Nouveauté</span>
+
         <img [src]="product.image1" [alt]="product.name" class="hermes-product-image front-image">
         <img [src]="product.image2" [alt]="product.name" class="hermes-product-image back-image">
       </div>

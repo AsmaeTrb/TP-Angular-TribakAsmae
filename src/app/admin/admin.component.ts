@@ -186,5 +186,16 @@ removeSize(index: number): void {
 hasOutOfStock(product: any): boolean {
   return product.sizes?.some((size: any) => size.quantity === 0);
 }
+isNew(product: any): boolean {
+  if (!product.createdAt) return false;
+  const addedDate = new Date(product.createdAt);
+  const now = new Date();
+  const diffInDays = (now.getTime() - addedDate.getTime()) / (1000 * 60 * 60 * 24);
+  return diffInDays <= 10;
+}
+
+isLastPiece(product: any): boolean {
+  return product.sizes?.some((s: any) => s.quantity < 10);
+}
 
 }

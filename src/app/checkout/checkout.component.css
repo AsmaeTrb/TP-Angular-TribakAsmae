@@ -181,11 +181,8 @@
   grid-column: span 2;
 }
 
-.phone-prefix {
-  display: flex;
-  align-items: flex-end;
-  gap: 5px;
-}
+
+
 
 .validate-btn {
   margin-top: 20px;
@@ -469,4 +466,31 @@
 .checkout-form input[type="text"]:focus {
   border-color: #000;
   outline: none;
+}
+.confirm-order-button {
+  display: inline-block;
+  width: 100%;
+  background-color: #000;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+   margin-top: 40px;
+}
+
+.confirm-order-button:hover {
+  background-color: #222;
+  transform: translateY(-2px);
+}
+
+.confirm-order-button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }

@@ -75,6 +75,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
   voirDetails(product: Product): void {
     this.selectedProduct = product;
   }
+isNew(product: any): boolean {
+  if (!product.createdAt) return false;
+  const addedDate = new Date(product.createdAt);
+  const now = new Date();
+  const diffInDays = (now.getTime() - addedDate.getTime()) / (1000 * 60 * 60 * 24);
+  return diffInDays <= 10;
+}
 
+isLastPiece(product: any): boolean {
+  return product.sizes?.some((s: any) => s.quantity < 10);
+}
 
 }

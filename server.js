@@ -124,17 +124,21 @@ app.get("/api/products", (req, res) => {
 
 app.post("/api/products", (req, res) => {
   const products = readData("products.json");
-  // Génère un ID unique basé sur le timestamp
   const newId = Date.now().toString();
-  const newProduct = { 
-    ...req.body, 
+
+  const newProduct = {
+    ...req.body,
     id: newId,
-    sizes: req.body.sizes || [{ size: '', quantity: 0 }] // Valeur par défaut pour les tailles
+    createdAt: new Date().toISOString(), // 🆕 Date d’ajout
+    sizes: req.body.sizes || [{ size: '', quantity: 0 }]
   };
+
   products.push(newProduct);
   writeData("products.json", products);
+
   res.status(201).json({ ...newProduct, message: "Produit ajouté" });
 });
+
 // ✅ Panier
 app.get("/api/cart", (req, res) => {
   const cart = readData("cart.json");

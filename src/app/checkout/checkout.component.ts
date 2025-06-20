@@ -22,6 +22,8 @@ export class CheckoutComponent implements OnInit {
   subtotal: number = 0;
   cartItems: any[] = [];
   isSummaryOpen: boolean = false;
+  shippingCost: number = 0;
+
   step: 'email' | 'verify' | 'form' = 'email'; // valeur temporaire
 
 code: string = '';
@@ -58,6 +60,11 @@ ngOnInit(): void {
     this.email = sessionStorage.getItem('email') || '';
     this.step = 'form';
   }
+    const savedCountry = sessionStorage.getItem('selectedCountry');
+  if (savedCountry) {
+    this.selectedCountry = savedCountry;
+    this.updateShippingCost(); // 👈 Très important ici
+  }
 }
 
 
@@ -70,6 +77,10 @@ ngOnInit(): void {
   const selected = this.countries.find(c => c.name === this.selectedCountry);
     this.selectedCountry = selected?.name || '';
     this.selectedCountryCode = selected?.code || '';
+      this.updateShippingCost(); // 🆕
+        sessionStorage.setItem('selectedCountry', this.selectedCountry);
+
+
   }
 onContinue(): void {
   if (!this.validateEmail(this.email)) {
@@ -170,4 +181,13 @@ submitShipping(): void {
     sessionStorage.setItem('subtotal', this.subtotal.toString());
     sessionStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
+ 
+updateShippingCost(): void {
+  if (this.selectedCountry === 'Morocco') {
+    this.shippingCost = 0; // Livraison gratuite
+  } else {
+    this.shippingCost = 250; // Livraison internationale
+  }
+}
+
 }

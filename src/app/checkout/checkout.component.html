@@ -1,6 +1,6 @@
 <div class="stepper-container">
   <div class="stepper-header">
-    <a class="back-link" routerLink="/cart">← Back</a>
+    <a class="back-link" routerLink="/cart">← Retour</a>
     <div class="stepper-logo">
       <a routerLink="/">
         <img src="assets/logo.png" alt="Hermès Paris" />
@@ -9,14 +9,14 @@
     <div class="spacer"></div>
   </div>
   <div class="stepper">
-    <div class="step">CART</div>
-    <div class="step active">CHECKOUT</div>
+    <div class="step">PANIER</div>
+    <div class="step active">LIVRAISON</div>
     <div class="step">CONFIRMATION</div>
   </div>
 </div>
 <section *ngIf="step === 'email'" class="checkout-form">
-  <h2>ACCOUNT</h2>
-  <p>Please enter your email to receive a confirmation code.</p>
+  <h2>COMPTE</h2>
+  <p>Veuillez entrer votre e-mail pour recevoir un code de confirmation.</p>
 
   <input
     type="email"
@@ -26,21 +26,21 @@
     [class.invalid]="showError"
   />
   <div *ngIf="showError" class="error-message">
-    <small>❗ Email is required and must be valid</small>
+    <small>❗ L’e-mail est requis et doit être valide</small>
   </div>
 
   <button (click)="onContinue()" [disabled]="isLoading">
-    {{ isLoading ? 'Sending...' : 'CONTINUE' }}
+    {{ isLoading ? 'Envoi en cours...' : 'CONTINUER'}}
   </button>
 </section>
 
 <!-- === INVITÉ : ÉTAPE 2 - Vérification du code === -->
 <section *ngIf="step === 'verify'" class="checkout-form">
-  <h2>Verification Code</h2>
-  <p>We've sent a 6-digit code to {{ email }}. Please enter it:</p>
+  <h2>Code de vérification</h2>
+  <p>Nous avons envoyé un code à 6 chiffres à {{ email }}. Veuillez le saisir :</p>
 
   <input type="text" [(ngModel)]="code" placeholder="Your code" />
-  <button (click)="verifyCode()">VERIFY</button>
+  <button (click)="verifyCode()">VÉRIFIER</button>
 </section>
 
 <!-- === LAYOUT PRINCIPAL === -->
@@ -56,96 +56,97 @@
 
     <!-- DELIVERY -->
     <section class="section-box delivery-section">
-      <div class="account-label">DELIVERY</div>
+      <div class="account-label">LIVRAISON</div>
 
       <!-- Onglets -->
       <div class="delivery-tabs">
         <div class="tab active">
           <span class="tab-icon">🚚</span>
-          <span class="tab-label">Ship to an address</span>
+          <span class="tab-label">Livrer à une adresse</span>
         </div>
       </div>
 
       <!-- FORMULAIRE -->
       <form (ngSubmit)="submitShipping()" #shippingForm="ngForm" class="hermes-delivery-form">
-        <div class="form-grid">
-          <!-- Location -->
-          <div class="form-cell">
-            <select [(ngModel)]="selectedCountry" name="location" required>
-              <option value="" disabled selected hidden>Location *</option>
-              <option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</option>
-            </select>
-          </div>
+  <div class="form-grid">
 
-          <!-- Title -->
-          <div class="form-cell">
-            <select name="title" ngModel required>
-              <option value="" disabled selected hidden>Title *</option>
-              <option value="mr">Mr.</option>
-              <option value="mrs">Mrs.</option>
-            </select>
-          </div>
+    <!-- Pays -->
+    <div class="form-cell">
+      <select [(ngModel)]="selectedCountry" name="location" (change)="onCountryChange($event)" required>
+        <option value="" disabled selected hidden>Pays *</option>
+        <option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</option>
+      </select>
+    </div>
 
-          <!-- First Name -->
-          <div class="form-cell">
-            <input type="text" name="firstName" ngModel required placeholder="First name *" />
-          </div>
+    <!-- Civilité -->
+    <div class="form-cell">
+      <select name="title" ngModel required>
+        <option value="" disabled selected hidden>Civilité *</option>
+        <option value="mr">Monsieur</option>
+        <option value="mrs">Madame</option>
+      </select>
+    </div>
 
-          <!-- Last Name -->
-          <div class="form-cell">
-            <input type="text" name="lastName" ngModel required placeholder="Last name *" />
-          </div>
+    <!-- Prénom -->
+    <div class="form-cell">
+      <input type="text" name="firstName" ngModel required placeholder="Prénom *" />
+    </div>
 
-          <!-- Company -->
-          <div class="form-cell">
-            <input type="text" name="company" ngModel placeholder="Company" />
-          </div>
+    <!-- Nom -->
+    <div class="form-cell">
+      <input type="text" name="lastName" ngModel required placeholder="Nom *" />
+    </div>
 
-          <!-- Address -->
-          <div class="form-cell double-width">
-            <input type="text" name="address" ngModel required placeholder="Address *" />
-          </div>
+    <!-- Société -->
+    <div class="form-cell">
+      <input type="text" name="company" ngModel placeholder="Société (optionnel)" />
+    </div>
 
-          <!-- Address 2 -->
-          <div class="form-cell full-width">
-            <input type="text" name="address2" ngModel placeholder="Address continued" />
-          </div>
+    <!-- Adresse -->
+    <div class="form-cell double-width">
+      <input type="text" name="address" ngModel required placeholder="Adresse *" />
+    </div>
 
-          <!-- City -->
-          <div class="form-cell">
-            <input type="text" name="city" ngModel required placeholder="City *" />
-          </div>
+    <!-- Complément d'adresse -->
+    <div class="form-cell full-width">
+      <input type="text" name="address2" ngModel placeholder="Complément d’adresse" />
+    </div>
 
-          <!-- State -->
-          <div class="form-cell">
-            <input type="text" name="state" ngModel required placeholder="State *" />
-          </div>
+    <!-- Ville -->
+    <div class="form-cell">
+      <input type="text" name="city" ngModel required placeholder="Ville *" />
+    </div>
 
-          <!-- Zip -->
-          <div class="form-cell">
-            <input type="text" name="zip" ngModel required placeholder="Zip code *" />
-          </div>
+    <!-- Région -->
+    <div class="form-cell">
+      <input type="text" name="state" ngModel required placeholder="Région *" />
+    </div>
 
-          <!-- Zip Plus -->
-          <div class="form-cell">
-            <input type="text" name="zipPlus" ngModel placeholder="Zip +" />
-          </div>
+    <!-- Code postal -->
+    <div class="form-cell">
+      <input type="text" name="zip" ngModel required placeholder="Code postal *" />
+    </div>
 
-          <!-- Phone -->
-          <div class="form-cell phone-prefix">
-            <span>{{ selectedCountryCode }}</span>
-            <div style="flex-grow: 1;">
-              <input type="tel" name="phone" ngModel required placeholder="Telephone number *" />
-            </div>
-          </div>
-        </div>
-        <div class="form-actions">
-  <button type="submit" [disabled]="isLoading">
-    {{ isLoading ? 'Processing...' : 'CONFIRMER LA COMMANDE' }}
-  </button>
+    <!-- Numéro de téléphone -->
+  <div class="form-cell">
+  <input
+    type="tel"
+    name="phone"
+    ngModel
+    required
+    [placeholder]="' (' + selectedCountryCode + ')'"
+  />
 </div>
-        
-      </form>
+
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="confirm-order-button" [disabled]="isLoading">
+  {{ isLoading ? 'Traitement...' : 'CONFIRMER LA COMMANDE' }}
+</button>
+  </div>
+</form>
+
     </section>
   </div>
 
@@ -187,18 +188,21 @@
     </div>
     <div class="summary-row">
       <div>
-        <span>SHIPPING</span><br />
-        <small>Collect in store<br>Hermès Meatpacking</small>
-      </div>
-      <span>{{ 35 | currency:'USD' }}</span>
-    </div>
-    <div class="summary-row">
-      <span>TAXES</span>
-      <span>{{ 659.86 | currency:'USD' }}</span>
+    <span>SHIPPING</span><br />
+    <small *ngIf="selectedCountry === 'Morocco'">
+      Livraison à domicile (Maroc)
+    </small>
+    <small *ngIf="selectedCountry && selectedCountry !== 'Morocco'">
+      Livraison standard internationale
+    </small>
+  </div>
+
+      <span>{{ shippingCost | currency:'USD' }}</span>
     </div>
     <div class="summary-row total-row">
       <span>TOTAL</span>
-      <span>{{ subtotal + 35 + 659.86 | currency:'USD' }}</span>
+      <span>{{ subtotal + shippingCost | currency:'USD' }}</span>
+
     </div>
   </div>
 </div>
