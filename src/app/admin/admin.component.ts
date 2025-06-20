@@ -183,4 +183,8 @@ removeSize(index: number): void {
     this.newProduct.sizes.splice(index, 1);
   }
 }
+hasOutOfStock(product: any): boolean {
+  return product.sizes?.some((size: any) => size.quantity === 0);
+}
+
 }

@@ -16,6 +16,8 @@ import { CartService } from '../../services/cartservice';
   styleUrls: ['./productdetails.component.css']
 })
 export class ProductdetailsComponent {
+  isOutOfStock: boolean = false;
+
   isSizeOpen = false;
 selectedSize?: string;
 availableQuantity: number = 0;
@@ -34,6 +36,9 @@ showPopup: boolean = false;
     private router: Router,
      private cartService: CartService
   ) {}
+
+
+
 ngOnInit(): void {
   const productId = this.route.snapshot.paramMap.get('id');
 
@@ -45,17 +50,15 @@ ngOnInit(): void {
         this.currentImage = this.product.image1;
         this.currentDetailsBackground = this.product.image2;
 
-        // ✅ Auto-sélection si taille unique
+        // Si une seule taille : auto-sélection
         if (this.product.sizes.length === 1) {
-          this.selectedSize = this.product.sizes[0].size;
-          this.availableQuantity = this.product.sizes[0].quantity;
+          const sizeObj = this.product.sizes[0];
+          this.selectSize(sizeObj); // 💡 Appelle directement la logique de sélection
         }
       }
     }
   });
 }
-
-  
 
 
   getAvailableImages(): string[] {
@@ -70,12 +73,15 @@ ngOnInit(): void {
   zoomImage(img: string): void {
     this.zoomedImage = img;
   }
-
 selectSize(sizeObj: { size: string, quantity: number }): void {
   this.selectedSize = sizeObj.size;
   this.availableQuantity = sizeObj.quantity;
   this.quantity = 1;
+
+  // Active le bloc d’ajout uniquement si stock > 0
+  this.isOutOfStock = sizeObj.quantity === 0;
 }
+
 
 increment(): void {
   if (!this.selectedSize) return;
@@ -92,19 +98,35 @@ decrement(): void {
 addToCart(): void {
   if (this.selectedSize) {
     const item = {
-       id: this.product.id,
-  name: this.product.name,
-  size: this.selectedSize,
-  quantity: this.quantity,
-  image: this.product.image1,
-  price: this.product.price,
-  payOption: this.payOption,
-  availableQuantity: this.availableQuantity 
+      id: this.product.id,
+      name: this.product.name,
+      size: this.selectedSize,
+      quantity: this.quantity,
+      image: this.product.image1,
+      price: this.product.price,
+      payOption: this.payOption,
+      availableQuantity: this.availableQuantity 
     };
 
     this.cartService.addToCart(item).subscribe({
       next: () => {
         this.showPopup = true;
+
+        // ✅ Recharge le produit et met à jour le stock affiché
+        this.getDataService.getProducts().subscribe({
+          next: (products) => {
+            const updatedProduct = products.find(p => p.id === this.product.id);
+            if (updatedProduct) {
+              this.product = updatedProduct;
+              const updatedSize = this.product.sizes.find(s => s.size === this.selectedSize);
+              this.availableQuantity = updatedSize ? updatedSize.quantity : 0;
+
+              if (this.quantity > this.availableQuantity) {
+                this.quantity = this.availableQuantity;
+              }
+            }
+          }
+        });
       },
       error: () => {
         alert("Erreur lors de l'ajout au panier.");

@@ -38,11 +38,14 @@
 
   <div class="hermes-size-grid">
   <button *ngFor="let size of product.sizes"
-          class="hermes-size-button"
-          [class.active]="selectedSize === size.size"
-          (click)="selectSize(size)">
-    {{ size.size }}
-  </button>
+        class="hermes-size-button"
+        [class.active]="selectedSize === size.size"
+        [disabled]="size.quantity === 0"
+        [class.out-of-stock]="size.quantity === 0"
+        (click)="selectSize(size)">
+  {{ size.size }}
+</button>
+
 </div>
 
 
@@ -50,11 +53,15 @@
 </div>
 
     <div class="hermes-actions">
-      <button class="hermes-add-to-cart" 
-              (click)="addToCart()"
-              [disabled]="!selectedSize">
-        AJOUTER AU PANIER
-      </button>
+      <button class="hermes-add-to-cart"
+        (click)="addToCart()"
+        [disabled]="isOutOfStock || !selectedSize">
+  AJOUTER AU PANIER
+</button>
+<div *ngIf="isOutOfStock" class="rupture-alert">
+  ❌ Ce produit est en rupture de stock
+</div>
+
       <div class="hermes-quantity">
   <div class="quantity-controls">
     <button type="button" (click)="decrement()">−</button>

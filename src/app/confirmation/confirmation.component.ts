@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-confirmation',
     standalone: true,
+
   imports: [],
   templateUrl: './confirmation.component.html',
   styleUrl: './confirmation.component.css'

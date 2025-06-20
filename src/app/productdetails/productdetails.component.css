@@ -352,3 +352,13 @@
   cursor: pointer;
   color: #333;
 }
+.rupture-alert {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.hermes-size-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}

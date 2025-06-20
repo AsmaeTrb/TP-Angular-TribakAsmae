@@ -1,0 +1,54 @@
+[
+  {
+    "email": "asmae@gmail.com",
+    "items": [
+      {
+        "id": "23",
+        "name": "Picotin Équipages d'Hermès",
+        "size": "Taille unique",
+        "quantity": 1,
+        "image": "./assets/im43.jpg",
+        "price": 18100,
+        "payOption": false,
+        "availableQuantity": 1
+      }
+    ],
+    "total": 18100,
+    "isGift": false,
+    "id": 1,
+    "date": "2025-06-20T12:40:44.058Z"
+  },
+  {
+    "email": "asmae@gmail.com",
+    "items": [
+      {
+        "id": "23",
+        "name": "Picotin Équipages d'Hermès",
+        "size": "Taille unique",
+        "quantity": 1,
+        "image": "./assets/im43.jpg",
+        "price": 18100,
+        "payOption": false,
+        "availableQuantity": 1
+      }
+    ],
+    "total": 18100,
+    "isGift": false,
+    "id": 2,
+    "date": "2025-06-20T12:42:26.787Z"
+  },
+  {
+    "email": "asmae@gmail.com",
+    "items": [
+      {
+        "id": "11",
+        "size": "38",
+        "quantity": 36
+      }
+    ],
+    "total": 7560,
+    "isGift": false,
+    "id": 3,
+    "date": "2025-06-20T13:14:33.705Z"
+  }
+]

@@ -40,6 +40,9 @@
       <div *ngFor="let product of products" class="product-card">
         <img [src]="product.image1" alt="Produit" class="product-image" />
         <h4>{{ product.name }}</h4>
+    <div *ngIf="hasOutOfStock(product)" class="badge-out">
+  ❌ Rupture de stock
+</div>
         <p>{{ product.price | currency:'EUR' }}</p>
         <div class="product-actions">
           <button (click)="editProduct(product.id)">✏️ Modifier</button>

@@ -121,9 +121,13 @@ verifyCode(): void {
 submitShipping(): void {
   this.isLoading = true;
 
-  const order = {
+   const order = {
     email: this.email,
-    items: this.cartItems,
+    items: this.cartItems.map(item => ({
+      id: item.id,
+      size: item.size,
+      quantity: item.quantity
+    })),
     total: this.subtotal,
     isGift: false
   };

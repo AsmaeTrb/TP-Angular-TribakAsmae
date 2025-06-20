@@ -271,3 +271,12 @@
   border-radius: 6px;
   cursor: pointer;
 }
+.badge-out {
+  color: white;
+  background-color: #c0392b;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 4px;
+}

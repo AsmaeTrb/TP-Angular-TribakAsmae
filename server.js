@@ -171,14 +171,48 @@ app.get("/api/orders", (req, res) => {
   const orders = readData("orders.json");
   res.json(orders);
 });
-
 app.post("/api/orders", (req, res) => {
   const orders = readData("orders.json");
-  const newOrder = { ...req.body, id: orders.length + 1, date: new Date() };
+  const products = readData("products.json"); // On lit les produits
+
+  const newOrder = {
+    ...req.body,
+    id: orders.length + 1,
+    date: new Date()
+  };
+
+  // 🔁 Met à jour le stock pour chaque article de la commande
+  let stockError = false;
+  newOrder.items.forEach(item => {
+    const product = products.find(p => p.id === item.id);
+    if (product) {
+      const sizeObj = product.sizes.find(s => s.size === item.size);
+      if (sizeObj && sizeObj.quantity >= item.quantity) {
+        sizeObj.quantity -= item.quantity;
+
+        // ⚠️ Optionnel : log stock faible
+        if (sizeObj.quantity <= 2) {
+          console.log(`⚠️ Stock faible : ${product.name} taille ${sizeObj.size}`);
+        }
+
+      } else {
+        stockError = true;
+      }
+    }
+  });
+
+  if (stockError) {
+    return res.status(400).json({ message: "Stock insuffisant pour un ou plusieurs articles." });
+  }
+
+  // ✅ Enregistrement
   orders.push(newOrder);
   writeData("orders.json", orders);
-  res.status(201).json({ message: "Commande enregistrée" });
+  writeData("products.json", products); // sauvegarde le nouveau stock
+
+  res.status(201).json({ message: "Commande enregistrée et stock mis à jour ✅" });
 });
+
 
 // ✅ Email (code de vérification)
 const verificationCodes = new Map();
