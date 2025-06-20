@@ -12,5 +12,18 @@
     "email": "asmae@gmail.com",
     "password": "1111",
     "role": "Guest"
+  },
+  {
+    "name": "",
+    "email": "as",
+    "password": "",
+    "phone": "",
+    "gender": "",
+    "birthDate": "",
+    "address": "",
+    "city": "",
+    "country": "France",
+    "role": "Guest",
+    "id": "3"
   }
 ]

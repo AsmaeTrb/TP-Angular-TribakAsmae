@@ -1,14 +1,14 @@
 <div class="login-wrapper">
-  <!-- Rectangle titre ACCOUNT -->
+  <!-- Rectangle titre COMPTE -->
   <div class="account-box">
-    <p>ACCOUNT</p>
+    <p>COMPTE</p>
   </div>
 
   <!-- Rectangle formulaire -->
   <div class="login-container">
     <!-- Étape Email -->
     <form *ngIf="!isEmailVerified" (ngSubmit)="verifyEmail()" #emailForm="ngForm" class="login-form">
-      <label for="email">Please enter your email below to access or create your account</label>
+      <label for="email">Veuillez saisir votre adresse e-mail pour accéder ou créer votre compte</label>
       
       <input
         type="email"
@@ -16,24 +16,24 @@
         name="email"
         [(ngModel)]="email"
         required
-        placeholder="yourname@domain.com"
+        placeholder="votre.nom@domaine.com"
         class="login-input"
       />
 
-      <p class="hint">Expected format: yourname&#64;domain.com</p>
+      <p class="hint">Format attendu : votre.nom&#64;domaine.com</p>
 
       <button 
         type="submit" 
         class="login-button" 
         [disabled]="emailForm.invalid || isLoading"
       >
-        {{isLoading ? 'Checking...' : 'CONTINUE'}}
+        {{isLoading ? 'Vérification en cours...' : 'CONTINUER'}}
       </button>
     </form>
 
-    <!-- Étape Password -->
+    <!-- Étape Mot de passe -->
     <form *ngIf="isEmailVerified" (ngSubmit)="submitPassword()" #passwordForm="ngForm" class="login-form">
-      <label>Welcome back! Please enter your password for {{email}}</label>
+      <label>Bienvenue ! Veuillez saisir votre mot de passe pour {{email}}</label>
       
       <input
         type="password"
@@ -41,7 +41,7 @@
         name="password"
         [(ngModel)]="password"
         required
-        placeholder="Your password"
+        placeholder="Votre mot de passe"
         class="login-input"
       />
 
@@ -50,7 +50,7 @@
         class="login-button" 
         [disabled]="passwordForm.invalid || isLoading"
       >
-        {{isLoading ? 'Signing in...' : 'SIGN IN'}}
+        {{isLoading ? 'Connexion en cours...' : 'SE CONNECTER'}}
       </button>
 
       <button 
@@ -59,7 +59,7 @@
         class="login-button"
         style="background-color: transparent; color: #333; border: 1px solid #333;"
       >
-        BACK
+        RETOUR
       </button>
     </form>
 

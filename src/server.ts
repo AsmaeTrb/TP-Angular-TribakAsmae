@@ -40,3 +40,10 @@ if (isMainModule(import.meta.url)) {
   });
 }
 export const reqHandler = createNodeRequestHandler(app);
+export function getPrerenderParams() {
+  return [
+    { id: '1' },
+    { id: '2' },
+    { id: '3' },
+  ];
+}

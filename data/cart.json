@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id": "13",
+    "name": "Gavroche 45",
+    "size": "Taille Unique",
+    "quantity": 1,
+    "image": "./assets/im27.jpg",
+    "price": 240,
+    "payOption": false,
+    "availableQuantity": 10
+  }
+]

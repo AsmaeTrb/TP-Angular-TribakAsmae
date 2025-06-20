@@ -25,6 +25,6 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`🌍 App localisée disponible sur :`);
-  console.log(`➡️  http://localhost:${PORT}/fr-CA/catalog`);
-  console.log(`➡️  http://localhost:${PORT}/en-US/catalog`);
+  console.log(`➡️  http://localhost:${PORT}/fr/`);
+  console.log(`➡️  http://localhost:${PORT}/en-US`);
 });

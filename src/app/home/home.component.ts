@@ -8,7 +8,7 @@ import { ProductdetailsComponent } from '../productdetails/productdetails.compon
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ProductdetailsComponent, CommonModule, RouterLink],
+  imports: [ CommonModule, RouterLink],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -16,9 +16,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('promoVideo', { static: false }) promoVideo!: ElementRef<HTMLVideoElement>;
   
   products: Product[] = [];
-  selectedProduct!: Product;
-  filter: string = '';
-
   constructor(
     private getDataService: GetDataService,
     private router: Router,
@@ -72,9 +69,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  voirDetails(product: Product): void {
-    this.selectedProduct = product;
-  }
 isNew(product: any): boolean {
   if (!product.createdAt) return false;
   const addedDate = new Date(product.createdAt);
