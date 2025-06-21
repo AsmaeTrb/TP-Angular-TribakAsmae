@@ -6,11 +6,11 @@
       <source src="./assets/video0.mp4" type="video/mp4">
       <!-- Fallback option -->
       <div class="video-fallback">
-        <button (click)="playVideo()" i18n>Lire la vidéo</button>
+        <button (click)="playVideo()">Lire la vidéo</button>
       </div>
     </video>
     <div class="hermes-video-overlay">
-      <h2 i18n>NOUVELLE COLLECTION ÉTÉ</h2>
+      <h2>NOUVELLE COLLECTION ÉTÉ</h2>
     </div>
   </div>
 
@@ -22,7 +22,7 @@
        style="text-decoration: none; color: inherit;">
 
       <div class="hermes-product-image-container">
-        <span *ngIf="isNew(product)" class="tag-nouveaute" i18n>Nouveauté</span>
+        <span *ngIf="isNew(product)" class="tag-nouveaute">Nouveauté</span>
         <img [src]="product.image1" [alt]="product.name" class="hermes-product-image front-image">
         <img [src]="product.image2" [alt]="product.name" class="hermes-product-image back-image">
       </div>
@@ -36,7 +36,7 @@
   <!-- Image avec texte superposé -->
   <div class="hermes-image-with-text">
     <div class="hermes-image-container">
-      <img src="./assets/decouver.jpg" alt="Collection été Hermès" class="hermes-main-image" i18n-alt>
+      <img src="./assets/decouver.jpg" alt="Collection été Hermès" class="hermes-main-image">
     </div>
   </div>
 
@@ -48,7 +48,7 @@
        style="text-decoration: none; color: inherit;">
 
       <div class="hermes-product-image-container">
-        <span *ngIf="isNew(product)" class="tag-nouveaute" i18n>Nouveauté</span>
+        <span *ngIf="isNew(product)" class="tag-nouveaute">Nouveauté</span>
         <img [src]="product.image1" [alt]="product.name" class="hermes-product-image front-image">
         <img [src]="product.image2" [alt]="product.name" class="hermes-product-image back-image">
       </div>

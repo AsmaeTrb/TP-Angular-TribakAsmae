@@ -1,37 +1,5 @@
 [
   {
-    "id": "1",
-    "name": "Robe de plage brodée",
-    "price": 299.99,
-    "color": "Blanc",
-    "description": "Une robe de plage brodée en popeline de coton unie...",
-    "image1": "./assets/im1.jpg",
-    "image2": "./assets/im2.jpg",
-    "category": "femmes",
-    "sizes": [
-      {
-        "size": "S",
-        "quantity": 5
-      },
-      {
-        "size": "M",
-        "quantity": 8
-      },
-      {
-        "size": "L",
-        "quantity": 3
-      },
-      {
-        "size": "XL",
-        "quantity": 1
-      },
-      {
-        "size": "XXL",
-        "quantity": 0
-      }
-    ]
-  },
-  {
     "id": "2",
     "name": "Polo boutonné à manches courtes avec broderie H",
     "price": 159,

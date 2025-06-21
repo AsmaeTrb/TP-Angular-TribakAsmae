@@ -14,6 +14,7 @@ export interface User {
   city: string;
   country: string;
   role: string;
+
 }
 
 @Injectable({

@@ -44,7 +44,6 @@ app.put("/api/orders/:id", (req, res) => {
   res.json({ message: "Commande mise à jour ✅" });
 });
 
-// ✅ Routes utilisateurs
 app.get("/api/users", (req, res) => {
   const email = req.query.email?.toLowerCase();
   const users = readData("users.json");
@@ -177,31 +176,41 @@ app.get("/api/orders", (req, res) => {
 });
 app.post("/api/orders", (req, res) => {
   const orders = readData("orders.json");
-  const products = readData("products.json"); // On lit les produits
+  const products = readData("products.json");
+
+  const newOrderItems = req.body.items.map(item => {
+    const product = products.find(p => p.id === item.id);
+    const sizeData = product?.sizes.find(s => s.size === item.size);
+
+    return {
+      ...item,
+      name: product?.name || "Produit inconnu",
+      price: product?.price || 0,
+      image: product?.image1 || "", // ou une image par défaut
+      availableQuantity: sizeData?.quantity || 0,
+      payOption: false // ou selon ton besoin
+    };
+  });
 
   const newOrder = {
     ...req.body,
     id: orders.length + 1,
-    date: new Date()
+    date: new Date(),
+    items: newOrderItems
   };
 
-  // 🔁 Met à jour le stock pour chaque article de la commande
   let stockError = false;
-  newOrder.items.forEach(item => {
+
+  newOrderItems.forEach(item => {
     const product = products.find(p => p.id === item.id);
-    if (product) {
-      const sizeObj = product.sizes.find(s => s.size === item.size);
-      if (sizeObj && sizeObj.quantity >= item.quantity) {
-        sizeObj.quantity -= item.quantity;
-
-        // ⚠️ Optionnel : log stock faible
-        if (sizeObj.quantity <= 2) {
-          console.log(`⚠️ Stock faible : ${product.name} taille ${sizeObj.size}`);
-        }
-
-      } else {
-        stockError = true;
+    const sizeObj = product?.sizes.find(s => s.size === item.size);
+    if (sizeObj && sizeObj.quantity >= item.quantity) {
+      sizeObj.quantity -= item.quantity;
+      if (sizeObj.quantity <= 2) {
+        console.log(`⚠️ Stock faible : ${product.name} taille ${sizeObj.size}`);
       }
+    } else {
+      stockError = true;
     }
   });
 
@@ -209,10 +218,9 @@ app.post("/api/orders", (req, res) => {
     return res.status(400).json({ message: "Stock insuffisant pour un ou plusieurs articles." });
   }
 
-  // ✅ Enregistrement
   orders.push(newOrder);
   writeData("orders.json", orders);
-  writeData("products.json", products); // sauvegarde le nouveau stock
+  writeData("products.json", products);
 
   res.status(201).json({ message: "Commande enregistrée et stock mis à jour ✅" });
 });

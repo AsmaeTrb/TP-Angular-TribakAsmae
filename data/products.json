@@ -14,7 +14,8 @@
     "image2": "./assets/im28.jpg",
     "category": "bijouterieetmontres",
     "color": "crème",
-    "origin": "France"
+    "origin": "France",
+    "createdAt": "2025-06-15T10:00:00Z"
   },
   {
     "id": "11",
@@ -32,7 +33,7 @@
       },
       {
         "size": "39",
-        "quantity": 7
+        "quantity": 3
       },
       {
         "size": "40",
@@ -72,31 +73,6 @@
         "quantity": 0
       }
     ]
-  },
-  {
-    "name": "Cardigan cache-cœur imprimé « En Désordre à Fleurs »",
-    "price": 2400,
-    "color": "Multicolore (rose, blanc, bleu)",
-    "description": "Un cardigan cache-cœur en maille de soie résille imprimée « En Désordre à Fleurs » (100 % soie)\n\n- Noué devant\n- Motif « En Désordre à Fleurs » texturé\n\nCe modèle taille normalement, nous vous conseillons de prendre votre taille habituelle.",
-    "image1": "./assets/im21.jpg",
-    "image2": "./assets/im22.jpg",
-    "category": "femmes",
-    "origin": "Italie",
-    "sizes": [
-      {
-        "size": "36",
-        "quantity": 9
-      },
-      {
-        "size": "38",
-        "quantity": 2
-      },
-      {
-        "size": "40",
-        "quantity": 5
-      }
-    ],
-    "id": "12"
   },
   {
     "id": "14",
@@ -183,6 +159,7 @@
     "image2": "./assets/im30.jpg",
     "category": "hommes",
     "color": "céladon",
+    "createdAt": "2025-06-19T10:00:00Z",
     "origin": "Italie"
   },
   {
@@ -686,5 +663,23 @@
     "category": "femmes",
     "color": "blanc sel",
     "origin": "France"
+  },
+  {
+    "name": "Robe chemise",
+    "price": 10,
+    "color": "rose",
+    "description": "",
+    "image1": "./assets/im21.jpg",
+    "image2": "./assets/im22.jpg",
+    "category": "femmes",
+    "origin": "italie",
+    "sizes": [
+      {
+        "size": "xl",
+        "quantity": 3
+      }
+    ],
+    "id": "1750461126016",
+    "createdAt": "2025-06-20T23:12:06.016Z"
   }
 ]
